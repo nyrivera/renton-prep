@@ -1,0 +1,157 @@
+import Link from "next/link";
+
+import { MarketingLink } from "@/components/marketing/MarketingLink";
+import { LogoShield } from "@/components/marketing/LogoShield";
+import { site } from "@/lib/site";
+
+export function SiteFooter() {
+  return (
+    <footer className="site-footer" aria-label="Site footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <div className="logo">
+              <LogoShield size={36} />
+              <div className="logo-text">
+                <span className="logo-name">Renton Prep</span>
+                <span className="logo-tagline">{site.tagline}</span>
+              </div>
+            </div>
+            <p>
+              Christ-centered, technology-enabled education. Multiple awards and
+              recognitions; workforce and college preparedness; student-led IT
+              initiatives — in a personalized micro-school environment.
+            </p>
+            <p style={{ marginTop: "var(--space-3)", fontSize: "14px" }}>
+              <MarketingLink
+                href={site.urls.schwabe}
+                style={{ color: "rgba(247,248,250,0.55)" }}
+              >
+                In memory of Henry and Edith Schwabe · Our history
+              </MarketingLink>
+            </p>
+          </div>
+          <div className="footer-col">
+            <h5>About</h5>
+            <ul>
+              <li>
+                <Link href={site.urls.about}>About Renton Prep</Link>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.mission}>
+                  Mission, Vision, &amp; Action
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.awards}>
+                  Awards &amp; Hoopla
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.testimonials}>
+                  Testimonials
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.blog}>Blog</MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.careers}>Careers</MarketingLink>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h5>Admissions</h5>
+            <ul>
+              <li>
+                <MarketingLink href={site.urls.admissions}>Admissions</MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.tuition}>
+                  Tuition &amp; Fees
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.financialAid}>
+                  Financial Assistance
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.uniforms}>Uniforms</MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.handbook}>
+                  Student Handbook
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.extendedCare}>
+                  Extended School Care
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.apply}>Apply Now</MarketingLink>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h5>Academics &amp; contact</h5>
+            <ul>
+              <li>
+                <MarketingLink href={site.urls.academics}>Academics</MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.genesisTechnology}>
+                  Technology &amp; Genesis
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.supplyLists}>
+                  Supply Lists
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.calendar}>
+                  Academic Calendar
+                </MarketingLink>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.events}>
+                  Events &amp; calendar
+                </MarketingLink>
+              </li>
+              <li>
+                <Link href={site.urls.contact}>Contact</Link>
+              </li>
+              <li>
+                <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
+              </li>
+              <li>
+                <span>
+                  {site.address.lines[0]}
+                  <br />
+                  {site.address.lines[1]}
+                </span>
+              </li>
+              <li>
+                <MarketingLink href={site.urls.instagram}>Instagram</MarketingLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
+          </span>
+          <span>
+            <MarketingLink href={site.urls.privacy}>Legal &amp; privacy</MarketingLink>
+            {" · "}
+            <Link href="/#faq">FAQ</Link>
+            {" · "}
+            <MarketingLink href={site.urls.donate}>Donate</MarketingLink>
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
