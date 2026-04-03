@@ -12,10 +12,6 @@ export function GenesisSection() {
       <div className="container">
         <div className="genesis-layout">
           <div className="genesis-content">
-            <div className="genesis-badge" aria-label="New program">
-              <span className="genesis-badge-dot" aria-hidden="true" />
-              <span>New Program</span>
-            </div>
             <span className="eyebrow eyebrow--muted">The Genesis Project</span>
             <h2 id="genesis-heading">
               Learning to Lead
