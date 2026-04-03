@@ -3,26 +3,49 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Embeds a JotForm by dynamically appending the jsform script into a container
- * div. Using useEffect ensures this only runs on the client and avoids React
- * hydration issues from third-party DOM mutations.
+ * Embeds a JotForm via a direct <iframe> — no loader script, no inject-and-wait.
+ * JotForm sends postMessage events to resize the iframe; we listen and apply
+ * the height directly so the form never clips or double-scrolls.
+ *
+ * CSP requirements: frame-src must allow https://form.jotform.com.
  */
 export function JotForm({ formId }: { formId: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const script = document.createElement("script");
-    script.src = `https://form.jotform.com/jsform/${formId}`;
-    script.type = "text/javascript";
-    container.appendChild(script);
-
-    return () => {
-      script.remove();
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== "https://form.jotform.com") return;
+      if (typeof e.data !== "string") return;
+      try {
+        const data = JSON.parse(e.data) as {
+          action?: string;
+          args?: unknown[];
+        };
+        if (
+          data.action === "setHeight" &&
+          Array.isArray(data.args) &&
+          typeof data.args[0] === "number" &&
+          iframeRef.current
+        ) {
+          iframeRef.current.style.height = `${data.args[0]}px`;
+        }
+      } catch {
+        // not JSON — ignore
+      }
     };
-  }, [formId]);
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
-  return <div ref={containerRef} />;
+  return (
+    <iframe
+      ref={iframeRef}
+      src={`https://form.jotform.com/${formId}`}
+      className="jotform-embed"
+      title="Contact form"
+      loading="eager"
+      allow="geolocation; camera; microphone"
+      style={{ border: "none" }}
+    />
+  );
 }

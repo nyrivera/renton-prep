@@ -1435,6 +1435,14 @@
   max-width: 52ch;
 }
 
+/* Direct iframe embed — height adjusted at runtime via JotForm postMessage */
+.marketing-root .jotform-embed {
+  display: block;
+  margin-top: var(--space-4);
+  width: 100%;
+  min-height: 540px;
+}
+
 .marketing-root .contact-info-list {
   list-style: none;
   padding: 0;

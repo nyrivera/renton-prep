@@ -15,8 +15,15 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="marketing-root">
-      <ContactPageContent />
-    </div>
+    <>
+      {/* Warm up JotForm's servers before the iframe src resolves */}
+      <link rel="preconnect" href="https://form.jotform.com" crossOrigin="" />
+      <link rel="preconnect" href="https://cdn.jotfor.ms" crossOrigin="" />
+      <link rel="dns-prefetch" href="https://form.jotform.com" />
+      <link rel="dns-prefetch" href="https://cdn.jotfor.ms" />
+      <div className="marketing-root">
+        <ContactPageContent />
+      </div>
+    </>
   );
 }
