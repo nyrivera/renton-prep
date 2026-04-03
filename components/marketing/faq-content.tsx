@@ -12,6 +12,7 @@ export const FAQ_SIDEBAR: { id: string; label: string }[] = [
   { id: "faq-pressure-belief", label: "Will my child be pressured to believe?" },
   { id: "faq-beliefs-open", label: "How openly do you talk about your beliefs?" },
   { id: "faq-different-perspectives", label: "Different perspectives in the classroom" },
+  { id: "faq-microschool", label: "How do you define microschool?" },
   { id: "faq-learning-different", label: "What makes learning here different?" },
   { id: "faq-challenge", label: "How do you challenge students academically?" },
   { id: "faq-progress", label: "How do you measure student progress?" },
@@ -105,6 +106,33 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
           how to disagree without dismissing others. Students are exposed to a
           range of perspectives and are guided in how to think, not just what to
           think.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "faq-microschool",
+    cats: ["academics"],
+    title: "How do you define microschool?",
+    content: (
+      <>
+        <p>
+          There are many ways to define the sizes and designs of microschools,
+          from fewer than 15 to over 100 students with various models. We define
+          ours as a small school model built on accredited standards and proven
+          outcomes.
+        </p>
+        <p>
+          We are intentionally designed as a learning community where students
+          are known and become active participants and contributors in advancing
+          knowledge in the field of education. Learning is personalized and
+          relationship-centered, with technology used thoughtfully to support
+          curiosity and deeper understanding.
+        </p>
+        <p>
+          Genesis Project bridges microschool innovation and credible
+          research—so powerful learning models can grow, endure, and lead the
+          future of education.
         </p>
       </>
     ),
