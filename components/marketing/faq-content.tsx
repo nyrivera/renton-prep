@@ -45,15 +45,15 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
           Christian faith.
         </p>
         <p>
-          Your child will experience that through things like chapel, Scripture,
-          and classroom discussions. They will also be treated with respect,
-          encouraged to ask questions, and supported in developing their own
-          understanding.
+          Your child will encounter that through chapel, Scripture, and classroom
+          discussions. Every student is treated with genuine respect and dignity
+          here, regardless of where they or their family stands on matters of
+          faith. Students are encouraged to ask honest questions and are not
+          expected to perform belief they do not hold.
         </p>
         <p>
           Belonging here does not require pretending to believe something. It does
-          require openness to learning in a community that is clear about its
-          foundation.
+          require openness to a community that is clear about its foundation.
         </p>
       </>
     ),
@@ -84,9 +84,10 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
       <>
         <p>Very openly.</p>
         <p>
-          We believe it is better to be clear than to leave families guessing.
-          Our beliefs shape the life of the school, so we name them directly and
-          explain how they show up in daily learning.
+          We name our beliefs directly because families deserve to know what they
+          are choosing. Our faith shapes how we teach, how we relate to students,
+          and how we make decisions as a school, so we explain that clearly
+          rather than leaving it implied.
         </p>
       </>
     ),
@@ -117,22 +118,21 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
     content: (
       <>
         <p>
-          There are many ways to define the sizes and designs of microschools,
-          from fewer than 15 to over 100 students with various models. We define
-          ours as a small school model built on accredited standards and proven
-          outcomes.
+          The word microschool covers a wide range of models, from informal
+          co-ops of fewer than 15 students to structured programs well over 100.
+          Some are loosely organized and unaccredited; others are rigorous and
+          fully credentialed.
         </p>
         <p>
-          We are intentionally designed as a learning community where students
-          are known and become active participants and contributors in advancing
-          knowledge in the field of education. Learning is personalized and
-          relationship-centered, with technology used thoughtfully to support
-          curiosity and deeper understanding.
+          Renton Prep is a fully accredited K-12 school that chooses to stay
+          small. That choice means students are known individually, instruction
+          can be personalized, and relationships stay at the center of how
+          learning happens.
         </p>
         <p>
-          Genesis Project bridges microschool innovation and credible
-          research—so powerful learning models can grow, endure, and lead the
-          future of education.
+          Our programs, including the Genesis Project, are grounded in
+          accreditation standards and evidence-based practice, and all remain
+          aligned with the school's mission and values.
         </p>
       </>
     ),
@@ -215,11 +215,15 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
     title: "How do you support students who are ahead?",
     content: (
       <>
-        <p>Students who are ready for more are given opportunities to go deeper.</p>
         <p>
-          That might include more complex work, independent projects, or
-          leadership opportunities within the classroom. We want students to stay
-          challenged and engaged.
+          Students who are ready for more are given opportunities to go deeper,
+          not just move faster.
+        </p>
+        <p>
+          That might include more complex project-based work, independent
+          inquiry, or mentorship roles within the classroom. We want students to
+          stay genuinely challenged and engaged, not simply ahead of the next
+          assignment.
         </p>
       </>
     ),
@@ -294,7 +298,7 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
     title: "How do you handle discipline?",
     content: (
       <>
-        <p>We focus on responsibility and growth, not just punishment.</p>
+        <p>We focus on responsibility, growth, and accountability — not just punishment.</p>
         <p>
           When issues come up, we address them directly, help students understand
           the impact of their actions, and work toward better choices moving
@@ -349,8 +353,9 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
           <li>clear beliefs paired with openness</li>
         </ul>
         <p>
-          This is less about background and more about alignment in how learning
-          is approached.
+          Fit here is less about background and more about engagement. Families
+          who are genuinely invested in how their child is learning, and who want
+          to be active partners rather than observers, tend to thrive here.
         </p>
       </>
     ),
