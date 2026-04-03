@@ -22,7 +22,7 @@ export const site = {
     tel: "+12067235526",
   },
   urls: {
-    contact: "/contact",
+    contact: "/request-information",
     apply: applyHref,
     donate: "/donate",
     blog: "/blog",
@@ -49,7 +49,7 @@ export const site = {
     schwabe: "/about#moments",
     privacy: "/legal",
     instagram: "https://www.instagram.com/rentonprep/",
-    newsletter: "/contact",
+    newsletter: "/request-information",
     genesisTechnology: "/#genesis",
     genesisProject: "/about/genesis",
   },

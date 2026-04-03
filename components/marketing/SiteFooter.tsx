@@ -99,7 +99,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <div className="footer-col">
-            <h5>Academics &amp; contact</h5>
+            <h5>Academics</h5>
             <ul>
               <li>
                 <MarketingLink href={site.urls.academics}>Academics</MarketingLink>
@@ -125,7 +125,7 @@ export function SiteFooter() {
                 </MarketingLink>
               </li>
               <li>
-                <Link href={site.urls.contact}>Contact</Link>
+                <Link href={site.urls.contact}>Request Information</Link>
               </li>
               <li>
                 <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
