@@ -298,7 +298,7 @@ export function GenesisProjectContent() {
             </div>
             <ul className="genesis-highlights">
               <li>
-                The only K–12 Microsoft Flagship School in the United States
+                A recognized Microsoft Flagship School — one of a select number of K–12 schools in the United States to receive this designation
               </li>
               <li>
                 Washington State&apos;s first Cognia STEM-Certified K–12 school

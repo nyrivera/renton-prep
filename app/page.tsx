@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     absolute: "Renton Prep | A Premier Microsoft Showcase School",
   },
   description:
-    "Christ-centered, technology-enabled education in Renton, WA — home of the Genesis AI Project, Washington's first Cognia STEM–certified K–12, and a Microsoft Showcase School.",
+    "A Christ-centered, accredited K–12 school in Renton, WA — Washington's first Cognia STEM-certified K–12, a Microsoft Showcase School, and home of the Genesis Project.",
   openGraph: {
     title: "Renton Prep | A Premier Microsoft Showcase School",
     description:
-      "Christ-centered, technology-enabled education in Renton, WA — home of the Genesis AI Project, Washington's first Cognia STEM–certified K–12, and a Microsoft Showcase School.",
+      "A Christ-centered, accredited K–12 school in Renton, WA — Washington's first Cognia STEM-certified K–12, a Microsoft Showcase School, and home of the Genesis Project.",
     url: "/",
     type: "website",
   },

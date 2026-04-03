@@ -22,9 +22,9 @@ export function SiteFooter() {
               </div>
             </div>
             <p>
-              Christ-centered, technology-enabled education. Multiple awards and
-              recognitions; workforce and college preparedness; student-led IT
-              initiatives — in a personalized micro-school environment.
+              A fully accredited, Christ-centered K–12 school in Renton, WA —
+              small by design, nationally recognized, and focused on preparing
+              students for college, career, and meaningful contribution.
             </p>
             <p style={{ marginTop: "var(--space-3)", fontSize: "14px" }}>
               <MarketingLink
@@ -48,7 +48,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <MarketingLink href={site.urls.awards}>
-                  Awards &amp; Hoopla
+                  Awards and Recognition
                 </MarketingLink>
               </li>
               <li>

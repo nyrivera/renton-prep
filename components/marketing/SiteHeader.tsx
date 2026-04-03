@@ -12,7 +12,7 @@ const NAV_LINKS: { href: string; label: string }[] = [
   { href: "/about", label: "Our story" },
   { href: "/#mission", label: "Mission" },
   { href: "/#research", label: "Research" },
-  { href: "/#genesis", label: "Genesis AI" },
+  { href: "/#genesis", label: "The Genesis Project" },
   { href: "/#next-steps", label: "Admissions" },
   { href: "/#community", label: "Community" },
   { href: "/#faq", label: "FAQ" },
