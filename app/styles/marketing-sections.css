@@ -75,6 +75,24 @@
   max-width: 100%;
 }
 
+/* Secondary/extended prose paragraphs inside an mva-card */
+.marketing-root .mva-card-prose {
+  margin-top: var(--space-3);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  opacity: 0.85;
+}
+
+/* C.H.R.I.S.T. acronym — visually distinct; tooltip provided by <abbr title> */
+.marketing-root .mva-christ-acronym {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: underline dotted currentColor;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
 .marketing-root .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

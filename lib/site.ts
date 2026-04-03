@@ -57,11 +57,11 @@ export const site = {
 
 export const missionVisionAction = {
   mission:
-    "To inspire a passion for harnessing emerging technology for teaching, learning, critical thinking and sharing the hope of becoming responsible and productive citizens, whose legacy will leave the world a better place.",
+    "To create a community inspired by Jesus Christ's teachings, where learners develop their voice, embrace curiosity, learn from failure, and make meaningful contributions, supported by technology.",
   vision:
-    "To offer a secure and technology-enabled Christ-centered school where students learn to use their voice to contribute solutions to the challenges of our global community.",
+    "To inspire a passion for teaching, learning, and critical thinking, shaping responsible citizens who share hope and build a legacy of wisdom and compassion together.",
   action:
-    "By providing a well-rounded, technology-enabled Christ-centered education.",
+    "We advance our mission and vision by inspiring curiosity, resilience, and learning from failure while cultivating learners' wisdom and abilities to contribute meaningfully in an ever\u2011changing, complex world.",
 } as const;
 
 export const recognitions = [
