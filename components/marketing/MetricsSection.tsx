@@ -41,8 +41,13 @@ export function MetricsSection() {
           </div>
           <div className="metric-card" role="listitem">
             <span className="metric-value">
-              <span aria-hidden="true">K–12</span>
-              <span className="sr-only">Cognia-accredited K through 12 school</span>
+              <Image
+                src="/cognia-accredited-badge.png"
+                alt="Cognia Accredited — NCA CASI, NWAC, SACS CASI"
+                width={88}
+                height={88}
+                style={{ display: "block", margin: "0 auto" }}
+              />
             </span>
             <span className="metric-label" aria-hidden="true">
               Cognia-Accredited K–12 School
