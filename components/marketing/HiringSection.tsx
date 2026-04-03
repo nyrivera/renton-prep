@@ -8,11 +8,12 @@ export function HiringSection() {
       <div className="container">
         <div className="section-intro section-intro--center">
           <span className="eyebrow eyebrow--muted">Careers</span>
-          <h2 id="hiring-heading">We&apos;re Hiring!</h2>
+          <h2 id="hiring-heading">Join Our Work</h2>
           <p>
-            Be ready to change lives. Students at Renton Prep Christian School use
-            their voices to contribute solutions to challenges our global community
-            faces. Questions about our master–apprentice approach?
+            Renton Prep is built around a master–apprentice model of learning —
+            educators and students working alongside each other toward genuine
+            understanding. We welcome inquiries from educators, interns, and
+            contributors who share our mission and want to be part of that work.
           </p>
           <div className="btn-group" style={{ justifyContent: "center" }}>
             <Link href={site.urls.careers} className="btn btn-primary">
