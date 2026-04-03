@@ -132,7 +132,7 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
         <p>
           Our programs, including the Genesis Project, are grounded in
           accreditation standards and evidence-based practice, and all remain
-          aligned with the school's mission and values.
+          aligned with the school&apos;s mission and values.
         </p>
       </>
     ),
