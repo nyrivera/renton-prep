@@ -7,7 +7,7 @@ const applyHref =
   typeof process.env.NEXT_PUBLIC_APPLY_URL === "string" &&
   process.env.NEXT_PUBLIC_APPLY_URL.trim().length > 0
     ? process.env.NEXT_PUBLIC_APPLY_URL.trim()
-    : "/admissions#start-application";
+    : "https://accounts.renweb.com/password/create?clientId=admissionsParentCode&district=RPCS-WA&memberId=481";
 
 export const site = {
   name: "Renton Prep Christian School",
