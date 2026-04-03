@@ -31,6 +31,7 @@ export const site = {
     mission: "/#mission",
     about: "/about",
     admissions: "/admissions",
+    howToApply: "/admissions#how-to-apply",
     tuition: "/admissions#tuition-fees",
     financialAid: "/admissions#financial-assistance",
     uniforms: "/admissions#uniforms",

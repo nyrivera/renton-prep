@@ -52,8 +52,107 @@ export function AdmissionsHubContent() {
         </div>
       </section>
 
+      {/* ── How to Apply ───────────────────────────────────────────── */}
+      <section className="section section--alt" id="how-to-apply">
+        <div className="container">
+          <div className="hub-section">
+            <h2>How to apply</h2>
+            <div className="hub-prose">
+              <p>
+                Our application is managed through the FACTS Admissions portal.
+                Follow the steps below to complete your application.
+              </p>
+            </div>
+
+            <ol className="apply-steps">
+              <li className="apply-step">
+                <span className="apply-step__num">1</span>
+                <div>
+                  <h3 className="apply-step__title">Create an account</h3>
+                  <p>
+                    Click <strong>Apply Now</strong> and select the{" "}
+                    <em>Create an Account</em> tab at the top of the page.
+                    You will create a login, set a password, and verify your
+                    email address before continuing.
+                  </p>
+                </div>
+              </li>
+              <li className="apply-step">
+                <span className="apply-step__num">2</span>
+                <div>
+                  <h3 className="apply-step__title">Start your application</h3>
+                  <p>
+                    You can log in and out at any time — your progress saves
+                    automatically. A green check mark will appear on each
+                    section once all required fields are complete.
+                  </p>
+                </div>
+              </li>
+              <li className="apply-step">
+                <span className="apply-step__num">3</span>
+                <div>
+                  <h3 className="apply-step__title">
+                    Review, submit &amp; pay the application fee
+                  </h3>
+                  <p>
+                    When all required fields are finished, click{" "}
+                    <em>Review &amp; Submit</em>. You will then be prompted
+                    to pay the <strong>$45 application fee</strong> to
+                    complete your submission.
+                  </p>
+                </div>
+              </li>
+              <li className="apply-step">
+                <span className="apply-step__num">4</span>
+                <div>
+                  <h3 className="apply-step__title">
+                    Submit required documents
+                  </h3>
+                  <p>
+                    Please ensure the following documents are provided to
+                    the admissions office:
+                  </p>
+                  <ul>
+                    <li>Most recent report card</li>
+                    <li>Most recent standardized test scores</li>
+                    <li>
+                      IEP, 504 plan, psychological evaluation, or testing
+                      for academic concerns (if applicable)
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ol>
+
+            <div className="btn-group" style={{ marginTop: "var(--space-6)" }}>
+              <MarketingLink href={site.urls.apply} className="btn btn-primary">
+                Apply Now
+              </MarketingLink>
+              <Link href={site.urls.contact} className="btn btn-secondary">
+                Request Information
+              </Link>
+            </div>
+
+            <p
+              className="hub-prose"
+              style={{ marginTop: "var(--space-5)", fontStyle: "italic" }}
+            >
+              Still have questions?{" "}
+              <Link href={site.urls.contact}>Contact us</Link> and we will
+              be happy to help.
+            </p>
+
+            <p style={{ marginTop: "var(--space-4)" }}>
+              Sincerely,
+              <br />
+              <strong>Dr. David Zimmerman</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── Tuition ────────────────────────────────────────────────── */}
-      <section className="section section--alt" id="tuition-fees">
+      <section className="section section--surface" id="tuition-fees">
         <div className="container">
           <div className="hub-section">
             <h2>Tuition &amp; fees</h2>
