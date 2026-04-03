@@ -469,7 +469,7 @@
   color: var(--color-primary-hover);
 }
 
-/* Community / Instagram */
+/* Community photo grid — editorial 3+2 layout */
 .marketing-root .trust-logos {
   display: flex;
   align-items: center;
@@ -479,38 +479,68 @@
   padding-block: var(--space-4);
 }
 
-.marketing-root .instagram-grid {
+.marketing-root .community-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-2);
+  /* 6 equal columns; top row: 3 cells × span-2; bottom row: 2 cells × span-3 */
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 300px 340px;
+  gap: 6px;
   margin-top: var(--space-5);
 }
 
-.marketing-root .insta-placeholder {
-  aspect-ratio: 1;
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-alt);
-  border: 1px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  font-size: 12px;
-  font-weight: 500;
-  overflow: hidden;
-  position: relative;
+/* Top row: first 3 photos each span 2 of 6 columns */
+.marketing-root .community-cell:nth-child(1),
+.marketing-root .community-cell:nth-child(2),
+.marketing-root .community-cell:nth-child(3) {
+  grid-column: span 2;
 }
 
-.marketing-root .insta-placeholder::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--color-periwinkle) 0%,
-    transparent 100%
-  );
-  opacity: 0.4;
+/* Bottom row: last 2 photos each span 3 of 6 columns */
+.marketing-root .community-cell:nth-child(4),
+.marketing-root .community-cell:nth-child(5) {
+  grid-column: span 3;
+}
+
+.marketing-root .community-cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+  /* Subtle inner shadow so photos that touch edges look intentional */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* Tablet: 2×2 + 1 centered */
+@media (max-width: 900px) {
+  .marketing-root .community-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 260px);
+  }
+
+  .marketing-root .community-cell:nth-child(1),
+  .marketing-root .community-cell:nth-child(2),
+  .marketing-root .community-cell:nth-child(3),
+  .marketing-root .community-cell:nth-child(4),
+  .marketing-root .community-cell:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  /* 5th cell: center it in its own row */
+  .marketing-root .community-cell:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 520px) {
+  .marketing-root .community-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 260px);
+  }
+
+  .marketing-root .community-cell:nth-child(5) {
+    grid-column: span 1;
+  }
 }
 
 /* CTA */
@@ -1052,9 +1082,7 @@
     grid-template-columns: 1fr;
   }
 
-  .marketing-root .instagram-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+
 
   .marketing-root .cta-options {
     grid-template-columns: 1fr;
