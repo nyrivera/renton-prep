@@ -70,10 +70,13 @@ export function AdmissionsHubContent() {
                 <div>
                   <h3 className="apply-step__title">Create an account</h3>
                   <p>
-                    Click <strong>Apply Now</strong> and select the{" "}
-                    <em>Create an Account</em> tab at the top of the page.
-                    You will create a login, set a password, and verify your
-                    email address before continuing.
+                    Visit the{" "}
+                    <MarketingLink href={site.urls.apply}>
+                      FACTS Admissions portal
+                    </MarketingLink>{" "}
+                    and select the <em>Create an Account</em> tab at the top
+                    of the page. You will create a login, set a password, and
+                    verify your email address before continuing.
                   </p>
                 </div>
               </li>
@@ -124,11 +127,8 @@ export function AdmissionsHubContent() {
               </li>
             </ol>
 
-            <div className="btn-group" style={{ marginTop: "var(--space-6)" }}>
-              <MarketingLink href={site.urls.apply} className="btn btn-primary">
-                Apply Now
-              </MarketingLink>
-              <Link href={site.urls.contact} className="btn btn-secondary">
+            <div style={{ marginTop: "var(--space-6)" }}>
+              <Link href={site.urls.contact} className="btn btn-primary">
                 Request Information
               </Link>
             </div>
