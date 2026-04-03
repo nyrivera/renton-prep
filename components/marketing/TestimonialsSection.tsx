@@ -1,5 +1,3 @@
-const STAR_INDICES = [1, 2, 3, 4, 5] as const;
-
 const quotes = [
   {
     quote:
@@ -34,13 +32,6 @@ export function TestimonialsSection() {
         <div className="testimonials-grid">
           {quotes.map((q, i) => (
             <figure key={i} className="testimonial-card">
-              <div className="testimonial-stars" aria-label="5 out of 5 stars">
-                {STAR_INDICES.map((starIdx) => (
-                  <span key={starIdx} aria-hidden="true">
-                    ★
-                  </span>
-                ))}
-              </div>
               <blockquote className="testimonial-quote">{q.quote}</blockquote>
               <figcaption className="testimonial-attr">{q.attr}</figcaption>
             </figure>

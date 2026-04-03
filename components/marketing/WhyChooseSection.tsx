@@ -29,25 +29,12 @@ export function WhyChooseSection() {
             <li
               key={r.label}
               style={{
-                display: "flex",
-                gap: "var(--space-2)",
-                alignItems: "flex-start",
                 fontSize: "16px",
                 lineHeight: 1.55,
                 color: "var(--color-text-muted)",
               }}
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  color: "var(--color-primary)",
-                  fontWeight: 700,
-                  flexShrink: 0,
-                }}
-              >
-                ✓
-              </span>
-              <span>{r.label}</span>
+              {r.label}
             </li>
           ))}
         </ul>

@@ -23,21 +23,15 @@ export function MetricsSection() {
             </span>
           </div>
           <div className="metric-card" role="listitem">
-            <span className="metric-value">
-              <span aria-hidden="true">STEM</span>
-              <span className="sr-only">Washington&apos;s first Cognia STEM-certified K–12</span>
-            </span>
-            <span className="metric-label" aria-hidden="true">
+            <span className="metric-value">STEM</span>
+            <span className="metric-label">
               First Cognia STEM K–12 in Washington
             </span>
           </div>
           <div className="metric-card" role="listitem">
-            <span className="metric-value">
-              <span aria-hidden="true">GP</span>
-              <span className="sr-only">The Genesis Project</span>
-            </span>
-            <span className="metric-label" aria-hidden="true">
-              Genesis Project · K–5
+            <span className="metric-value">K–5</span>
+            <span className="metric-label">
+              The Genesis Project
             </span>
           </div>
           <div className="metric-card" role="listitem">
