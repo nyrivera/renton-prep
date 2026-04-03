@@ -18,20 +18,20 @@ export function LogoShield({ size = 42, className = "", ...props }: LogoShieldPr
     >
       <path
         d="M40 6 L72 18 L72 46 C72 60 58 72 40 76 C22 72 8 60 8 46 L8 18 Z"
-        fill="#1a1c3a"
+        style={{ fill: "var(--color-shield-base)" }}
       />
-      <path d="M40 6 L72 18 L72 30 L40 38 Z" fill="#625bc4" opacity=".9" />
-      <path d="M8 18 L40 6 L40 38 L8 30 Z" fill="#8fbad6" opacity=".85" />
-      <path d="M8 30 L40 38 L40 58 L8 46 Z" fill="#b84a4f" opacity=".8" />
-      <path d="M40 38 L72 30 L72 46 L40 58 Z" fill="#8f9c3a" opacity=".8" />
+      <path d="M40 6 L72 18 L72 30 L40 38 Z" style={{ fill: "var(--color-primary)" }} opacity=".9" />
+      <path d="M8 18 L40 6 L40 38 L8 30 Z" style={{ fill: "var(--color-blue-muted)" }} opacity=".85" />
+      <path d="M8 30 L40 38 L40 58 L8 46 Z" style={{ fill: "var(--color-red-muted)" }} opacity=".8" />
+      <path d="M40 38 L72 30 L72 46 L40 58 Z" style={{ fill: "var(--color-green-muted)" }} opacity=".8" />
       <path
         d="M8 46 L40 58 L40 76 C22 72 8 60 8 46 Z"
-        fill="#ffb70f"
+        style={{ fill: "var(--color-accent)" }}
         opacity=".75"
       />
       <path
         d="M40 58 L72 46 C72 60 58 72 40 76 Z"
-        fill="#625bc4"
+        style={{ fill: "var(--color-primary)" }}
         opacity=".6"
       />
       <line

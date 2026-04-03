@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { MarketingShell } from "@/components/marketing/MarketingShell";
-import { site } from "@/lib/site";
+import { microcopy, site } from "@/lib/site";
 
 const DEFAULT_COPY =
   "This page is being updated. Please contact us directly for help.";
@@ -30,7 +30,7 @@ export function TbdPage({
                 Request Information
               </Link>
             </div>
-            <p className="cta-microcopy">No commitment. Takes about 2 minutes.</p>
+            <p className="cta-microcopy">{microcopy.noCommitment}</p>
             <p style={{ marginTop: "var(--space-4)" }}>
               <Link href="/" className="faq-link">
                 Back to home

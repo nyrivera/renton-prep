@@ -38,7 +38,7 @@ export function WhyChooseSection() {
               }}
             >
               <span
-                aria-hidden
+                aria-hidden="true"
                 style={{
                   color: "var(--color-primary)",
                   fontWeight: 700,

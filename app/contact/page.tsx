@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ContactPageContent } from "@/components/marketing/ContactPageContent";
 
 export const metadata: Metadata = {
-  title: "Contact | Renton Prep",
+  title: "Contact",
   description:
     "Phone and address for Renton Prep Christian School in Renton, WA.",
   openGraph: {

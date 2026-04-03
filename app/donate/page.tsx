@@ -6,8 +6,9 @@ const PLACEHOLDER =
   "This page is being updated. Please contact us directly for help.";
 
 export const metadata: Metadata = {
-  title: "Donate | Renton Prep",
+  title: "Donate",
   description: PLACEHOLDER,
+  robots: { index: false, follow: false },
   openGraph: {
     title: "Donate | Renton Prep",
     description: PLACEHOLDER,

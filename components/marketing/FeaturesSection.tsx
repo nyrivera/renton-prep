@@ -121,12 +121,12 @@ export function FeaturesSection() {
           </p>
         </div>
         <div className="features-grid">
-          {items.map((item) => (
-            <div key={item.title} className="feature-card">
-              <div className="feature-icon" aria-hidden>
+          {items.map((item, i) => (
+            <div key={i} className="feature-card">
+              <div className="feature-icon" aria-hidden="true">
                 {item.svg}
               </div>
-              <h4>{item.title}</h4>
+              <h3>{item.title}</h3>
               <p>{item.body}</p>
             </div>
           ))}

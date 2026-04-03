@@ -15,7 +15,7 @@ function Chevron() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      aria-hidden
+      aria-hidden="true"
     >
       <polyline points="6 9 12 15 18 9" />
     </svg>
@@ -103,7 +103,9 @@ export function FaqSection() {
               value={openId ?? ""}
               onChange={(e) => {
                 const id = e.target.value;
-                if (id) scrollToFaq(id);
+                if (id && FAQ_SIDEBAR.some((item) => item.id === id)) {
+                  scrollToFaq(id);
+                }
               }}
             >
               <option value="">Choose a question…</option>

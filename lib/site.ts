@@ -77,20 +77,26 @@ export const recognitions = [
   },
 ] as const;
 
+export const microcopy = {
+  noCommitment: "No commitment. Takes about 2 minutes.",
+  noCommitmentFull:
+    "No commitment. Takes about 2 minutes. We will guide you through each step.",
+} as const;
+
 export const featuredNews = [
   {
-    date: "September 25, 2025",
+    date: "March 2026",
     title: "Renton Prep: Pioneering AI Integration in Education",
-    href: "/blog",
+    href: "/about",
   },
   {
-    date: "March 26, 2025",
+    date: "March 2026",
     title: "Celebrating our 6 Year Cognia STEM Certification Renewal",
-    href: "/blog",
+    href: "/about",
   },
   {
-    date: "March 26, 2025",
+    date: "March 2026",
     title: "Renton Prep’s Accreditation Renewal",
-    href: "/blog",
+    href: "/about",
   },
 ] as const;

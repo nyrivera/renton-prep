@@ -2,7 +2,8 @@ import Link from "next/link";
 
 import { MarketingLink } from "@/components/marketing/MarketingLink";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
-import { site } from "@/lib/site";
+import { microcopy, site } from "@/lib/site";
+import { tuition } from "@/lib/tuition";
 
 const stub = (
   <p style={{ color: "var(--color-text-muted)" }}>
@@ -46,7 +47,7 @@ export function AdmissionsHubContent() {
                 Apply Now
               </MarketingLink>
             </div>
-            <p className="cta-microcopy">No commitment. Takes about 2 minutes.</p>
+            <p className="cta-microcopy">{microcopy.noCommitment}</p>
           </div>
         </div>
       </section>
@@ -67,32 +68,34 @@ export function AdmissionsHubContent() {
               </p>
               <div className="tuition-table-wrap">
                 <table className="tuition-table">
-                  <caption className="visually-hidden">
-                    Renton Prep tuition for school year 2025–2026
+                  <caption className="sr-only">
+                    Renton Prep tuition for school year {tuition.schoolYear}
                   </caption>
                   <thead>
                     <tr>
                       <th scope="col">Program</th>
                       <th scope="col">
-                        2025 – 2026
+                        {tuition.schoolYear}
                         <span className="tuition-sub">Yearly tuition</span>
                       </th>
                       <th scope="col">
-                        2025 – 2026
+                        {tuition.schoolYear}
                         <span className="tuition-sub">12 payments</span>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">Kindergarten Prep – 5th Grade</th>
-                      <td>$16,750*</td>
-                      <td>$1,396* per month</td>
-                    </tr>
+                    {tuition.programs.map((p) => (
+                      <tr key={p.name}>
+                        <th scope="row">{p.name}</th>
+                        <td>{p.annual}</td>
+                        <td>{p.monthly}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
-              <p className="tuition-footnote">* Finance charge (3%) will apply.</p>
+              <p className="tuition-footnote">{tuition.footnote}</p>
             </div>
           </div>
         </div>
@@ -200,7 +203,7 @@ export function AdmissionsHubContent() {
               <dt>After School:</dt>
               <dd>3:45–4:15 p.m.</dd>
               <dt>Rate:</dt>
-              <dd>$21/hour</dd>
+              <dd>{tuition.extendedCareRate}</dd>
               <dt>Contact:</dt>
               <dd>
                 <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>

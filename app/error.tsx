@@ -12,7 +12,9 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error);
+    // Always log — production visibility is essential for diagnosing issues.
+    // Replace with a service like Sentry for structured error tracking.
+    console.error("[error-boundary]", error);
   }, [error]);
 
   return (
@@ -21,7 +23,12 @@ export default function Error({
         Something went wrong
       </h1>
       <p className="text-sm text-zinc-600 dark:text-zinc-400">
-        {error.message || "An unexpected error occurred."}
+        An unexpected error occurred. Please try again.
+        {error.digest ? (
+          <span className="mt-1 block text-xs text-zinc-400">
+            Error ID: {error.digest}
+          </span>
+        ) : null}
       </p>
       <Button type="button" onClick={reset}>
         Try again

@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 import { MarketingLink } from "@/components/marketing/MarketingLink";
-import { site } from "@/lib/site";
+import { microcopy, site } from "@/lib/site";
 
 export function HeroSection() {
   return (
     <section className="hero" aria-label="Introduction">
-      <div className="hero-bg" aria-hidden />
-      <div className="hero-pattern" aria-hidden />
+      <div className="hero-bg" aria-hidden="true" />
+      <div className="hero-pattern" aria-hidden="true" />
       <div className="container">
         <div className="hero-content">
           <h1>
@@ -31,12 +31,11 @@ export function HeroSection() {
             </MarketingLink>
           </div>
           <p className="cta-microcopy cta-microcopy--light">
-            No commitment. Takes about 2 minutes. We will guide you through each
-            step.
+            {microcopy.noCommitmentFull}
           </p>
         </div>
       </div>
-      <div className="hero-rule" aria-hidden />
+      <div className="hero-rule" aria-hidden="true" />
     </section>
   );
 }

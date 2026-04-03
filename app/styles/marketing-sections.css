@@ -326,14 +326,16 @@
   max-width: 100%;
 }
 
-/* Testimonials */
-.marketing-root .testimonials-grid {
+/* Testimonials & News (shared grid/card layout) */
+.marketing-root .testimonials-grid,
+.marketing-root .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
 }
 
-.marketing-root .testimonial-card {
+.marketing-root .testimonial-card,
+.marketing-root .news-card {
   padding: var(--space-5);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -499,13 +501,8 @@
   gap: var(--space-6);
 }
 
-.marketing-root .footer-brand .logo-name {
-  color: #f7f8fa;
-  font-size: 17px;
-}
-
-.marketing-root .footer-brand .logo-tagline {
-  color: rgba(247, 248, 250, 0.4);
+.marketing-root .footer-brand .logo-img {
+  height: 36px;
 }
 
 .marketing-root .footer-brand p {
@@ -945,7 +942,8 @@
     grid-template-columns: 1fr;
   }
 
-  .marketing-root .testimonials-grid {
+  .marketing-root .testimonials-grid,
+  .marketing-root .news-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1002,7 +1000,6 @@
 
 .marketing-root .tuition-table-wrap {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .marketing-root .tuition-table {
@@ -1012,17 +1009,7 @@
   font-size: 15px;
 }
 
-.marketing-root .tuition-table caption.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+
 
 .marketing-root .tuition-table th,
 .marketing-root .tuition-table td {
@@ -1255,4 +1242,25 @@
 
 .marketing-root .hub-details dd a {
   color: var(--color-primary);
+}
+
+/* Contact page */
+.marketing-root .contact-intro-text {
+  color: var(--color-text-muted);
+  max-width: 52ch;
+}
+
+.marketing-root .contact-info-list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-4);
+  line-height: 1.7;
+}
+
+.marketing-root .contact-info-list li + li {
+  margin-top: var(--space-2);
+}
+
+.marketing-root .contact-actions {
+  margin-top: var(--space-5);
 }

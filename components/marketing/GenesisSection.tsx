@@ -9,7 +9,7 @@ export function GenesisSection() {
         <div className="genesis-layout">
           <div className="genesis-content">
             <div className="genesis-badge" aria-label="New program">
-              <span className="genesis-badge-dot" aria-hidden />
+              <span className="genesis-badge-dot" aria-hidden="true" />
               <span>New Program</span>
             </div>
             <span className="eyebrow eyebrow--muted">The Genesis Project</span>
@@ -32,7 +32,7 @@ export function GenesisSection() {
             </p>
             <div className="genesis-list">
               <div className="genesis-item">
-                <div className="genesis-item-num" aria-hidden>
+                <div className="genesis-item-num" aria-hidden="true">
                   1
                 </div>
                 <div className="genesis-item-body">
@@ -45,7 +45,7 @@ export function GenesisSection() {
                 </div>
               </div>
               <div className="genesis-item">
-                <div className="genesis-item-num" aria-hidden>
+                <div className="genesis-item-num" aria-hidden="true">
                   2
                 </div>
                 <div className="genesis-item-body">
@@ -58,7 +58,7 @@ export function GenesisSection() {
                 </div>
               </div>
               <div className="genesis-item">
-                <div className="genesis-item-num" aria-hidden>
+                <div className="genesis-item-num" aria-hidden="true">
                   3
                 </div>
                 <div className="genesis-item-body">
@@ -77,12 +77,12 @@ export function GenesisSection() {
             aria-label="Genesis Project interactive illustration"
           >
             <div className="genesis-terminal">
-              <div className="genesis-terminal-bar" aria-hidden>
+              <div className="genesis-terminal-bar" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </div>
-              <pre>
+              <pre style={{ overflowX: "auto", whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
                 <span className="t-green">Student:</span> Is this AI answer
                 correct?
                 {"\n\n"}

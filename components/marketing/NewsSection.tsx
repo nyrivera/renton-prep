@@ -11,11 +11,11 @@ export function NewsSection() {
           <h2 id="news-heading">Featured News</h2>
           <p>Highlights from the Renton Prep blog and announcements.</p>
         </div>
-        <div className="testimonials-grid">
-          {featuredNews.map((item) => (
+        <div className="news-grid">
+          {featuredNews.map((item, i) => (
             <article
-              key={item.title}
-              className="testimonial-card"
+              key={i}
+              className="news-card"
               style={{ textAlign: "left" }}
             >
               <p

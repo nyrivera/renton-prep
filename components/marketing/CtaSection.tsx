@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { MarketingLink } from "@/components/marketing/MarketingLink";
-import { site } from "@/lib/site";
+import { microcopy, site } from "@/lib/site";
 
 export function CtaSection() {
   return (
@@ -33,8 +33,7 @@ export function CtaSection() {
             </MarketingLink>
           </div>
           <p className="cta-microcopy cta-microcopy--light">
-            No commitment. Takes about 2 minutes. We will guide you through each
-            step.
+            {microcopy.noCommitmentFull}
           </p>
         </div>
 

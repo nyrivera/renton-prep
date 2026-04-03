@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { MarketingLink } from "@/components/marketing/MarketingLink";
-import { LogoShield } from "@/components/marketing/LogoShield";
 import { site } from "@/lib/site";
 
 export function SiteFooter() {
@@ -11,10 +11,14 @@ export function SiteFooter() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="logo">
-              <LogoShield size={36} />
-              <div className="logo-text">
-                <span className="logo-name">Renton Prep</span>
-                <span className="logo-tagline">{site.tagline}</span>
+              <div className="logo-badge">
+                <Image
+                  src="/logo.png"
+                  alt="Renton Prep Christian School"
+                  width={1125}
+                  height={509}
+                  className="logo-img"
+                />
               </div>
             </div>
             <p>
@@ -141,7 +145,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <span>
-            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
+            © 2026 {site.legalName}. All rights reserved.
           </span>
           <span>
             <MarketingLink href={site.urls.privacy}>Legal &amp; privacy</MarketingLink>

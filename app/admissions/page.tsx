@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AdmissionsHubContent } from "@/components/marketing/AdmissionsHubContent";
 
 export const metadata: Metadata = {
-  title: "Admissions | Renton Prep",
+  title: "Admissions",
   description:
     "Tuition, financial assistance, uniforms, handbook, and extended care — Renton Prep Christian School.",
   openGraph: {

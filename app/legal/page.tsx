@@ -6,8 +6,9 @@ const PLACEHOLDER =
   "This page is being updated. Please contact us directly for help.";
 
 export const metadata: Metadata = {
-  title: "Legal & Privacy | Renton Prep",
+  title: "Legal & Privacy",
   description: PLACEHOLDER,
+  robots: { index: false, follow: false },
   openGraph: {
     title: "Legal & Privacy | Renton Prep",
     description: PLACEHOLDER,

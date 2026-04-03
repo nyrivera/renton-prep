@@ -10,7 +10,7 @@ function PlaceholderIcon({ stroke }: { stroke: string }) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      aria-hidden
+      aria-hidden="true"
     >
       <rect x="3" y="3" width="18" height="18" rx="2" />
       <circle cx="8.5" cy="8.5" r="1.5" />
@@ -64,9 +64,9 @@ export function CommunitySection() {
           </p>
         </div>
         <div className="instagram-grid" aria-label="Community photo grid">
-          {tiles.map((t) => (
+          {tiles.map((t, i) => (
             <div
-              key={t.label}
+              key={i}
               className="insta-placeholder"
               style={{ background: t.bg }}
               aria-label={t.label}

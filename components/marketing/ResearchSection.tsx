@@ -42,11 +42,11 @@ export function ResearchSection() {
             <div key={c.title} className="research-card">
               <div
                 className="research-card-accent"
-                aria-hidden
+                aria-hidden="true"
                 style={{ background: c.accent }}
               />
               <div className="research-card-body">
-                <h4>{c.title}</h4>
+                <h3>{c.title}</h3>
                 <p>{c.body}</p>
               </div>
             </div>

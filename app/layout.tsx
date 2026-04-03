@@ -1,16 +1,37 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Libre_Baskerville } from "next/font/google";
 import Script from "next/script";
 import type { ReactNode } from "react";
 
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.startsWith("http") === true
-    ? process.env.NEXT_PUBLIC_SITE_URL
-    : "http://localhost:3000";
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  try {
+    const parsed = new URL(raw);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      throw new Error("Invalid protocol");
+    }
+    return raw;
+  } catch {
+    if (process.env.NODE_ENV === "production") {
+      console.error(
+        "[layout] NEXT_PUBLIC_SITE_URL is missing or invalid — metadata canonical URLs will " +
+          "point to localhost. Set this env var in your deployment environment.",
+      );
+    }
+    return "http://localhost:3000";
+  }
+}
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim();
+const siteUrl = resolveSiteUrl();
+
+// GA4 measurement IDs have the format G-XXXXXXXXXX.
+// UA (Universal Analytics) was shut down July 2024 — only G- format accepted.
+// Any other value is rejected to prevent script injection.
+const GA_ID_RE = /^G-[A-Z0-9]+$/;
+const rawGaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
+const gaId = GA_ID_RE.test(rawGaId) ? rawGaId : undefined;
 
 const libre = Libre_Baskerville({
   weight: ["400", "700"],
@@ -28,9 +49,22 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Renton Prep | A Premier Microsoft Showcase School",
+  title: {
+    default: "Renton Prep | A Premier Microsoft Showcase School",
+    template: "%s | Renton Prep",
+  },
   description:
     "Christ-centered, technology-enabled education in Renton, WA — including the Genesis Project for AI literacy, Cognia STEM certification, and Microsoft Showcase recognition.",
+  openGraph: {
+    siteName: "Renton Prep Christian School",
+    type: "website",
+  },
+};
+
+// Sets <meta name="theme-color"> so mobile browsers show the brand dark
+// color in the browser chrome instead of white.
+export const viewport: Viewport = {
+  themeColor: "#1a1c3a",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

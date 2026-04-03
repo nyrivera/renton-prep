@@ -97,8 +97,8 @@ export function AboutSchoolContent() {
             <h2 id="moments-heading">Key Moments</h2>
           </div>
           <ul className="history-timeline">
-            {SCHOOL_HISTORY_MILESTONES.map((m) => (
-              <li key={m.year}>
+            {SCHOOL_HISTORY_MILESTONES.map((m, i) => (
+              <li key={i}>
                 <span className="history-timeline-year">{m.year}</span>
                 <span className="history-timeline-text">{m.text}</span>
               </li>

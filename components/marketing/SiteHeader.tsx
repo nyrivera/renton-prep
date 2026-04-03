@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-import { LogoShield } from "@/components/marketing/LogoShield";
 import { MarketingLink } from "@/components/marketing/MarketingLink";
 import { site } from "@/lib/site";
 
@@ -43,9 +43,13 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (menuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
     };
   }, [menuOpen]);
 
@@ -120,11 +124,14 @@ export function SiteHeader() {
       <div className="container">
         <div className="header-inner">
           <Link href="/" className="logo" aria-label="Renton Prep home">
-            <LogoShield className="logo-crest" size={42} />
-            <div className="logo-text">
-              <span className="logo-name">Renton Prep</span>
-              <span className="logo-tagline">{site.tagline}</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Renton Prep Christian School"
+              width={1125}
+              height={509}
+              className="logo-img"
+              priority
+            />
           </Link>
 
           <nav className="nav" aria-label="Primary navigation">
@@ -132,12 +139,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                aria-current={
-                  (item.href.startsWith("/#") && pathname === "/") ||
-                  pathname === item.href
-                    ? "page"
-                    : undefined
-                }
+                aria-current={pathname === item.href ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -188,12 +190,7 @@ export function SiteHeader() {
           <Link
             key={item.href}
             href={item.href}
-            aria-current={
-              (item.href.startsWith("/#") && pathname === "/") ||
-              pathname === item.href
-                ? "page"
-                : undefined
-            }
+            aria-current={pathname === item.href ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
           >
             {item.label}

@@ -1,8 +1,18 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
+// Allowlist of URI schemes that are safe to render as links.
+const SAFE_HREF_RE = /^(https?:\/\/|\/\/|\/|#|mailto:|tel:)/i;
+
+/** Returns the href if it uses a safe URI scheme, otherwise "#". */
+function sanitizeHref(href: string): string {
+  return SAFE_HREF_RE.test(href) ? href : "#";
+}
+
 export function isExternalHref(href: string): boolean {
-  return /^https?:\/\//i.test(href);
+  // Match explicit http/https as well as protocol-relative URLs (//example.com)
+  // so that both are treated as external and rendered with noopener noreferrer.
+  return /^https?:\/\//i.test(href) || href.startsWith("//");
 }
 
 type MarketingLinkProps = {
@@ -21,10 +31,11 @@ export function MarketingLink({
   children,
   onClick,
 }: MarketingLinkProps) {
-  if (isExternalHref(href)) {
+  const safeHref = sanitizeHref(href);
+  if (isExternalHref(safeHref)) {
     return (
       <a
-        href={href}
+        href={safeHref}
         className={className}
         style={style}
         target="_blank"
@@ -37,7 +48,7 @@ export function MarketingLink({
   }
   return (
     <Link
-      href={href}
+      href={safeHref}
       className={className}
       style={style}
       onClick={onClick}
