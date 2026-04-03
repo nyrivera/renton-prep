@@ -1435,12 +1435,98 @@
   max-width: 52ch;
 }
 
-/* Direct iframe embed — height adjusted at runtime via JotForm postMessage */
-.marketing-root .jotform-embed {
-  display: block;
+/* Native contact form */
+.marketing-root .cf-form {
+  max-width: 640px;
   margin-top: var(--space-4);
+}
+
+.marketing-root .cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.marketing-root .cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-3);
+}
+
+.marketing-root .cf-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.marketing-root .cf-required {
+  color: var(--color-red-muted);
+  margin-left: 2px;
+}
+
+.marketing-root .cf-input,
+.marketing-root .cf-textarea {
   width: 100%;
-  min-height: 540px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.marketing-root .cf-input:focus,
+.marketing-root .cf-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(98, 91, 196, 0.15);
+}
+
+.marketing-root .cf-input::placeholder,
+.marketing-root .cf-textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.marketing-root .cf-textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.marketing-root .cf-error {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-red-muted);
+}
+
+.marketing-root .cf-status-error {
+  padding: var(--space-2) var(--space-3);
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  border-radius: var(--radius-sm);
+  color: var(--color-red-muted);
+  font-size: 14px;
+  margin-bottom: var(--space-3);
+}
+
+.marketing-root .cf-success {
+  padding: var(--space-4);
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: var(--radius-md);
+  color: #15803d;
+  margin-top: var(--space-4);
+  max-width: 640px;
+}
+
+@media (max-width: 520px) {
+  .marketing-root .cf-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .marketing-root .contact-info-list {

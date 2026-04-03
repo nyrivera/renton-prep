@@ -1,4 +1,4 @@
-import { JotForm } from "@/components/marketing/JotForm";
+import { ContactForm } from "@/components/marketing/ContactForm";
 import { MarketingLink } from "@/components/marketing/MarketingLink";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { site } from "@/lib/site";
@@ -15,7 +15,7 @@ export function ContactPageContent() {
               possible during school business hours.
             </p>
 
-            <JotForm formId="260918035603050" />
+            <ContactForm />
 
             <address style={{ marginTop: "var(--space-6)" }}>
               <ul className="contact-info-list">
