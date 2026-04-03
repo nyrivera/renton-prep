@@ -66,16 +66,16 @@ export const missionVisionAction = {
 
 export const recognitions = [
   {
-    label: "Christ-centered & technology-enhanced micro-school",
+    label: "Christ-centered from the classroom to the culture — faith shapes how we teach, how we relate, and how we learn",
   },
   {
-    label: "First U.S. K–12 school selected as a Microsoft Flagship School",
+    label: "Internationally and state accredited — held to rigorous academic standards across K–12",
   },
   {
-    label: "First Cognia STEM–certified K–12 school in Washington",
+    label: "Washington's first Cognia STEM–certified K–12 school",
   },
   {
-    label: "Microsoft Educator Community micro-school; personalized & adaptive learning",
+    label: "Personalized, research-informed learning in a school small enough to know every student",
   },
 ] as const;
 

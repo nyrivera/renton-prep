@@ -10,9 +10,9 @@ export function WhyChooseSection() {
           <span className="eyebrow eyebrow--muted">Why Renton Prep</span>
           <h2 id="choose-heading">Choose Renton Prep Christian School</h2>
           <p>
-            A Christ-centered, technology-enhanced micro-school with multiple awards
-            and recognitions — opening the door for families to build an excellent
-            foundation for their children&apos;s future.
+            A small, fully accredited Christian school where students are known
+            by name, challenged academically, and formed in faith — built for
+            families who want both genuine care and serious scholarship.
           </p>
         </div>
         <ul
@@ -53,7 +53,7 @@ export function WhyChooseSection() {
         </ul>
         <div style={{ textAlign: "center" }}>
           <Link href={site.urls.awards} className="btn btn-secondary">
-            View Awards &amp; Hoopla
+            Awards and Recognition
           </Link>
         </div>
       </div>
