@@ -51,6 +51,7 @@ export const site = {
     instagram: "https://www.instagram.com/rentonprep/",
     newsletter: "/contact",
     genesisTechnology: "/#genesis",
+    genesisProject: "/about/genesis",
   },
 };
 

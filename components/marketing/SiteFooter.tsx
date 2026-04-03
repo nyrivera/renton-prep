@@ -105,8 +105,8 @@ export function SiteFooter() {
                 <MarketingLink href={site.urls.academics}>Academics</MarketingLink>
               </li>
               <li>
-                <MarketingLink href={site.urls.genesisTechnology}>
-                  Technology &amp; Genesis
+                <MarketingLink href={site.urls.genesisProject}>
+                  The Genesis Project
                 </MarketingLink>
               </li>
               <li>

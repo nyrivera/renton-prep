@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+import { site } from "@/lib/site";
+
 export function GenesisSection() {
   return (
     <section
@@ -70,6 +74,11 @@ export function GenesisSection() {
                   </p>
                 </div>
               </div>
+            </div>
+            <div style={{ marginTop: "var(--space-5)" }}>
+              <Link href={site.urls.genesisProject} className="btn btn-secondary">
+                Learn more about the Genesis Project
+              </Link>
             </div>
           </div>
           <div
