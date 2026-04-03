@@ -1,7 +1,7 @@
 const items = [
   {
     title: "Every Child Is Known",
-    body: "Low ratios and intentional mentorship mean teachers know each student's strengths, struggles, and growth trajectory — not just their grades.",
+    body: "Class sizes stay small on purpose. Teachers follow each student's learning patterns over time — knowing when to push harder, when to slow down, and when a different approach will finally unlock understanding.",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -20,7 +20,7 @@ const items = [
   },
   {
     title: "Faith Woven Throughout",
-    body: "Christian formation isn't a separate class. It shapes how we approach every subject, conflict, and question — rooting students in enduring truth.",
+    body: "Scripture and the example of Christ shape how we frame every subject — from how we interpret history to how we resolve conflict in the hallway. Faith isn't a chapel add-on; it is the operating culture of the school.",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -40,7 +40,7 @@ const items = [
   },
   {
     title: "Research-Backed Methods",
-    body: "Our curriculum draws from the best peer-reviewed educational research, adapted for the developmental stage of each child and the demands of tomorrow.",
+    body: "Instruction is built on methods with documented results — spaced practice, frequent low-stakes assessment, and project-based learning that connects classroom skills to real problems. What and how we teach is continuously revised against current evidence.",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -56,8 +56,8 @@ const items = [
     ),
   },
   {
-    title: "AI-Integrated Curriculum",
-    body: "Students learn to use AI tools responsibly and critically — building fluency that will be essential throughout higher education and the workforce.",
+    title: "Technology as a Learning Tool",
+    body: "Technology — including AI — is a means to stronger thinking, not a substitute for it. Students develop the discernment to know when and how to use these tools well, building habits that serve them long after the tools themselves change.",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ const items = [
   },
   {
     title: "Whole-Child Development",
-    body: "Academics, character, physical wellness, and creative expression are treated as equally essential parts of a complete education.",
+    body: "Academic challenge, character formation, physical health, and creative expression are all treated as essential — not as extras competing for time. A student taught only facts is not fully prepared.",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -92,7 +92,7 @@ const items = [
   },
   {
     title: "Small School, Strong Community",
-    body: "Families become part of a genuine community where parents are partners, not passengers, in their child's education.",
+    body: "At this size, parents know teachers by name — and teachers know parents. Families join a school where involvement is natural, communication is direct, and no decision about your child is made without you in the conversation.",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -117,7 +117,9 @@ export function FeaturesSection() {
           <span className="eyebrow eyebrow--muted">Why Renton Prep</span>
           <h2 id="why-heading">What Sets Us Apart</h2>
           <p>
-            A different kind of school, built on a different set of priorities.
+            Rigorous academics, a Christ-centered culture, and a school
+            community small enough that every teacher knows every student —
+            K through 12, in the same building.
           </p>
         </div>
         <div className="features-grid">
