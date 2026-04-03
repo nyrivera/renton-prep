@@ -3,7 +3,6 @@ import { CtaSection } from "@/components/marketing/CtaSection";
 import { FaqSection } from "@/components/marketing/FaqSection";
 import { FeaturesSection } from "@/components/marketing/FeaturesSection";
 import { GenesisSection } from "@/components/marketing/GenesisSection";
-import { HeartAndMindSection } from "@/components/marketing/HeartAndMindSection";
 import { HeroSection } from "@/components/marketing/HeroSection";
 import { HiringSection } from "@/components/marketing/HiringSection";
 import { MetricsSection } from "@/components/marketing/MetricsSection";
@@ -26,10 +25,9 @@ export function MarketingHome() {
       <ResearchSection />
       <TestimonialsSection />
       <CtaSection />
-      <HiringSection />
       <CommunitySection />
       <FaqSection />
-      <HeartAndMindSection />
+      <HiringSection />
       <NewsSection />
     </>
   );

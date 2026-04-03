@@ -13,11 +13,7 @@ export function CtaSection() {
       <div className="container">
         <div className="cta-block">
           <div>
-            <h2 id="cta-heading">
-              Ready to See Renton Prep
-              <br />
-              for Yourself?
-            </h2>
+            <h2 id="cta-heading">Ready to See Renton Prep for Yourself?</h2>
             <p>
               Tour our campus, meet our teachers, and find out if Renton Prep is
               the right fit for your family. Request Information or start an

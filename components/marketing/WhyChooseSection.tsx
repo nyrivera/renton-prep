@@ -7,8 +7,8 @@ export function WhyChooseSection() {
     <section className="section section--surface" aria-labelledby="choose-heading">
       <div className="container">
         <div className="section-intro section-intro--center">
-          <span className="eyebrow eyebrow--muted">Why Renton Prep</span>
-          <h2 id="choose-heading">Choose Renton Prep Christian School</h2>
+          <span className="eyebrow eyebrow--muted">Recognition</span>
+          <h2 id="choose-heading">What Families Come Here For</h2>
           <p>
             A small, fully accredited Christian school where students are known
             by name, challenged academically, and formed in faith. Built for

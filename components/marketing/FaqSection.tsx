@@ -86,8 +86,8 @@ export function FaqSection() {
           <span className="eyebrow eyebrow--muted">Common Questions</span>
           <h2 id="faq-heading">Frequently Asked Questions</h2>
           <p>
-            Use the menu to jump to a question. Only one answer is open at a
-            time so the list stays easy to scan.
+            Answers to the questions families ask most. If yours isn&apos;t
+            here, we&apos;re happy to talk.
           </p>
         </div>
 

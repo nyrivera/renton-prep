@@ -10,7 +10,7 @@ const cards = [
     body: "Students are expected to explain their thinking, not just arrive at the right answer. Math class involves discussion: showing how a problem was solved, trying alternative approaches, and building the confidence that comes from genuine understanding.",
   },
   {
-    title: "Socio-Emotional Learning",
+    title: "Character and Relational Skills",
     accent: "var(--color-green-muted)",
     body: "Students who understand themselves, manage conflict well, and work effectively with others carry those skills into every area of life. We treat character and relational development as core curriculum, not supplementary programming.",
   },
