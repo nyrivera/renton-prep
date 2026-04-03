@@ -73,9 +73,9 @@ export function AboutSchoolContent() {
           </div>
           <div className="about-prose">
             <p>
-              In 2015, Renton Prep opened its middle and high school in downtown
-              Renton. In 2019, Amazing Grace joined the same campus, bringing
-              the full school experience together in one place.
+              In 2015, Renton Prep opened its Renton campus. In 2019, the
+              remainder of the school&apos;s Seattle community joined that
+              location, bringing the full K–12 program together in one place.
             </p>
             <p>
               Today, Renton Prep reflects both its history and its direction. It
