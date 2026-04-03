@@ -11,14 +11,15 @@ export function MetricsSection() {
         >
           <div className="metric-card" role="listitem">
             <span className="metric-value">
-              <Image
-                src="/microsoft-showcase-badge.png"
-                alt="Microsoft Showcase School"
-                width={88}
-                height={88}
-                style={{ display: "block", margin: "0 auto" }}
-                priority
-              />
+              <span style={{ display: "block", width: 88, height: 88, position: "relative", margin: "0 auto" }}>
+                <Image
+                  src="/microsoft-showcase-badge.png"
+                  alt="Microsoft Showcase School"
+                  fill
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </span>
             </span>
           </div>
           <div className="metric-card" role="listitem">
@@ -41,13 +42,14 @@ export function MetricsSection() {
           </div>
           <div className="metric-card" role="listitem">
             <span className="metric-value">
-              <Image
-                src="/cognia-accredited-badge.png"
-                alt="Cognia Accredited — NCA CASI, NWAC, SACS CASI"
-                width={88}
-                height={88}
-                style={{ display: "block", margin: "0 auto" }}
-              />
+              <span style={{ display: "block", width: 88, height: 88, position: "relative", margin: "0 auto" }}>
+                <Image
+                  src="/cognia-accredited-badge.png"
+                  alt="Cognia Accredited — NCA CASI, NWAC, SACS CASI"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </span>
             </span>
             <span className="metric-label" aria-hidden="true">
               Cognia-Accredited K–12 School
