@@ -127,8 +127,11 @@ export function AdmissionsHubContent() {
               </li>
             </ol>
 
-            <div style={{ marginTop: "var(--space-6)" }}>
-              <Link href={site.urls.contact} className="btn btn-primary">
+            <div className="btn-group" style={{ marginTop: "var(--space-6)" }}>
+              <MarketingLink href={site.urls.apply} className="btn btn-primary">
+                Start Your Application
+              </MarketingLink>
+              <Link href={site.urls.contact} className="btn btn-secondary">
                 Request Information
               </Link>
             </div>
