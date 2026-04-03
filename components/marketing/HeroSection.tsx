@@ -11,16 +11,16 @@ export function HeroSection() {
       <div className="container">
         <div className="hero-content">
           <h1>
-            Preparing Wise, Grounded Children
+            Small Enough to Know Every Child.
             <br />
-            for a World That Doesn&apos;t Stand Still
+            Strong Enough to Prepare Them Well.
           </h1>
           <p className="hero-description">
-            Discover the future of education with the Genesis Project — a
-            structured AI literacy program for elementary learners — within a
-            Christ-centered, technology-enabled micro-school recognized as a{" "}
-            <strong>Microsoft Showcase School</strong> and{" "}
-            <strong>Washington&apos;s first Cognia STEM–certified K–12</strong>.
+            Renton Prep is a Christ-centered, accredited K–12 school in
+            Renton, WA — where students are known individually, challenged
+            rigorously, and formed in faith. Recognized as{" "}
+            <strong>Washington&apos;s first Cognia STEM–certified K–12</strong>{" "}
+            and a <strong>Microsoft Showcase School</strong>.
           </p>
           <div className="hero-ctas">
             <Link href={site.urls.contact} className="btn btn-primary">

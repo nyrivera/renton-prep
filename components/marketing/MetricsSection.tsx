@@ -9,7 +9,7 @@ export function MetricsSection() {
         >
           <div className="metric-card" role="listitem">
             <span className="metric-value">
-              <span aria-hidden="true">MS</span>
+              <span aria-hidden="true">★</span>
               <span className="sr-only">Microsoft Showcase School</span>
             </span>
             <span className="metric-label" aria-hidden="true">
@@ -19,7 +19,7 @@ export function MetricsSection() {
           <div className="metric-card" role="listitem">
             <span className="metric-value">
               <span aria-hidden="true">STEM</span>
-              <span className="sr-only">Cognia STEM certified</span>
+              <span className="sr-only">Washington&apos;s first Cognia STEM-certified K–12</span>
             </span>
             <span className="metric-label" aria-hidden="true">
               First Cognia STEM K–12 in Washington
@@ -27,20 +27,20 @@ export function MetricsSection() {
           </div>
           <div className="metric-card" role="listitem">
             <span className="metric-value">
-              <span aria-hidden="true">AI</span>
-              <span className="sr-only">Genesis AI literacy program</span>
+              <span aria-hidden="true">GP</span>
+              <span className="sr-only">The Genesis Project</span>
             </span>
             <span className="metric-label" aria-hidden="true">
-              Genesis Project (K&nbsp;prep–5th)
+              Genesis Project · K–5
             </span>
           </div>
           <div className="metric-card" role="listitem">
             <span className="metric-value">
               <span aria-hidden="true">K–12</span>
-              <span className="sr-only">Microsoft Flagship School for K through 12</span>
+              <span className="sr-only">Cognia-accredited K through 12 school</span>
             </span>
             <span className="metric-label" aria-hidden="true">
-              Microsoft Flagship School (U.S.)
+              Cognia-Accredited K–12 School
             </span>
           </div>
         </div>
