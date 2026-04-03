@@ -18,9 +18,9 @@ export function GenesisSection() {
             </div>
             <span className="eyebrow eyebrow--muted">The Genesis Project</span>
             <h2 id="genesis-heading">
-              AI Literacy,
+              Learning to Lead
               <br />
-              Built for Children
+              the Tool
             </h2>
             <p
               style={{
@@ -30,9 +30,9 @@ export function GenesisSection() {
                 marginTop: "var(--space-2)",
               }}
             >
-              A structured curriculum designed for elementary-age learners —
-              teaching students to think alongside AI tools critically,
-              creatively, and ethically.
+              A K–5 curriculum rooted in Renton Prep&apos;s mission — forming
+              elementary-age learners who think critically, ask good questions,
+              and understand what the tools they use can and cannot do.
             </p>
             <div className="genesis-list">
               <div className="genesis-item">
@@ -55,9 +55,9 @@ export function GenesisSection() {
                 <div className="genesis-item-body">
                   <h4>Age-Appropriate Exposure</h4>
                   <p>
-                    Each grade level engages with AI concepts at the right
-                    developmental moment, building progressively sophisticated
-                    fluency across K–5.
+                    Each grade introduces concepts at the right developmental
+                    moment — building on prior learning so understanding deepens
+                    naturally, K through 5.
                   </p>
                 </div>
               </div>
