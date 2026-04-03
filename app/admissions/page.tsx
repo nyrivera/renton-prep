@@ -5,11 +5,11 @@ import { AdmissionsHubContent } from "@/components/marketing/AdmissionsHubConten
 export const metadata: Metadata = {
   title: "Admissions",
   description:
-    "Tuition, financial assistance, uniforms, handbook, and extended care — Renton Prep Christian School.",
+    "Tuition, financial assistance, uniforms, handbook, and extended care | Renton Prep Christian School.",
   openGraph: {
     title: "Admissions | Renton Prep",
     description:
-      "Tuition, financial assistance, uniforms, handbook, and extended care — Renton Prep Christian School.",
+      "Tuition, financial assistance, uniforms, handbook, and extended care | Renton Prep Christian School.",
   },
 };
 

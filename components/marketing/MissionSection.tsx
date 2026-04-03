@@ -25,7 +25,7 @@ export function MissionSection() {
         <div className="mva-grid">
           {/* ── 01 Mission ── */}
           <div className="mva-card">
-            <div className="mva-card-number">01 — Mission</div>
+            <div className="mva-card-number">01: Mission</div>
             <h3>Our Mission</h3>
             <p>{missionVisionAction.mission}</p>
             <p className="mva-card-prose">
@@ -33,8 +33,8 @@ export function MissionSection() {
               learners, uniquely positioned to bring hope to a hurting world. We
               follow the example of Jesus as an effective teacher who asked,
               &ldquo;Do you hear what these children are saying?&rdquo; (Matthew
-              21:16)—by listening carefully, inviting questions, and engaging
-              multiple perspectives.
+              21:16). We follow that example by listening carefully, inviting
+              questions, and engaging multiple perspectives.
             </p>
             <p className="mva-card-prose">
               Our mission calls learners to practice critical thinking and
@@ -52,7 +52,7 @@ export function MissionSection() {
 
           {/* ── 02 Vision ── */}
           <div className="mva-card">
-            <div className="mva-card-number">02 — Vision</div>
+            <div className="mva-card-number">02: Vision</div>
             <h3>Our Vision</h3>
             <p>{missionVisionAction.vision}</p>
             <p className="mva-card-prose">
@@ -71,7 +71,7 @@ export function MissionSection() {
 
           {/* ── 03 Action ── */}
           <div className="mva-card">
-            <div className="mva-card-number">03 — Action</div>
+            <div className="mva-card-number">03: Action</div>
             <h3>Our Action</h3>
             <p>{missionVisionAction.action}</p>
             <p className="mva-card-prose">

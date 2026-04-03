@@ -45,7 +45,7 @@ export function MetricsSection() {
               <span style={{ display: "block", width: 88, height: 88, position: "relative", margin: "0 auto" }}>
                 <Image
                   src="/cognia-accredited-badge.png"
-                  alt="Cognia Accredited — NCA CASI, NWAC, SACS CASI"
+                  alt="Cognia Accredited: NCA CASI, NWAC, SACS CASI"
                   fill
                   style={{ objectFit: "contain" }}
                 />

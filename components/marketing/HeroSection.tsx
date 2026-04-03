@@ -17,7 +17,7 @@ export function HeroSection() {
           </h1>
           <p className="hero-description">
             Renton Prep is a Christ-centered, accredited K–12 school in
-            Renton, WA — where students are known individually, challenged
+            Renton, WA, where students are known individually, challenged
             rigorously, and formed in faith. Recognized as{" "}
             <strong>Washington&apos;s first Cognia STEM–certified K–12</strong>{" "}
             and a <strong>Microsoft Showcase School</strong>.

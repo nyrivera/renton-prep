@@ -14,7 +14,7 @@ export function HeartAndMindSection() {
             Our teaching approach is relational and affirms students&apos; innate
             abilities. With love that comes from God, we use technological advances
             alongside biblical principles so students experience balance in heart
-            and mind — and learn to write their own success story.
+            and mind, and learn to write their own success story.
           </p>
           <p style={{ marginTop: "var(--space-3)" }}>
             <Link href="/#choose-heading" className="faq-link">

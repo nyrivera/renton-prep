@@ -11,7 +11,7 @@ export function WhyChooseSection() {
           <h2 id="choose-heading">Choose Renton Prep Christian School</h2>
           <p>
             A small, fully accredited Christian school where students are known
-            by name, challenged academically, and formed in faith — built for
+            by name, challenged academically, and formed in faith. Built for
             families who want both genuine care and serious scholarship.
           </p>
         </div>

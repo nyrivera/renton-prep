@@ -85,7 +85,7 @@ export function AdmissionsHubContent() {
                 <div>
                   <h3 className="apply-step__title">Start your application</h3>
                   <p>
-                    You can log in and out at any time — your progress saves
+                    You can log in and out at any time. Your progress saves
                     automatically. A green check mark will appear on each
                     section once all required fields are complete.
                   </p>

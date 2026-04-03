@@ -3,7 +3,7 @@ const STAR_INDICES = [1, 2, 3, 4, 5] as const;
 const quotes = [
   {
     quote:
-      "Renton Prep changed how my daughter sees herself as a learner. She went from struggling to thriving — and the teachers knew exactly why and what she needed.",
+      "Renton Prep changed how my daughter sees herself as a learner. She went from struggling to thriving, and the teachers knew exactly why and what she needed.",
     attr: "Parent of 3rd Grader · Enrolled Family",
   },
   {
@@ -13,7 +13,7 @@ const quotes = [
   },
   {
     quote:
-      "The Genesis Project gave my son a way to talk about AI that was grounded and thoughtful. He is not afraid of the technology — he knows how to use it wisely.",
+      "The Genesis Project gave my son a way to talk about AI that was grounded and thoughtful. He is not afraid of the technology. He knows how to use it wisely.",
     attr: "Parent of 5th Grader · Enrolled Family",
   },
 ];

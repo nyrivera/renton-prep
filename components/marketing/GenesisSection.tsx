@@ -30,7 +30,7 @@ export function GenesisSection() {
                 marginTop: "var(--space-2)",
               }}
             >
-              A K–5 curriculum rooted in Renton Prep&apos;s mission — forming
+              A K–5 curriculum rooted in Renton Prep&apos;s mission, forming
               elementary-age learners who think critically, ask good questions,
               and understand what the tools they use can and cannot do.
             </p>
@@ -43,7 +43,7 @@ export function GenesisSection() {
                   <h4>Critical Thinking First</h4>
                   <p>
                     Students learn to question AI outputs, verify sources, and
-                    apply their own reasoning — so they lead the tool rather than
+                    apply their own reasoning, so they lead the tool rather than
                     follow it.
                   </p>
                 </div>
@@ -56,7 +56,7 @@ export function GenesisSection() {
                   <h4>Age-Appropriate Exposure</h4>
                   <p>
                     Each grade introduces concepts at the right developmental
-                    moment — building on prior learning so understanding deepens
+                    moment, building on prior learning so understanding deepens
                     naturally, K through 5.
                   </p>
                 </div>
@@ -69,7 +69,7 @@ export function GenesisSection() {
                   <h4>Ethical Frameworks</h4>
                   <p>
                     From the earliest grades, students explore questions of
-                    responsibility, authorship, and impact — grounded in Christian
+                    responsibility, authorship, and impact, grounded in Christian
                     ethics and human dignity.
                   </p>
                 </div>
@@ -105,7 +105,7 @@ export function GenesisSection() {
                 <span className="t-gold">→</span> What would happen if it&apos;s
                 wrong?
                 {"\n\n"}
-                <span className="t-green">Student:</span> Oh — I think I can
+                <span className="t-green">Student:</span> Oh, I think I can
                 verify this{"\n"}in our science book.
                 {"\n\n"}
                 <span className="t-blue">Genesis Guide:</span> Exactly.

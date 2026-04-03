@@ -5,11 +5,11 @@ import { GenesisProjectContent } from "@/components/marketing/GenesisProjectCont
 export const metadata: Metadata = {
   title: "The Genesis Project",
   description:
-    "Renton Prep's long-term learning and research initiative — responsible AI integration, personalized learning, academic rigor, and human flourishing.",
+    "Renton Prep's long-term learning and research initiative: responsible AI integration, personalized learning, academic rigor, and human flourishing.",
   openGraph: {
     title: "The Genesis Project | Renton Prep",
     description:
-      "Renton Prep's long-term learning and research initiative — responsible AI integration, personalized learning, academic rigor, and human flourishing.",
+      "Renton Prep's long-term learning and research initiative: responsible AI integration, personalized learning, academic rigor, and human flourishing.",
   },
 };
 

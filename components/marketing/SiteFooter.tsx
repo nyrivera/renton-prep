@@ -22,8 +22,8 @@ export function SiteFooter() {
               </div>
             </div>
             <p>
-              A fully accredited, Christ-centered K–12 school in Renton, WA —
-              small by design, nationally recognized, and focused on preparing
+              A fully accredited, Christ-centered K–12 school in Renton, WA.
+              Small by design, nationally recognized, and focused on preparing
               students for college, career, and meaningful contribution.
             </p>
             <p style={{ marginTop: "var(--space-3)", fontSize: "14px" }}>

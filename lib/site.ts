@@ -66,10 +66,10 @@ export const missionVisionAction = {
 
 export const recognitions = [
   {
-    label: "Christ-centered from the classroom to the culture — faith shapes how we teach, how we relate, and how we learn",
+    label: "Christ-centered from the classroom to the culture. Faith shapes how we teach, how we relate, and how we learn",
   },
   {
-    label: "Internationally and state accredited — held to rigorous academic standards across K–12",
+    label: "Internationally and state accredited, held to rigorous academic standards across K–12",
   },
   {
     label: "Washington's first Cognia STEM–certified K–12 school",

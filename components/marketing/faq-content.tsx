@@ -298,7 +298,7 @@ export const FAQ_GROUPS: MarketingFaqGroup[] = [
     title: "How do you handle discipline?",
     content: (
       <>
-        <p>We focus on responsibility, growth, and accountability — not just punishment.</p>
+        <p>We focus on responsibility, growth, and accountability. Not just punishment.</p>
         <p>
           When issues come up, we address them directly, help students understand
           the impact of their actions, and work toward better choices moving

@@ -28,8 +28,8 @@ export function GenesisProjectContent() {
               <p>
                 The Genesis Project is Renton Prep&apos;s long-term learning
                 and research initiative focused on how students grow, how
-                meaningful learning happens, and how emerging technologies —
-                including artificial intelligence — can be introduced with
+                meaningful learning happens, and how emerging technologies,
+                including artificial intelligence, can be introduced with
                 care, responsibility, and clear educational purpose.
               </p>
               <p>
@@ -173,7 +173,7 @@ export function GenesisProjectContent() {
                 We do not believe schools should adopt technology simply
                 because it is new, popular, or marketable. We believe new
                 tools should be used only when they genuinely strengthen
-                learning — and only when they are introduced with maturity,
+                learning, and only when they are introduced with maturity,
                 adult guidance, and clear moral and educational purpose.
               </p>
               <p>
@@ -298,7 +298,7 @@ export function GenesisProjectContent() {
             </div>
             <ul className="genesis-highlights">
               <li>
-                A recognized Microsoft Flagship School — one of a select number of K–12 schools in the United States to receive this designation
+                A recognized Microsoft Flagship School, one of a select number of K–12 schools in the United States to receive this designation
               </li>
               <li>
                 Washington State&apos;s first Cognia STEM-Certified K–12 school

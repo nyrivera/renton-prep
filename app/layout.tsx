@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     template: "%s | Renton Prep",
   },
   description:
-    "A Christ-centered, accredited K–12 school in Renton, WA — Cognia STEM-certified, Microsoft Showcase recognized, and committed to preparing thoughtful, capable graduates.",
+    "A Christ-centered, accredited K–12 school in Renton, WA. Cognia STEM-certified, Microsoft Showcase recognized, and committed to preparing thoughtful, capable graduates.",
   openGraph: {
     siteName: "Renton Prep Christian School",
     type: "website",
