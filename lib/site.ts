@@ -59,9 +59,9 @@ export const missionVisionAction = {
   mission:
     "To inspire a passion for harnessing emerging technology for teaching, learning, critical thinking and sharing the hope of becoming responsible and productive citizens, whose legacy will leave the world a better place.",
   vision:
-    "By providing a well-rounded, technology-enabled Christ-centered education.",
-  action:
     "To offer a secure and technology-enabled Christ-centered school where students learn to use their voice to contribute solutions to the challenges of our global community.",
+  action:
+    "By providing a well-rounded, technology-enabled Christ-centered education.",
 } as const;
 
 export const recognitions = [
