@@ -89,16 +89,16 @@ export const featuredNews = [
   {
     date: "March 2026",
     title: "Renton Prep: Pioneering AI Integration in Education",
-    href: "/about",
+    href: "/about/genesis",
   },
   {
     date: "March 2026",
     title: "Celebrating our 6 Year Cognia STEM Certification Renewal",
-    href: "/about",
+    href: "/awards",
   },
   {
     date: "March 2026",
     title: "Renton Prep’s Accreditation Renewal",
-    href: "/about",
+    href: "/awards",
   },
 ] as const;
