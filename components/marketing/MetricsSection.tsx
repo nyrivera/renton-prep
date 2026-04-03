@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function MetricsSection() {
   return (
     <section className="section section--surface">
@@ -9,11 +11,14 @@ export function MetricsSection() {
         >
           <div className="metric-card" role="listitem">
             <span className="metric-value">
-              <span aria-hidden="true">★</span>
-              <span className="sr-only">Microsoft Showcase School</span>
-            </span>
-            <span className="metric-label" aria-hidden="true">
-              Microsoft Showcase School
+              <Image
+                src="/microsoft-showcase-badge.png"
+                alt="Microsoft Showcase School"
+                width={88}
+                height={88}
+                style={{ display: "block", margin: "0 auto" }}
+                priority
+              />
             </span>
           </div>
           <div className="metric-card" role="listitem">
