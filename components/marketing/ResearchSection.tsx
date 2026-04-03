@@ -1,23 +1,23 @@
 const cards = [
   {
-    title: "Science of Reading",
+    title: "Reading Instruction That Works",
     accent: "var(--color-primary)",
-    body: "Our literacy program is built on structured phonics and the evidence base from the Science of Reading movement — giving every student a strong foundation.",
+    body: "Literacy instruction starts with the foundational skills — phonics, decoding, and word recognition — then builds through fluency, vocabulary, and comprehension. Students don't just learn to read; they read to discover, think, and grow.",
   },
   {
     title: "Mathematical Reasoning",
     accent: "var(--color-blue-muted)",
-    body: "We prioritize conceptual understanding and number sense alongside procedural fluency, drawing on Singapore Math and other globally proven approaches.",
+    body: "Students are expected to explain their thinking, not just arrive at the right answer. Math class involves discussion — showing how a problem was solved, trying alternative approaches, and building the confidence that comes from genuine understanding.",
   },
   {
     title: "Socio-Emotional Learning",
     accent: "var(--color-green-muted)",
-    body: "Research confirms that emotional intelligence and relational skills are as predictive of long-term success as academic achievement — we invest in both.",
+    body: "Students who understand themselves, manage conflict well, and work effectively with others carry those skills into every area of life. We treat character and relational development as core curriculum, not supplementary programming.",
   },
   {
     title: "Outdoor & Experiential Learning",
     accent: "var(--color-accent)",
-    body: "Regular time outdoors and hands-on, project-based learning are built into our schedule because the evidence is clear: children learn better when they move and explore.",
+    body: "Students learn beyond the classroom through field trips, outdoor time, and hands-on projects built into the regular schedule. Getting out of the building — and into the world — isn't a reward for finishing work; it's part of how the work gets done.",
   },
 ];
 
@@ -33,8 +33,9 @@ export function ResearchSection() {
           <span className="eyebrow eyebrow--muted">Academic Foundation</span>
           <h2 id="research-heading">Grounded in What Works</h2>
           <p>
-            Our curriculum draws from proven, peer-reviewed approaches — not
-            trends. Every method we use has an evidence base.
+            Instruction here follows the evidence — not the trend cycle. We
+            build on what research consistently shows works, then adapt it for
+            the students we actually know.
           </p>
         </div>
         <div className="research-grid">
