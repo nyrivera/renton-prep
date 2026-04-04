@@ -14,6 +14,11 @@ const SUBMIT_URL = "https://submit.jotform.com/submit/260918035603050";
 const FORM_ID = "260918035603050";
 const BUILD_DATE = "1775255391453";
 
+const MAX_NAME = 120;
+const MAX_EMAIL = 254;
+const MAX_PHONE = 40;
+const MAX_MESSAGE = 8000;
+
 interface ContactPayload {
   firstName: string;
   lastName: string;
@@ -45,6 +50,16 @@ export async function POST(req: NextRequest) {
 
   if (!firstName?.trim() || !lastName?.trim() || !email?.trim() || !phone?.trim()) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+  }
+
+  if (
+    firstName.length > MAX_NAME ||
+    lastName.length > MAX_NAME ||
+    email.length > MAX_EMAIL ||
+    phone.length > MAX_PHONE ||
+    message.length > MAX_MESSAGE
+  ) {
+    return NextResponse.json({ error: "One or more fields are too long." }, { status: 400 });
   }
 
   const params = new URLSearchParams({

@@ -20,6 +20,8 @@
 | `phone` | `q5_phoneNumber[full]` | Required |
 | `message` (optional) | `q7_yourQuestions` | Defaults to empty string |
 
+**Server limits (reject `400` if exceeded):** `firstName` / `lastName` ≤ 120 chars, `email` ≤ 254, `phone` ≤ 40, `message` ≤ 8000.
+
 Additional POST fields sent for JotForm compatibility: `formID`, `simple_spc`, `jsExecutionTracker`, `submitSource`, `submitDate`, `buildDate`, `uploadServerUrl`, `eventObserver`, `website` (honeypot — must stay empty).
 
 `buildDate` is currently hard-coded to `1775255391453` to match the live form build; if submissions start failing after a JotForm publish, compare a browser network capture from the official JotForm form and align `BUILD_DATE` / tracker fields.
