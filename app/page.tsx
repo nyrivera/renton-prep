@@ -4,7 +4,7 @@ import { MarketingHome } from "@/components/marketing/MarketingHome";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { defaultSiteDescription } from "@/lib/site";
 
-const ogTitle = "Renton Prep | A Premier Microsoft Showcase School";
+const ogTitle = "Renton Prep a Microsoft Showcase School";
 
 export const metadata: Metadata = {
   title: {

@@ -53,7 +53,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Renton Prep | A Premier Microsoft Showcase School",
+    default: "Renton Prep a Microsoft Showcase School",
     template: "%s | Renton Prep",
   },
   description: defaultSiteDescription,

@@ -228,7 +228,7 @@ Sections render in this order inside `MarketingHome.tsx`:
 | Location | Term Used |
 |----------|-----------|
 | `lib/site.ts` tagline | `"A Premier Microsoft Showcase School"` |
-| `app/page.tsx` page title | `"A Premier Microsoft Showcase School"` |
+| `app/page.tsx` / layout default title | `"Renton Prep a Microsoft Showcase School"` |
 | `HeroSection.tsx` | `"Microsoft Showcase School"` |
 | `MetricsSection.tsx` tile 1 | `"Microsoft Showcase School"` |
 | `lib/site.ts` recognitions | `"First U.S. K–12 school selected as a Microsoft Flagship School"` |
