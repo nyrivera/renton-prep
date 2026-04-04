@@ -1,176 +1,148 @@
 # Renton Prep — Website quality assessment (owner-ready)
 
-**Prepared for:** School leadership and communications stakeholders  
-**Scope:** Product, design, content, accessibility, performance, security, SEO, and business impact — informed by the current Next.js implementation and typical production patterns.  
-**Limitation:** This review is **not** a live Lighthouse run or WCAG audit with tooling. **Confirmed** items come from code and configuration; **inferred** items are professional judgments about likely user experience and lab metrics.
+**Audience:** School leadership and communications  
+**Method:** Product and implementation review of the live Next.js site (structure, copy, patterns, headers, dependencies). **Not** a live Lighthouse run or paid WCAG audit unless noted.
+
+**Legend:** **Confirmed** = directly observable in code or config. **Inferred** = professional judgment about typical user experience or lab scores without running tools against production.
 
 ---
 
 ## 1. Executive summary
 
-Renton Prep’s site presents as a **serious, modern marketing site** with a coherent visual system (typography, color, spacing), a **long homepage** that covers faith, accreditation, STEM, the Genesis Project, admissions hooks, FAQ, and contact paths. Technical foundations are **stronger than average** for a school site: strict security headers, a tightened content security policy, minimal JavaScript dependencies, server-side handling of the inquiry form (reducing third-party embed risk), skip links, and thoughtful mobile navigation behavior.
+The site reads as a **credible, modern independent-school presence**: consistent typography and color, a long homepage that walks families from **promise → recognition → mission → differentiation (Genesis, research) → proof → action → community → FAQ → heart/mind positioning → hiring → news**, and **clear primary paths** (Request Information, Apply via RenWeb). Technically, it is **leaner than most school sites**: minimal third-party JavaScript, **server-side** inquiry handling (no embedded form iframe on the page), **strict security headers** and a **tight content security policy** aligned to that choice, plus solid mobile menu behavior.
 
-The **largest business risk** is not visual polish but **expectation management**: the footer and some CTAs point families to **multiple routes that are still placeholders** (“page is being updated”). That pattern **erodes trust** precisely when a parent is comparing schools. A **secondary risk** is **performance on slower connections**: hero and community photography are likely **large byte-weight** assets; without aggressive compression and sizing, **first paint and LCP can lag** on phones.
+The **main business risk** is **trust at the click**: the footer and some in-page links still send people to **placeholder pages** (“being updated”). That reads as **unfinished** at exactly the moment a family is comparing schools. **Inferred:** hero and community photography are likely **large on the wire**; on phones that can **hurt first load and Core Web Vitals** if sources are not aggressively sized and compressed.
 
-Overall: **credible and usable**, with **clear upside** from finishing stub pages, tightening copy consistency, optimizing images, and adding structured local/organization data for search.
+**Bottom line:** Strong first impression and story; **close the loop** on stub destinations and **tighten** metadata wording and image weight to match the quality of the homepage narrative.
 
 ---
 
 ## 2. What is working well
 
-| Area | Observation |
-|------|-------------|
-| **Visual system** | Defined tokens (color, radius, type scales), consistent button styles, and section rhythm read as **intentional**, not template-default. |
-| **Homepage narrative** | Order roughly follows a sensible funnel: **promise (hero) → credibility (recognition / mission / proof points) → differentiation (Genesis, research) → social proof → action (CTA) → community → FAQ → hiring → news.** |
-| **Trust signals** | Cognia and Microsoft recognition, mission/vision, and FAQ address **parent questions** directly. |
-| **Primary CTAs** | “Request Information” and “Apply” appear in hero, header, CTAs, and footer-adjacent flows — **clear intent**. |
-| **Mobile navigation** | Full-screen menu, focus return, escape to close, and body scroll lock are **professional patterns**. |
-| **Form UX** | Native inquiry form with validation, error messaging, and success state is **clearer and often faster** than a heavy embedded form. |
-| **Security headers** | HSTS, frame denial, nosniff, referrer policy, COOP/CORP, and CSP are **appropriate** for a public school site. |
-| **Privacy posture (analytics)** | GA4 ID is **validated by format** before any script loads — reduces misconfiguration and injection risk. |
-| **SEO hygiene** | Sitemap lists substantive pages; robots disallows `/api/` and `/dashboard`; stub pages are generally **noindex** in metadata. |
+### 2.1 Visual and UX (**confirmed**)
+
+- **Homepage hierarchy** follows a defensible funnel: hero value prop → recognition block → why families choose → mission → features → Genesis → research → testimonials → primary CTA band → community imagery → FAQ → Heart & Mind → hiring → news.
+- **Spacing and rhythm** come from shared tokens (`marketing-base.css` / `marketing-sections.css`), not ad-hoc pages; sections feel **designed**, not default-template.
+- **CTAs** repeat the same primary jobs—**Request Information** and **Apply**—in header, hero, CTA section, and footer-related flows; microcopy supports low friction (“no commitment…”).
+- **Mobile:** hamburger panel, scroll lock, escape to close, and focus handling are **above typical school-site practice**.
+- **Community section** (when assets exist) uses a **2×2 photo grid** with a single Instagram follow action—focused, not cluttered.
+
+### 2.2 Content and narrative (**confirmed**)
+
+- **Christian identity**, **accreditation**, **STEM / Cognia**, and **Microsoft Showcase** appear early and again where parents expect proof.
+- **Genesis Project** has a dedicated homepage section and a **deep `/about/genesis` page** for families who want detail.
+- **Admissions** is supported by a full **Admissions hub**, **Request Information** page with a native form, and **FACTS/RenWeb** apply links—decision paths are **traceable**.
+- **FAQ** content is substantial and **decision-oriented** (tuition, faith, technology, fit).
+
+### 2.3 Technical, SEO, and trust hygiene (**confirmed**)
+
+- **Dependencies:** only `next`, `react`, `react-dom` in production—**low attack surface and bundle noise**.
+- **Sitemap** lists substantive routes including **`/request-information`** and **`/about/genesis`**.
+- **Robots** disallow `/api/` and `/dashboard`; stub routes generally use **noindex** in page metadata.
+- **GA4** loads only when the ID matches a **strict pattern**—reduces misconfiguration risk.
 
 ---
 
-## 3. Critical issues
-
-*Issues that materially affect trust, conversions, or clarity. Severity is impact on **prospective families**.*
+## 3. Critical issues (owner-facing)
 
 | Issue | Why it matters | Who it affects | Severity | Type |
 |-------|----------------|----------------|----------|------|
-| **Footer links to stub pages** (awards, blog, careers, testimonials, student stories, donate, legal, etc.) | Parents expect **substance**; repeated “we’re updating this” reads as **unfinished** and can undermine confidence vs. competitors. | Comparing families, staff applicants, donors | **High** | Trust + content |
-| **“Awards and Recognition” → stub** while homepage sells distinction | **Cognitive dissonance**: you claim excellence, then the proof page is empty. | Research-heavy parents | **High** | Trust + content |
-| **Metadata wording mismatch** | Root layout default description uses “Cognia STEM-certified” while the homepage OG copy says **“Washington’s first…”** — small but **sloppy** if both surface in search/social. | Search/social click-through | **Medium** | Technical + trust |
-| **Large photography assets (inferred)** | Original hero/community files are often **multi‑MB** in similar projects; that **hurts mobile** and **Lighthouse performance** scores. | Mobile users, SEO (Core Web Vitals) | **Medium–High** | Technical + UX |
-| **Stub page “Request Information” still routes via `/contact`** | Works (redirect), but **labels and URLs diverge** from the canonical **Request Information** path — minor confusion for analytics and bookmarks. | Internal reporting, some users | **Low–Medium** | Technical |
+| **Footer and nav still link to placeholder pages** (awards, blog, careers, testimonials, student stories, donate, legal, etc.) | Families expect answers; repeated “updating” **weakens credibility** vs. schools with complete sites. | Prospective parents, staff, donors | **High** | Trust + content |
+| **“Awards and Recognition” CTA → stub** while the homepage emphasizes distinction | Creates **dissonance**: “tell me more” leads to a dead end. | Research-heavy parents | **High** | Trust + content |
+| **Default metadata vs homepage metadata differ on STEM claim** (**confirmed**): `app/layout.tsx` description does **not** say “Washington’s first…”; `app/page.tsx` Open Graph **does**. | Search and social snippets may **disagree**; looks careless if both appear. | Organic/social click-through | **Medium** | Technical + trust |
+| **Large image bytes** (**inferred** from typical `hero-1.jpeg` / community JPEG usage) | Slow **LCP** on mobile, weaker SEO signals, frustration on poor networks. | Mobile users | **Medium–High** | Technical + UX |
+| **Stub pages link “Request Information” to `/contact`** (**confirmed** in `TbdPage.tsx`) | Still works via redirect, but **URL and naming** diverge from the canonical **Request Information** route. | Analytics hygiene, bookmarking | **Low–Medium** | Technical |
 
 ---
 
 ## 4. High-value improvements
 
-1. **Ship or hide stub destinations** — Either publish minimal real pages (even one-screen summaries with PDF links) or **remove footer links** until ready. This single content decision does more for **trust** than most design tweaks.
-
-2. **Image production pipeline** — Export hero and grid images as **WebP/AVIF** (or rely on Next optimization with **reasonable source dimensions**), target **under ~200–400 KB** for above-the-fold hero on mobile where possible.
-
-3. **Unify “Washington’s first…” claims** — Pick **one** canonical phrasing for metadata, hero, and FAQ; have counsel/comms approve **superlative** language.
-
-4. **Local / organization SEO** — Add **JSON-LD** (`School` or `EducationalOrganization`) with address, phone, and sameAs (Instagram, etc.). *Inferred gap* — not seen in layout; common for schools.
-
-5. **Awards page MVP** — Even a **short narrative + bullet list + PDF** beats a placeholder; it closes the loop from “Recognition” CTAs.
+1. **Ship minimal real pages or temporarily remove footer links** to stubs—highest trust return per hour.
+2. **Awards page MVP:** short narrative + bullets + outbound links or PDFs; aligns with “Recognition” story.
+3. **Unify one approved STEM sentence** across `layout` default description, homepage OG, and hero/Faq where “first in Washington” is used—legal/comms sign-off on superlatives.
+4. **Image pipeline:** cap dimensions and compress sources; validate **mobile LCP** on production.
+5. **JSON-LD** (`EducationalOrganization` / `School`) with `address`, `telephone`, `sameAs`—**inferred gap** (not present in layout); helps local and branded search.
+6. **Optional:** point stub CTAs to **`/request-information`** directly for cleaner funnels.
 
 ---
 
 ## 5. Performance observations
 
-**Confirmed (implementation):**
+**Confirmed**
 
-- **Small JS footprint** on the marketing surface: React + Next only; no heavy UI framework on public pages.
-- **Fonts:** `next/font` with **display: swap** — good for avoiding invisible text.
-- **GA** loads **afterInteractive** — reasonable tradeoff; still third-party cost.
+- **Small client JS** for marketing pages; no UI framework beyond what Next/React require.
+- **`next/font`** with **`display: swap`** for Libre Baskerville and DM Sans—reduces invisible-text periods.
+- **Google Analytics** uses `next/script` **`afterInteractive`**—reasonable default; still a third-party cost.
+- **Backend surface** for public users is essentially **`POST /api/contact`**—no heavy API layer affecting cold start for typical browsing.
 
-**Inferred (typical Lighthouse concerns without a live run):**
+**Inferred (likely Lighthouse themes without a run)**
 
-- **LCP** may be **dominated by hero photography** if files are high resolution and large on disk.
-- **CLS** risk is **moderate**: responsive grids and `next/image` help; long pages with late-loading images still need spot-checking.
-- **TBT/INP** likely **favorable** relative to typical school WordPress sites due to lean dependencies.
+- **LCP** often tied to **hero** and **above-the-fold** imagery if files are high-resolution exports.
+- **CLS** likely **moderate risk** mitigated by `next/image` and layout CSS; still verify on real devices after image changes.
+- **TBT / INP** likely **better than average** vs. WordPress-style school sites due to minimal dependencies.
 
-**Recommendation:** Run **Lighthouse (mobile)** on production URLs after deploy and treat **image bytes** as the first lever.
+**Recommendation:** Run **PageSpeed Insights / Lighthouse (mobile)** on the production URL after any image or font change; treat **kilobytes on the LCP image** as the first optimization lever.
 
 ---
 
 ## 6. Security observations
 
-**Confirmed strengths:**
+**Confirmed strengths**
 
-- **Broad hardening** via `next.config.ts`: CSP (scoped to self + Google tags/analytics in current form), HSTS, XFO DENY, COOP/CORP, restrictive `Permissions-Policy`, `form-action` limited to same-origin for **your** document forms.
-- **Inquiry submission** goes **server-side** to JotForm — **reduces** client-side third-party script exposure compared to embedding JotForm directly.
-- **Honeypot field** (`website`) in the JotForm proxy payload — **basic bot friction** (not a substitute for CAPTCHA if abuse appears).
+- **Headers** (`next.config.ts`): HSTS, `X-Frame-Options: DENY`, `X-Content-Type-Options`, Referrer-Policy, Permissions-Policy, COOP/CORP, CSP with **`default-src 'self'`**, scripts limited to **self + inline (dev eval) + Google Tag Manager**, **`form-action 'self'`** for same-document forms.
+- **Inquiry flow:** browser posts to **your origin**; server forwards to JotForm—**fewer** third-party scripts in the page context than an embedded JotForm.
+- **Honeypot** field in the server payload to JotForm (`website` empty)—light bot friction.
 
-**Prudent recommendations (not confirmed incidents):**
+**Prudent recommendations (not evidence of a breach)**
 
-- **JotForm field mapping** is **hard-coded** to a specific form ID. If someone edits the JotForm without updating the app, **submissions can fail silently**. Treat form changes as **paired releases** with engineering.
-- **Rate limiting** on `/api/contact` is **not** implemented in code reviewed here; if spam spikes, add **edge rate limits** or CAPTCHA.
-- **Dependency surface** is **small** — good for supply-chain risk; keep **regular `npm audit`** on the release process.
+- **JotForm field IDs** are **hard-coded** to one form; changing the form in JotForm without a code change can **break submissions**—treat as a **paired change** with engineering.
+- **No rate limiting** on `/api/contact` in app code—if spam rises, add **edge rate limits** or CAPTCHA.
+- Run **`npm audit`** on a schedule; dependency count is **low**, which limits supply-chain exposure.
 
-**Do not overstate:** There is **no evidence** in the codebase of secrets exposed to the browser; `NEXT_PUBLIC_*` vars are the intentional exception pattern.
+**Do not overstate:** No **secrets** belong in client bundles; only `NEXT_PUBLIC_*` variables are intended for the browser.
 
 ---
 
 ## 7. Accessibility observations
 
-**Confirmed strengths:**
+**Confirmed strengths**
 
 - **`lang="en"`** on `<html>`.
-- **Skip link** to `#main-content`.
-- **Marketing pages** use landmark-style structure (`main`, `header`, `footer`, section labels).
-- **FAQ** uses accordion buttons with **`aria-expanded`**, regions, and keyboard navigation between headers.
-- **Contact form** uses associated labels, required field hints, and error text tied to inputs.
-- **Focus-visible** styling exists in marketing CSS.
-- **Mobile menu** manages focus and escape — **above average**.
+- **Skip link** targeting **`#main-content`**.
+- **Landmarks:** `header`, `main`, `footer`, labeled sections on key pages.
+- **FAQ:** accordion `button`s with **`aria-expanded`**, **`aria-controls`**, regions, and **arrow-key** navigation between headers.
+- **Request Information form:** labels tied to inputs, required fields called out, errors associated with fields.
+- **`:focus-visible`** styling in marketing CSS; **hamburger** is a real **button** with expanded state.
 
-**Gaps / risks:**
+**Gaps / verify on device**
 
-- **Hero image** uses **`alt=""`** inside an `aria-hidden` decorative wrapper — **acceptable** if the photo is purely decorative; if leadership wants the **classroom scene** described for blind users, add meaningful alt (tradeoff: verbosity on hero).
-- **Color contrast** on **muted text** and **footer links** should be **spot-checked** against WCAG AA on real displays (especially gray-on-navy).
-- **Very long homepage** increases **navigation fatigue** for keyboard users; consider **in-page “jump”** patterns only if tested (you already anchor nav to sections on home).
+- **Hero image** uses **`alt=""`** with decorative framing—valid if purely decorative; if leadership wants the **scene** described for blind users, add concise **meaningful alt** (balance vs. verbosity).
+- **Contrast:** muted body copy and **footer** gray-on-navy should be **checked** against **WCAG AA** on calibrated displays.
+- **Very long homepage** increases **keyboard travel**; section anchors in the header help—keep **heading order** logical (one **h1** per page on inner routes).
 
-**Inferred:** Formal **VPAT** or audit is not evidenced; for families with disabilities, **periodic axe or Lighthouse a11y** runs are advisable.
-
----
-
-## 8. SEO and discoverability
-
-**Confirmed:**
-
-- **Titles and descriptions** exist at layout and page level; template pattern `%s | Renton Prep` supports inner pages.
-- **Sitemap** includes core hubs: home, about, genesis, academics, admissions, request-information, events.
-- **Robots** exposes sitemap URL; blocks API and dashboard.
-- **Internal linking** is strong via header, footer, and in-content CTAs.
-
-**Gaps:**
-
-- **Structured data** for local school discovery — *likely missing* (not confirmed in files reviewed).
-- **Stub pages noindex** helps avoid index bloat but also means **some branded queries** (e.g. careers) may find **nothing** — align with HR strategy.
+**Inferred:** Periodic **axe-core** or **Lighthouse accessibility** runs on production builds catch regressions; no VPAT is implied by the codebase.
 
 ---
 
-## 9. Owner-facing business impact (summary)
+## 8. Quick wins (low regret, ~1–2 weeks)
 
-| Stakeholder | What they need | Site support today |
-|-------------|----------------|---------------------|
-| **Prospective parent** | Clarity, trust, easy next step | Strong story; **risk at stub links** |
-| **Admissions** | Leads, phone, apply path | **Request Information** + RenWeb apply — **clear** |
-| **Current families** | Events, academics, contact | Hubs exist; **events/academics depth** varies |
-| **Staff / donors** | Careers, donate | **Mostly placeholders** — **weak** |
-| **Leadership** | Reputation, differentiation | Homepage **strong**; **proof pages incomplete** |
+1. Publish **Awards** MVP or unlink until ready.  
+2. **Align** `layout` and **home** meta descriptions to **one** STEM sentence.  
+3. **Compress and resize** hero + community images; re-check mobile.  
+4. Add **JSON-LD** for the school.  
+5. Change **`TbdPage`** primary CTA href from **`/contact`** to **`/request-information`**.
 
 ---
 
-## 10. Quick wins (1–2 weeks, low regret)
+## 9. Recommended next-phase improvements
 
-1. **Awards page MVP** — bullets + downloadable PDF or link to Cognia/Microsoft pages.  
-2. **Compress and resize** hero + community images; verify **mobile LCP**.  
-3. **Align meta descriptions** (layout vs home) to **one approved superlative sentence**.  
-4. **JSON-LD** for school + address + phone.  
-5. **Update stub CTA** to link directly to **`/request-information`** for consistency (optional polish).
-
----
-
-## 11. Recommended next-phase improvements
-
-1. **Content program** for blog / news — even **monthly** posts beat an empty blog link.  
-2. **Careers** — minimum viable postings or link to **district HR** if applicable.  
-3. **Legal / privacy** — even a **simple policy page** reduces anxiety for privacy-conscious parents.  
-4. **Donate** — partner with development office; **placeholder hurts fundraising**.  
-5. **Performance budget** — set max KB for LCP image and enforce in design handoff.  
-6. **Optional CAPTCHA** on inquiry if spam becomes measurable.
+1. **Editorial calendar** for blog/news so the footer **Blog** link resolves to real stories.  
+2. **Careers:** postings or a clear external HR link.  
+3. **Legal / privacy:** a simple policy page for privacy-conscious parents.  
+4. **Donate:** coordinate with advancement—placeholder **costs** credibility.  
+5. **Performance budget** for marketing images (e.g. max KB for LCP asset).  
+6. **CAPTCHA or rate limits** on inquiry if abuse metrics appear.
 
 ---
 
-## 12. Closing note
-
-This site **already communicates identity and rigor** better than many peer schools. The gap is not “does it look professional?” but “**does every link earn the family’s trust?**” Finishing or temporarily **hiding** incomplete destinations will sharpen the **entire** perception of the institution.
-
----
-
-*Document generated from codebase review; validate critical claims with live production checks and your communications counsel.*
+*Validate performance and accessibility claims on the deployed URL; involve counsel for superlatives and policy pages.*
