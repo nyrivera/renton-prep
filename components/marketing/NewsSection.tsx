@@ -13,32 +13,10 @@ export function NewsSection() {
         </div>
         <div className="news-grid">
           {featuredNews.map((item, i) => (
-            <article
-              key={i}
-              className="news-card"
-              style={{ textAlign: "left" }}
-            >
-              <p
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  color: "var(--color-text-muted)",
-                  marginBottom: "var(--space-2)",
-                }}
-              >
-                {item.date}
-              </p>
-              <h3
-                style={{
-                  fontSize: "17px",
-                  fontFamily: "var(--font-heading)",
-                  marginBottom: "var(--space-3)",
-                  lineHeight: 1.35,
-                }}
-              >
-                {item.title}
-              </h3>
-              <Link href={item.href} className="faq-link">
+            <article key={i} className="news-card">
+              <p className="news-card-meta">{item.date}</p>
+              <h3 className="news-card-title">{item.title}</h3>
+              <Link href={item.href} className="news-card-link">
                 Read more
               </Link>
             </article>

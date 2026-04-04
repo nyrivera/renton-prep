@@ -2,52 +2,67 @@ import Image from "next/image";
 
 export function MetricsSection() {
   return (
-    <section className="section section--surface">
+    <section
+      className="section section--surface"
+      aria-labelledby="recognition-heading"
+    >
       <div className="container">
-        <div
-          className="metrics-grid"
-          role="list"
-          aria-label="School recognitions"
-        >
-          <div className="metric-card" role="listitem">
-            <span className="metric-value">
-              <span style={{ display: "block", width: 88, height: 88, position: "relative", margin: "0 auto" }}>
-                <Image
-                  src="/microsoft-showcase-badge.png"
-                  alt="Microsoft Showcase School"
-                  fill
-                  style={{ objectFit: "contain" }}
-                  priority
-                />
-              </span>
-            </span>
+        <div className="recognition">
+          <div className="recognition-content">
+            <span className="eyebrow eyebrow--muted">Recognition</span>
+            <h2 id="recognition-heading">
+              First Cognia STEM-Accredited K–12 School in Washington
+            </h2>
+            <p className="recognition-body">
+              Renton Prep combines accredited academics, STEM distinction, and a
+              thoughtful K–12 learning journey designed to help students grow
+              with purpose, confidence, and curiosity.
+            </p>
+            <ul className="recognition-points" role="list">
+              <li>
+                <strong>Cognia-accredited</strong> K–12 school
+              </li>
+              <li>
+                <strong>STEM-accredited</strong> program in Washington
+              </li>
+              <li>
+                <strong>The Genesis Project</strong> for K–5 students
+              </li>
+            </ul>
           </div>
-          <div className="metric-card" role="listitem">
-            <span className="metric-value">STEM</span>
-            <span className="metric-label">
-              First Cognia STEM K–12 in Washington
-            </span>
-          </div>
-          <div className="metric-card" role="listitem">
-            <span className="metric-value">K–5</span>
-            <span className="metric-label">
-              The Genesis Project
-            </span>
-          </div>
-          <div className="metric-card" role="listitem">
-            <span className="metric-value">
-              <span style={{ display: "block", width: 88, height: 88, position: "relative", margin: "0 auto" }}>
+          <div
+            className="recognition-badges"
+            role="list"
+            aria-label="Accreditation badges"
+          >
+            <div className="recognition-badge" role="listitem">
+              <div className="recognition-badge-img">
                 <Image
                   src="/cognia-accredited-badge.png"
                   alt="Cognia Accredited: NCA CASI, NWAC, SACS CASI"
-                  fill
+                  width={140}
+                  height={114}
                   style={{ objectFit: "contain" }}
                 />
+              </div>
+              <span className="recognition-badge-label">
+                Cognia Accredited
               </span>
-            </span>
-            <span className="metric-label" aria-hidden="true">
-              Cognia-Accredited K–12 School
-            </span>
+            </div>
+            <div className="recognition-badge" role="listitem">
+              <div className="recognition-badge-img">
+                <Image
+                  src="/microsoft-showcase-badge.jpg"
+                  alt="Microsoft Showcase School"
+                  width={100}
+                  height={100}
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <span className="recognition-badge-label">
+                Microsoft Showcase School
+              </span>
+            </div>
           </div>
         </div>
       </div>

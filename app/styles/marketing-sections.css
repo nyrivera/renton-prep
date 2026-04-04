@@ -1,72 +1,114 @@
 /* Metrics, grids, genesis, research, testimonials, community, FAQ, CTA, footer */
 
-.marketing-root .metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+/* Recognition / Accreditation Section */
+.marketing-root .recognition {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
-.marketing-root .metric-card {
+.marketing-root .recognition-content {
+  max-width: 640px;
+}
+
+.marketing-root .recognition-content h2 {
+  margin-bottom: var(--space-3);
+  text-wrap: balance;
+}
+
+.marketing-root .recognition-body {
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  max-width: 54ch;
+}
+
+.marketing-root .recognition-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.marketing-root .recognition-points li {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  padding-left: 20px;
+  position: relative;
+}
+
+.marketing-root .recognition-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.marketing-root .recognition-points li strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.marketing-root .recognition-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding-top: var(--space-2);
+}
+
+.marketing-root .recognition-badge {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-5) var(--space-4);
+  gap: 10px;
   text-align: center;
-  border-right: 1px solid var(--color-border);
-  gap: 6px;
 }
 
-.marketing-root .metric-card:last-child {
-  border-right: none;
+.marketing-root .recognition-badge-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.marketing-root .metric-value {
-  font-family: var(--font-heading);
-  font-size: clamp(30px, 4vw, 44px);
-  font-weight: 700;
-  color: var(--color-primary);
-  line-height: 1;
+.marketing-root .recognition-badge-img img {
+  display: block;
 }
 
-.marketing-root .metric-label {
-  font-size: 12px;
+.marketing-root .recognition-badge-label {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
-.marketing-root .metric-label--multiline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  line-height: 1.25;
-  max-width: 11.5rem;
-  text-wrap: balance;
-}
-
 @media (min-width: 769px) {
-  .marketing-root .metric-label--multiline {
+  .marketing-root .recognition {
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 17rem;
-    gap: 0.35em;
+    align-items: flex-start;
+    gap: var(--space-8);
   }
-}
 
-.marketing-root .metric-badge-wrap {
-  display: block;
-  width: 88px;
-  height: 88px;
-  position: relative;
-  margin: 0 auto;
+  .marketing-root .recognition-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .marketing-root .recognition-badges {
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: var(--space-5);
+    padding-top: var(--space-1);
+    min-width: 180px;
+  }
 }
 
 .marketing-root .mva-grid {
@@ -333,7 +375,7 @@
   margin-top: var(--space-3);
   text-align: center;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.05em;
 }
 
@@ -469,36 +511,13 @@
   color: var(--color-primary-hover);
 }
 
-/* Community photo grid — editorial 3+2 layout */
-.marketing-root .trust-logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-6);
-  flex-wrap: wrap;
-  padding-block: var(--space-4);
-}
-
+/* Community photo grid — 2×2 (four images) */
 .marketing-root .community-grid {
   display: grid;
-  /* 6 equal columns; top row: 3 cells × span-2; bottom row: 2 cells × span-3 */
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 300px 340px;
-  gap: 6px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, minmax(280px, 360px));
+  gap: var(--space-2);
   margin-top: var(--space-5);
-}
-
-/* Top row: first 3 photos each span 2 of 6 columns */
-.marketing-root .community-cell:nth-child(1),
-.marketing-root .community-cell:nth-child(2),
-.marketing-root .community-cell:nth-child(3) {
-  grid-column: span 2;
-}
-
-/* Bottom row: last 2 photos each span 3 of 6 columns */
-.marketing-root .community-cell:nth-child(4),
-.marketing-root .community-cell:nth-child(5) {
-  grid-column: span 3;
 }
 
 .marketing-root .community-cell {
@@ -506,40 +525,13 @@
   overflow: hidden;
   border-radius: var(--radius-sm);
   background: var(--color-surface-alt);
-  /* Subtle inner shadow so photos that touch edges look intentional */
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
-/* Tablet: 2×2 + 1 centered */
-@media (max-width: 900px) {
-  .marketing-root .community-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 260px);
-  }
-
-  .marketing-root .community-cell:nth-child(1),
-  .marketing-root .community-cell:nth-child(2),
-  .marketing-root .community-cell:nth-child(3),
-  .marketing-root .community-cell:nth-child(4),
-  .marketing-root .community-cell:nth-child(5) {
-    grid-column: span 1;
-  }
-
-  /* 5th cell: center it in its own row */
-  .marketing-root .community-cell:nth-child(5) {
-    grid-column: 1 / -1;
-  }
-}
-
-/* Mobile: single column */
 @media (max-width: 520px) {
   .marketing-root .community-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 260px);
-  }
-
-  .marketing-root .community-cell:nth-child(5) {
-    grid-column: span 1;
+    grid-template-rows: repeat(4, minmax(220px, 280px));
   }
 }
 
@@ -1045,29 +1037,6 @@
     padding-block: var(--space-5);
   }
 
-  .marketing-root .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .marketing-root .metric-card:nth-child(2) {
-    border-right: none;
-  }
-
-  .marketing-root .metric-card:nth-child(3) {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .marketing-root .metric-card {
-    min-height: 152px;
-    justify-content: center;
-    padding-block: var(--space-4);
-    padding-inline: var(--space-3);
-  }
-
-  .marketing-root .metric-label {
-    font-size: 11px;
-    letter-spacing: 0.06em;
-  }
 
   .marketing-root .features-grid {
     grid-template-columns: 1fr;

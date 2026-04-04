@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { MarketingHome } from "@/components/marketing/MarketingHome";
-import { SiteFooter } from "@/components/marketing/SiteFooter";
-import { SiteHeader } from "@/components/marketing/SiteHeader";
+import { MarketingShell } from "@/components/marketing/MarketingShell";
 
 export const metadata: Metadata = {
   title: {
@@ -22,11 +21,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="marketing-root">
-      <SiteHeader />
-      <main id="main-content">
+      <MarketingShell>
         <MarketingHome />
-      </main>
-      <SiteFooter />
+      </MarketingShell>
     </div>
   );
 }

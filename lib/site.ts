@@ -99,6 +99,6 @@ export const featuredNews = [
   {
     date: "March 2026",
     title: "Renton Prep’s Accreditation Renewal",
-    href: "/awards",
+    href: "/about",
   },
 ] as const;

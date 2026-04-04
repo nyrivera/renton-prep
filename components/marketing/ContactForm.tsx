@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  type ChangeEvent,
-  type FormEvent,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import { type ChangeEvent, type FormEvent, useId, useState } from "react";
 
 type Fields = {
   firstName: string;
@@ -46,7 +40,6 @@ function validate(f: Fields): Errors {
 
 export function ContactForm() {
   const uid = useId();
-  const firstRef = useRef<HTMLInputElement>(null);
 
   const [fields, setFields] = useState<Fields>({
     firstName: "",
@@ -140,7 +133,6 @@ export function ContactForm() {
             First Name <span className="cf-required" aria-hidden="true">*</span>
           </label>
           <input
-            ref={firstRef}
             id={`${uid}-firstName`}
             name="firstName"
             type="text"

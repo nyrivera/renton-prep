@@ -20,8 +20,27 @@ const NAV_LINKS: { href: string; label: string }[] = [
 
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled])';
 
+/** True when this nav href matches the current path and (if present) URL hash. */
+function navItemIsCurrent(
+  pathname: string,
+  hashWithoutPound: string,
+  href: string,
+): boolean {
+  const hashIdx = href.indexOf("#");
+  if (hashIdx !== -1) {
+    const pathPart = href.slice(0, hashIdx) || "/";
+    const hashPart = href.slice(hashIdx + 1);
+    return pathname === pathPart && hashWithoutPound === hashPart;
+  }
+  if (href === "/about") {
+    return pathname === "/about" || pathname.startsWith("/about/");
+  }
+  return pathname === href;
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
+  const [hashWithoutPound, setHashWithoutPound] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
   const panelId = `${menuId}-mobile-nav`;
@@ -34,6 +53,16 @@ export function SiteHeader() {
     if (!menu) return [];
     return Array.from(menu.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
   }, []);
+
+  useEffect(() => {
+    const readHash = () =>
+      setHashWithoutPound(
+        typeof window !== "undefined" ? window.location.hash.slice(1) : "",
+      );
+    readHash();
+    window.addEventListener("hashchange", readHash);
+    return () => window.removeEventListener("hashchange", readHash);
+  }, [pathname]);
 
   useEffect(() => {
     if (prevMenuOpen.current && !menuOpen) {
@@ -139,7 +168,11 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                aria-current={pathname === item.href ? "page" : undefined}
+                aria-current={
+                  navItemIsCurrent(pathname, hashWithoutPound, item.href)
+                    ? "page"
+                    : undefined
+                }
               >
                 {item.label}
               </Link>
@@ -190,7 +223,11 @@ export function SiteHeader() {
           <Link
             key={item.href}
             href={item.href}
-            aria-current={pathname === item.href ? "page" : undefined}
+            aria-current={
+              navItemIsCurrent(pathname, hashWithoutPound, item.href)
+                ? "page"
+                : undefined
+            }
             onClick={() => setMenuOpen(false)}
           >
             {item.label}

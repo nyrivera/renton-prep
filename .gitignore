@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# Local agent / IDE (do not commit)
+.claude/
+
+# Camera originals — repo uses JPEG exports for the web
+*.heic
+
 # local sqlite
 /prisma/dev.db
 /prisma/dev.db-journal

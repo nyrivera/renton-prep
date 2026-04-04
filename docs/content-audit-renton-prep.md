@@ -1,6 +1,7 @@
 # Renton Prep — Content & Component Audit
-**Date:** April 2026
-**Status:** Pre-production review. No user-facing code was changed during this audit.
+**Date:** April 2026  
+**Status:** Living document. A **production cleanup** (April 2026) removed unused APIs/components, fixed community photos, sitemap, CSP, and restored `HeartAndMindSection` on the homepage — see git history. Some tables below may still need line-number spot-checks.
+
 **Purpose:** Map every live claim, identify inconsistencies, and define a prioritized implementation plan before content updates.
 
 ---
@@ -45,7 +46,9 @@ app/
 ├── careers/
 │   └── page.tsx                    /careers → <TbdPage /> (noindex)
 ├── contact/
-│   └── page.tsx                    /contact → <ContactPageContent />
+│   └── page.tsx                    /contact → permanentRedirect → /request-information
+├── request-information/
+│   └── page.tsx                    /request-information → <ContactPageContent /> + ContactForm
 ├── donate/
 │   └── page.tsx                    /donate → <TbdPage /> (noindex)
 ├── events/
@@ -53,8 +56,7 @@ app/
 ├── legal/
 │   └── page.tsx                    /legal → <TbdPage /> (noindex)
 └── api/
-    ├── crm/route.ts
-    └── score/route.ts
+    └── contact/route.ts            POST → JotForm submit (server-side proxy)
 ```
 
 ### Marketing Components (`components/marketing/`)
@@ -75,7 +77,7 @@ components/marketing/
 ├── TestimonialsSection.tsx         3 parent quote cards
 ├── CtaSection.tsx                  Primary homepage CTA block + 3 action tiles
 ├── HiringSection.tsx               "We're Hiring!" section
-├── CommunitySection.tsx            5 Instagram placeholder tiles
+├── CommunitySection.tsx            4-photo grid when /public assets exist
 ├── HeartAndMindSection.tsx         "Relational teaching, anchored in truth"
 ├── NewsSection.tsx                 3 featured news cards (from lib/site.ts)
 ├── FaqSection.tsx                  Accordion FAQ (data from faq-content.tsx)
@@ -83,12 +85,10 @@ components/marketing/
 ├── AboutSchoolContent.tsx          /about page — 5 history sections
 ├── AcademicsHubContent.tsx         /academics — hub with 3 stub sections
 ├── AdmissionsHubContent.tsx        /admissions — full content (tuition, how-to-apply, etc.)
-├── ContactPageContent.tsx          /contact — JotForm embed + details
+├── ContactPageContent.tsx          /request-information — ContactForm + office details
 ├── EventsHubContent.tsx            /events — schedule/calendar hub
 ├── GenesisProjectContent.tsx       /about/genesis — 9-section deep-dive page
-├── TbdPage.tsx                     Stub for pages not yet built (noindex)
-├── JotForm.tsx                     Client-side JotForm embed utility
-└── LogoShield.tsx                  Legacy SVG logo (currently replaced by logo.png)
+└── TbdPage.tsx                     Stub for pages not yet built (noindex)
 ```
 
 ### Data & Config (`lib/`)
@@ -98,8 +98,7 @@ lib/
 │                       microcopy, featured news — PRIMARY CONTENT SOURCE
 ├── tuition.ts          Tuition rates, school year, extended care rate
 ├── school-history.ts   Timeline milestones array (1953–2020)
-├── api-response.ts     API utility helpers
-└── schema.ts           Zod validation schemas
+└── (API responses inline in route handlers)
 ```
 
 ### Other
@@ -126,7 +125,8 @@ docs/                   This audit document
 | `/awards` | 🚧 Stub | No | Yes | `TbdPage` |
 | `/blog` | 🚧 Stub | No | Yes | `TbdPage` |
 | `/careers` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/contact` | ✅ Live | Yes — JotForm + office details | No | `ContactPageContent` |
+| `/request-information` | ✅ Live | Yes — native `ContactForm` → `/api/contact` → JotForm | No | `ContactPageContent` |
+| `/contact` | ✅ Redirect | → `/request-information` | No | `app/contact/page.tsx` |
 | `/donate` | 🚧 Stub | No | Yes | `TbdPage` |
 | `/events` | ⚠️ Partial | Hub shell, calendar stub | No | `EventsHubContent` |
 | `/legal` | 🚧 Stub | No | Yes | `TbdPage` |
@@ -139,22 +139,22 @@ docs/                   This audit document
 
 Sections render in this order inside `MarketingHome.tsx`:
 
-| Order | Section | Component | Heading | Data Source |
-|-------|---------|-----------|---------|-------------|
-| 1 | Hero | `HeroSection` | "Preparing Wise, Grounded Children…" | Hardcoded in component |
-| 2 | Metrics | `MetricsSection` | (4 badge tiles) | Hardcoded in component |
-| 3 | Why Choose | `WhyChooseSection` | "Choose Renton Prep Christian School" | `lib/site.ts` recognitions |
-| 4 | Mission | `MissionSection` | "Mission, Vision, and Action" | `lib/site.ts` missionVisionAction |
-| 5 | Features | `FeaturesSection` | "What Sets Us Apart" | Hardcoded in component |
-| 6 | Genesis | `GenesisSection` | "AI Literacy, Built for Children" | Hardcoded in component |
-| 7 | Research | `ResearchSection` | "Grounded in What Works" | Hardcoded in component |
-| 8 | Testimonials | `TestimonialsSection` | "What Our Families Say" | Hardcoded in component |
-| 9 | CTA | `CtaSection` | "Ready to See Renton Prep for Yourself?" | `lib/site.ts` phone + urls |
-| 10 | Hiring | `HiringSection` | "We're Hiring!" | Hardcoded in component |
-| 11 | Community | `CommunitySection` | "Life at Renton Prep" | Hardcoded (Instagram placeholders) |
-| 12 | FAQ | `FaqSection` | "Frequently Asked Questions" | `faq-content.tsx` |
-| 13 | Heart & Mind | `HeartAndMindSection` | "Relational teaching, anchored in truth" | Hardcoded in component |
-| 14 | News | `NewsSection` | "Featured News" | `lib/site.ts` featuredNews |
+| Order | Section | Component | Notes |
+|-------|---------|-----------|-------|
+| 1 | Hero | `HeroSection` | |
+| 2 | Recognition | `MetricsSection` | Badges + copy |
+| 3 | Why Choose | `WhyChooseSection` | `lib/site.ts` recognitions |
+| 4 | Mission | `MissionSection` | `missionVisionAction` |
+| 5 | Features | `FeaturesSection` | |
+| 6 | Genesis | `GenesisSection` | |
+| 7 | Research | `ResearchSection` | |
+| 8 | Testimonials | `TestimonialsSection` | |
+| 9 | CTA | `CtaSection` | |
+| 10 | Community | `CommunitySection` | Photo grid when assets exist |
+| 11 | FAQ | `FaqSection` | `faq-content.tsx` |
+| 12 | Heart & Mind | `HeartAndMindSection` | |
+| 13 | Hiring | `HiringSection` | |
+| 14 | News | `NewsSection` | `featuredNews` |
 
 **Key insight:** Most homepage content is hardcoded directly in components. The only centralized data files are `lib/site.ts` (identity, URLs, mission, recognitions, news) and `faq-content.tsx` (FAQ). To update most homepage copy, you must edit the individual component file.
 

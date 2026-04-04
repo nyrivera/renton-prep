@@ -15,7 +15,7 @@
   --color-surface: #ffffff;
   --color-surface-alt: #f1f4f8;
   --color-text: #18212b;
-  --color-text-muted: #5b6673;
+  --color-text-muted: #4d5766;
   --color-border: #d8dee6;
   --space-1: 8px;
   --space-2: 16px;
@@ -142,6 +142,12 @@ body.menu-open {
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .marketing-root .container {
+    padding-inline: var(--space-2);
+  }
 }
 
 .marketing-root .section {
@@ -442,9 +448,80 @@ body.menu-open {
   min-height: 92vh;
   display: flex;
   align-items: center;
-  background: #111827;
+  background: #1a1410;
   overflow: hidden;
   padding-block: var(--space-8);
+}
+
+/* Blurred background plate — the same hero image heavily blurred
+   to fill the entire hero with warm classroom atmosphere.
+   This eliminates any black/empty areas on the left side. */
+.marketing-root .hero-plate {
+  position: absolute;
+  inset: -30px; /* overflow to hide blur edge artifacts */
+  z-index: 0;
+  background: url('/hero-1.jpeg') center 20% / cover no-repeat;
+  filter: blur(25px) brightness(0.75) saturate(1.1);
+}
+
+/* Sharp foreground image — uses contain to show the full scene,
+   positioned right so subjects anchor the right half */
+.marketing-root .hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  /* Feather the left edge so the sharp image blends into the blurred plate */
+  mask-image: linear-gradient(to right, transparent 5%, black 40%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 5%, black 40%, black 100%);
+}
+
+.marketing-root .hero-image img {
+  filter: brightness(0.88) contrast(1.08) saturate(1.05);
+}
+
+/* Multi-stop readability gradient — sits above image, below content.
+   Creates a smooth left-to-right transition from readable to vivid. */
+.marketing-root .hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    /* Primary readability gradient */
+    linear-gradient(
+      to right,
+      rgba(15, 12, 8, 0.78) 0%,
+      rgba(15, 12, 8, 0.62) 25%,
+      rgba(15, 12, 8, 0.35) 50%,
+      rgba(15, 12, 8, 0.12) 70%,
+      rgba(15, 12, 8, 0.03) 100%
+    ),
+    /* Subtle warm vignette on bottom-left for depth */
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(30, 20, 10, 0.3) 0%,
+      transparent 60%
+    ),
+    /* Top-left corner softening */
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(20, 15, 8, 0.25) 0%,
+      transparent 50%
+    );
+}
+
+/* Subtle left-side blur — helps text pop without looking artificial */
+.marketing-root .hero-focus {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  z-index: 2;
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  mask-image: linear-gradient(to right, black 0%, black 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 30%, transparent 100%);
 }
 
 .marketing-root .hero-bg {
@@ -491,7 +568,7 @@ body.menu-open {
 
 .marketing-root .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 680px;
 }
 
@@ -558,5 +635,51 @@ body.menu-open {
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
+
+  .marketing-root .hero-overlay {
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(15, 12, 8, 0.8) 0%,
+        rgba(15, 12, 8, 0.4) 40%,
+        rgba(15, 12, 8, 0.15) 65%,
+        rgba(15, 12, 8, 0.5) 100%
+      );
+  }
+
+  .marketing-root .hero-focus {
+    width: 100%;
+    height: 60%;
+    top: 0;
+    bottom: auto;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  }
+
+  .marketing-root .hero-image {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+  }
+
+  .marketing-root .hero-image img {
+    object-fit: cover !important;
+    object-position: 60% 40% !important;
+  }
+}
+
+/* Respect reduced-motion preference for all CSS transitions */
+@media (prefers-reduced-motion: reduce) {
+  .marketing-root {
+    --transition-fast: 0ms;
+  }
+
+  .marketing-root *,
+  .marketing-root *::before,
+  .marketing-root *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
   }
 }

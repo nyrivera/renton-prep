@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { MarketingLink } from "@/components/marketing/MarketingLink";
@@ -6,8 +7,23 @@ import { microcopy, site } from "@/lib/site";
 export function HeroSection() {
   return (
     <section className="hero" aria-label="Introduction">
-      <div className="hero-bg" aria-hidden="true" />
-      <div className="hero-pattern" aria-hidden="true" />
+      {/* Blurred background plate — fills entire hero with warm classroom atmosphere */}
+      <div className="hero-plate" aria-hidden="true" />
+      {/* Sharp foreground photo — shows full scene, positioned right */}
+      <div className="hero-image" aria-hidden="true">
+        <Image
+          src="/hero-1.jpeg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "contain", objectPosition: "right 20%" }}
+        />
+      </div>
+      {/* Readability gradient overlay */}
+      <div className="hero-overlay" aria-hidden="true" />
+      {/* Left-side subtle blur for text legibility */}
+      <div className="hero-focus" aria-hidden="true" />
       <div className="container">
         <div className="hero-content">
           <h1>

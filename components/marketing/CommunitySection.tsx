@@ -1,29 +1,23 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import Image from "next/image";
 
 import { MarketingLink } from "@/components/marketing/MarketingLink";
 import { site } from "@/lib/site";
 
 /**
- * Photo grid layout — editorial 3+2:
- *   Top row (3 cells, portrait-leaning):
- *     community-1.jpg  reading session
- *     community-2.jpg  suspension bridge field trip
- *     community-3.jpg  teacher with class on floor
- *   Bottom row (2 cells, landscape-leaning):
- *     community-4.jpg  kids watching TV/screen
- *     community-5.jpg  students on Bainbridge Island sign
- *
- * Drop those 5 files into /public/ to populate the grid.
- * object-position is tuned per photo to keep the main subject in frame.
+ * Four-photo grid (2×2 desktop, stack on small screens).
+ * Files live in /public/ — keep extensions in sync with on-disk assets.
  */
 const photos = [
   {
-    src: "/community-1.jpg",
+    src: "/community-1.jpeg",
     alt: "Teacher reading aloud to elementary students gathered on the classroom floor",
     position: "center 35%",
   },
   {
-    src: "/community-2.jpg",
+    src: "/community-2.JPG",
     alt: "Students crossing a suspension bridge on a Renton Prep outdoor field trip",
     position: "center 25%",
   },
@@ -37,14 +31,17 @@ const photos = [
     alt: "Students watching a classroom presentation on the large screen",
     position: "center center",
   },
-  {
-    src: "/community-5.jpg",
-    alt: "Renton Prep students posing on the Bainbridge Island welcome sign during a field trip",
-    position: "center 40%",
-  },
 ];
 
+function photosExist(): boolean {
+  return photos.every((p) =>
+    fs.existsSync(path.join(process.cwd(), "public", p.src)),
+  );
+}
+
 export function CommunitySection() {
+  if (!photosExist()) return null;
+
   return (
     <section
       className="section section--surface"
@@ -61,14 +58,14 @@ export function CommunitySection() {
           </p>
         </div>
 
-        <div className="community-grid" aria-label="Community photo grid">
+        <div className="community-grid" role="group" aria-label="Community photo grid">
           {photos.map((photo, i) => (
             <div key={i} className="community-cell">
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                sizes="(max-width: 520px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                sizes="(max-width: 520px) 100vw, 50vw"
                 style={{ objectFit: "cover", objectPosition: photo.position }}
               />
             </div>
