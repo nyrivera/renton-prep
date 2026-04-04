@@ -4,6 +4,7 @@ import {
   allowContactSubmission,
   contactRateLimitClientKey,
 } from "@/lib/contact-rate-limit";
+import { parseContactJson } from "@/lib/contact-payload";
 
 /**
  * JotForm “Request information” form — field contract documented in
@@ -14,20 +15,27 @@ const SUBMIT_URL = "https://submit.jotform.com/submit/260918035603050";
 const FORM_ID = "260918035603050";
 const BUILD_DATE = "1775255391453";
 
-const MAX_NAME = 120;
-const MAX_EMAIL = 254;
-const MAX_PHONE = 40;
-const MAX_MESSAGE = 8000;
+/** Reject very large JSON bodies before parsing (defense in depth). */
+const MAX_CONTENT_LENGTH = 65536;
 
-interface ContactPayload {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  message?: string;
+function jsonError(status: number, error: string) {
+  return NextResponse.json({ error }, { status });
 }
 
 export async function POST(req: NextRequest) {
+  const contentType = req.headers.get("content-type") ?? "";
+  if (!contentType.toLowerCase().includes("application/json")) {
+    return jsonError(415, "Unsupported media type.");
+  }
+
+  const len = req.headers.get("content-length");
+  if (len !== null) {
+    const n = Number.parseInt(len, 10);
+    if (Number.isFinite(n) && n > MAX_CONTENT_LENGTH) {
+      return jsonError(413, "Request body too large.");
+    }
+  }
+
   const clientKey = contactRateLimitClientKey(req);
   if (!allowContactSubmission(clientKey)) {
     return NextResponse.json(
@@ -39,36 +47,31 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let payload: ContactPayload;
+  let raw: unknown;
   try {
-    payload = (await req.json()) as ContactPayload;
+    raw = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    return jsonError(400, "Invalid request body.");
   }
 
-  const { firstName, lastName, email, phone, message = "" } = payload;
-
-  if (!firstName?.trim() || !lastName?.trim() || !email?.trim() || !phone?.trim()) {
-    return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+  const parsed = parseContactJson(raw);
+  if (!parsed.ok) {
+    return jsonError(parsed.status, parsed.error);
   }
 
-  if (
-    firstName.length > MAX_NAME ||
-    lastName.length > MAX_NAME ||
-    email.length > MAX_EMAIL ||
-    phone.length > MAX_PHONE ||
-    message.length > MAX_MESSAGE
-  ) {
-    return NextResponse.json({ error: "One or more fields are too long." }, { status: 400 });
+  if (parsed.honeypot) {
+    return NextResponse.json({ ok: true });
   }
+
+  const { firstName, lastName, email, phone, message } = parsed;
 
   const params = new URLSearchParams({
     formID: FORM_ID,
-    "q3_name[first]": firstName.trim(),
-    "q3_name[last]": lastName.trim(),
-    q4_email: email.trim(),
-    "q5_phoneNumber[full]": phone.trim(),
-    q7_yourQuestions: message.trim(),
+    "q3_name[first]": firstName,
+    "q3_name[last]": lastName,
+    q4_email: email,
+    "q5_phoneNumber[full]": phone,
+    q7_yourQuestions: message,
     simple_spc: `${FORM_ID}-${FORM_ID}`,
     jsExecutionTracker: `build-date-${BUILD_DATE}`,
     submitSource: "native-form",
@@ -100,4 +103,8 @@ export async function POST(req: NextRequest) {
       { status: 502 },
     );
   }
+}
+
+export function GET() {
+  return NextResponse.json({ error: "Method not allowed." }, { status: 405 });
 }

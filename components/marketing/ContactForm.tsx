@@ -8,6 +8,8 @@ type Fields = {
   email: string;
   phone: string;
   message: string;
+  /** Honeypot — must stay empty; bots often fill hidden fields. */
+  website: string;
 };
 
 type Errors = Partial<Record<keyof Fields, string>>;
@@ -47,6 +49,7 @@ export function ContactForm() {
     email: "",
     phone: "",
     message: "",
+    website: "",
   });
   const [errors, setErrors] = useState<Errors>({});
   const [submitError, setSubmitError] = useState("");
@@ -120,6 +123,16 @@ export function ContactForm() {
       noValidate
       aria-label="Request information form"
     >
+      {/* Honeypot: leave blank. Filled submissions are accepted but not forwarded. */}
+      <input
+        type="text"
+        name="website"
+        value={fields.website}
+        onChange={handleChange}
+        tabIndex={-1}
+        autoComplete="off"
+        className="cf-honeypot"
+      />
       {submitError && (
         <div className="cf-status-error" role="alert">
           {submitError}

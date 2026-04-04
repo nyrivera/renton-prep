@@ -67,7 +67,7 @@
 | **SSRF** | Server only `fetch`es a **fixed** JotForm URL — **no user-controlled URL**. **Low** SSRF risk. |
 | **Injection** | Fields become `URLSearchParams` values to JotForm — **not** SQL/command execution in-app. JotForm handles storage; treat as **untrusted content** on their side. |
 | **Validation** | Required fields checked; **max lengths** enforced (`firstName`/`lastName` 120, `email` 254, `phone` 40, `message` 8000) — reduces oversized-body abuse. |
-| **Honeypot** | `website` sent empty — good; client does not send `website`; a scripted client could omit or fill it (server always sends empty). **Optional:** reject if client sends non-empty `website` in JSON. |
+| **Honeypot** | Client sends hidden `website` (empty). If non-empty after trim, API returns **`{ ok: true }`** without JotForm. Strict allowlist of JSON keys. |
 | **Rate limiting** | In-memory per client key (`X-Forwarded-For` / `X-Real-IP` / `unknown`). **Mitigates** casual abuse; **not** strong under multi-instance serverless or shared NAT (many users → one `unknown`). **Recommendation:** edge/shared rate limit (e.g. Vercel Firewall, Upstash) for production. |
 | **CSRF (browser)** | Cross-origin `fetch` with `Content-Type: application/json` triggers **CORS preflight**; route does not set broad `Access-Control-Allow-Origin`. **Typical** browser CSRF from random evil origins is **difficult**; **not** a classic cookie-session CSRF (no session cookie on this API). |
 | **Error handling** | Generic messages to client; no stack traces in JSON — good. |
@@ -115,9 +115,9 @@ Use only on **staging** or **production with written permission**. Tools are exa
 | ID | Severity | Finding | Status / action |
 |----|----------|---------|-----------------|
 | F1 | Low (dev supply chain) | Transitive `picomatch` / `brace-expansion` advisories | **Mitigated:** `npm audit fix` → 0 vulns at assessment time. |
-| F2 | Medium (ops) | Rate limit is **per-instance** / **weak** for `unknown` IP | **Accepted risk** or add edge limiter + trusted proxy config for `X-Forwarded-For`. |
-| F3 | Low | CSP `unsafe-inline` scripts | **Accepted** for GA + Next; track framework CSP improvements. |
-| F4 | Informational | No request body size cap at framework level beyond field lengths | Field caps added; consider **platform-level** body size limit. |
+| F2 | Medium (ops) | Rate limit is **per-instance** | **Mitigated (partial):** extra proxy IP headers (`cf-connecting-ip`, `true-client-ip`, `x-vercel-forwarded-for`); stricter cap (**6**/15m) for key `unknown`. Prefer host-level / edge limiter for production. |
+| F3 | Low | CSP `unsafe-inline` scripts | **Partial:** added `frame-src 'none'`, `object-src 'none'`. `unsafe-inline` remains for GA + Next. |
+| F4 | Informational | Large JSON bodies | **Mitigated:** `Content-Length` &gt; 64KB → `413`; strict JSON key allowlist; server-side email/phone/control-char checks. |
 | F5 | Informational | Pentest not run against live URL in this exercise | Schedule **external** test with RoE if required for insurance/compliance. |
 
 ---
@@ -125,9 +125,13 @@ Use only on **staging** or **production with written permission**. Tools are exa
 ## 8. Changes applied during this assessment
 
 1. **`npm audit fix`** — cleared reported dependency issues.  
-2. **`app/api/contact/route.ts`** — **max length** validation on all text fields.  
-3. **`docs/api-contact-jotform.md`** — documented limits.  
-4. **This document** — record methodology and residual risk.
+2. **`lib/contact-payload.ts`** — strict JSON keys, honeypot, control-char strip rejection, email/phone validation, length limits.  
+3. **`app/api/contact/route.ts`** — `415` wrong `Content-Type`, `413` large body, `GET` → `405`, honeypot short-circuit.  
+4. **`lib/contact-rate-limit.ts`** — additional IP headers; lower limit for `unknown`.  
+5. **`ContactForm`** + **`.cf-honeypot`** — hidden `website` field.  
+6. **`next.config.ts`** — `frame-src 'none'`, `object-src 'none'`.  
+7. **`docs/api-contact-jotform.md`** — documented behavior.  
+8. **This document** — methodology and residual risk.
 
 ---
 

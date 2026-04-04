@@ -28,6 +28,8 @@ const securityHeaders = [
       "img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com",
       "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
       "frame-ancestors 'none'",
+      "frame-src 'none'",
+      "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
       ...(!isDev ? ["upgrade-insecure-requests"] : []),

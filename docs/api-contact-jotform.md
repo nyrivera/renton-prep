@@ -20,7 +20,9 @@
 | `phone` | `q5_phoneNumber[full]` | Required |
 | `message` (optional) | `q7_yourQuestions` | Defaults to empty string |
 
-**Server limits (reject `400` if exceeded):** `firstName` / `lastName` ≤ 120 chars, `email` ≤ 254, `phone` ≤ 40, `message` ≤ 8000.
+**Server limits:** `firstName` / `lastName` ≤ 120 chars, `email` ≤ 254, `phone` ≤ 40, `message` ≤ 8000, `website` (honeypot) ≤ 200 if present. **JSON** must only use keys: `firstName`, `lastName`, `email`, `phone`, `message`, `website` — unknown keys → `400`. **Content-Type** must include `application/json`. **`Content-Length`** &gt; 65536 → `413`. Control characters in strings → `400`. **Email** and **phone** (≥10 digits) validated server-side.
+
+**Honeypot:** If `website` is a non-empty string, the API returns **`200 { ok: true }`** and does **not** call JotForm (reduces spam; client keeps a hidden `website` field empty).
 
 Additional POST fields sent for JotForm compatibility: `formID`, `simple_spc`, `jsExecutionTracker`, `submitSource`, `submitDate`, `buildDate`, `uploadServerUrl`, `eventObserver`, `website` (honeypot — must stay empty).
 

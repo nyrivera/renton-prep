@@ -1517,8 +1517,22 @@
 
 /* Native contact form */
 .marketing-root .cf-form {
+  position: relative;
   max-width: 640px;
   margin-top: var(--space-4);
+}
+
+/* Spam honeypot — off-screen, not keyboard-focusable */
+.marketing-root .cf-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .marketing-root .cf-row {
