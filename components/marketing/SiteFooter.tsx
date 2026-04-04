@@ -26,11 +26,8 @@ export function SiteFooter() {
               Small by design, nationally recognized, and focused on preparing
               students for college, career, and meaningful contribution.
             </p>
-            <p style={{ marginTop: "var(--space-3)", fontSize: "14px" }}>
-              <MarketingLink
-                href={site.urls.schwabe}
-                style={{ color: "rgba(247,248,250,0.55)" }}
-              >
+            <p className="footer-brand-schwabe">
+              <MarketingLink href={site.urls.schwabe}>
                 In memory of Henry and Edith Schwabe · Our history
               </MarketingLink>
             </p>
