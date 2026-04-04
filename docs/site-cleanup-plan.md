@@ -49,7 +49,7 @@
 | Audit RenWeb **apply URL** | Open | Admissions owner — `lib/site.ts` default query string. |
 | Mobile regression pass | Ongoing | After each visual change. |
 | Add dedicated student-stories page | Open | Currently redirects to `/about` until real content exists. |
-| Hub stubs (`AdmissionsHubContent` partial “being added” copy) | Open | Intentionally thin; replace when copy is ready. |
+| Hub copy (`AdmissionsHubContent`, `EventsHubContent`, `AcademicsHubContent`) | **Done** | Handbook, events, and academics sections use truthful office/admissions CTAs (April 2026). |
 
 ---
 

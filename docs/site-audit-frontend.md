@@ -27,7 +27,7 @@ Evidence gathered from the `renton-prep` Next.js App Router tree, `components/`,
 | `/donate` | `app/donate/page.tsx` | `TbdPage` (noindex). |
 | `/events` | `app/events/page.tsx` | `EventsHubContent`. |
 | `/legal` | `app/legal/page.tsx` | `TbdPage` (noindex). |
-| `/dashboard` | `app/dashboard/page.tsx` | Placeholder internal page; **not linked** from marketing chrome. |
+| ~~`/dashboard`~~ | *(removed)* | Segment deleted April 2026. |
 
 ### Reachability from UI
 
@@ -37,7 +37,7 @@ Evidence gathered from the `renton-prep` Next.js App Router tree, `components/`,
 
 ### Orphaned / disconnected
 
-- **`/dashboard`**: exists, disallowed in `robots.txt`, **no marketing link**. Effectively hidden except direct URL.
+- **`/dashboard`**: **removed** (April 2026).
 - **Components never mounted on any page** (grep: no imports outside own file):
   - `components/marketing/JotForm.tsx` — **dead file** relative to current app (contact uses `ContactForm` → `/api/contact`).
   - `components/marketing/LogoShield.tsx` — **dead file**.
@@ -102,7 +102,7 @@ No duplicate “two contact forms” on one page — **JotForm vs ContactForm** 
 
 **devDependencies**
 
-- `tailwindcss`, `@tailwindcss/postcss` — **used** for Tailwind in `globals.css` and **dashboard/error** Tailwind classes; marketing shell is mostly **custom CSS**, not Tailwind utility pages.
+- `tailwindcss`, `@tailwindcss/postcss` — **used** for Tailwind in `globals.css` (e.g. `app/loading.tsx`); marketing shell is mostly **custom CSS**.
 
 **Env (frontend-visible)**
 

@@ -18,8 +18,8 @@ Matrix: what the UI shows or expects vs what the server provides. **Source of tr
 | Header / footer chrome | `SiteHeader.tsx`, `SiteFooter.tsx` | — | `NEXT_PUBLIC_APPLY_URL` | Yes | Apply defaults to RenWeb in `lib/site.ts`. |
 | Google Analytics | `app/layout.tsx` | — | `NEXT_PUBLIC_GA_ID` | If set | Gated by regex. |
 | Sitemap | `app/sitemap.ts` | — | `NEXT_PUBLIC_SITE_URL` | Yes | Includes `/request-information`, `/awards`, `/careers`, `/donate`, `/legal`, `/about/genesis`; not `/blog` (external). |
-| Robots | `app/robots.ts` | — | `NEXT_PUBLIC_SITE_URL` | Yes | Disallows `/dashboard`, `/api/`. |
-| Dashboard placeholder | `app/dashboard/page.tsx` | None | — | Direct URL only | Unlinked from marketing. |
+| Robots | `app/robots.ts` | — | `NEXT_PUBLIC_SITE_URL` | Yes | Disallows `/api/` only. |
+| ~~Dashboard~~ | — | — | — | **Removed** | Segment deleted; `/dashboard` no longer exists. |
 | Removed APIs | — | `/api/score`, `/api/crm` **deleted** | — | — | No longer in repo. |
 | JotForm iframe embed | — | — | — | **Removed** | Contact is server POST only. |
 

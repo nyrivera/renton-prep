@@ -38,7 +38,7 @@ The **main business risk** is **trust at the click**: the footer and some in-pag
 
 - **Dependencies:** only `next`, `react`, `react-dom` in production—**low attack surface and bundle noise**.
 - **Sitemap** lists substantive routes including **`/request-information`** and **`/about/genesis`**.
-- **Robots** disallow `/api/` and `/dashboard`; stub routes generally use **noindex** in page metadata.
+- **Robots** disallow `/api/`; most marketing routes are indexable (legacy stub `noindex` pages were replaced or redirected).
 - **GA4** loads only when the ID matches a **strict pattern**—reduces misconfiguration risk.
 
 ---

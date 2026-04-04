@@ -2,4 +2,4 @@
 @import "./styles/marketing-base.css";
 @import "./styles/marketing-sections.css";
 
-/* App shell (dashboard, APIs) — Tailwind utilities still available */
+/* Tailwind utilities available app-wide */

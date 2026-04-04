@@ -5,14 +5,6 @@ import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { microcopy, site } from "@/lib/site";
 import { tuition } from "@/lib/tuition";
 
-const stub = (
-  <p style={{ color: "var(--color-text-muted)" }}>
-    Details for this topic are being added to the new site. Please call{" "}
-    <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or{" "}
-    <Link href={site.urls.contact}>contact us</Link>.
-  </p>
-);
-
 export function AdmissionsHubContent() {
   return (
     <MarketingShell>
@@ -287,7 +279,16 @@ export function AdmissionsHubContent() {
         <div className="container">
           <div className="hub-section">
             <h2>Student handbook</h2>
-            {stub}
+            <div className="hub-prose">
+              <p>
+                The student handbook is updated as policies evolve and is shared
+                with enrolled families through the school. For the current
+                handbook, a specific policy question, or expectations for your
+                child&apos;s grade, call{" "}
+                <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or{" "}
+                <Link href={site.urls.contact}>request information</Link>.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -7,7 +7,7 @@ Execution of `docs/remediation-plan-prioritized.md`: trust fixes, inquiry normal
 ## 1. Executive summary
 
 - **Trust:** Removed generic “being updated” experiences from footer-critical routes by shipping **minimal truthful pages** (awards, careers, donate, legal), **redirecting** `/blog` to the school Instagram, and **redirecting** `/about/testimonials` to the home page testimonials section (`/#testimonials`). `/about/student-stories` redirects to `/about` until a dedicated page exists.
-- **Inquiry:** All primary “Request information” paths now target **`/request-information`** via `site.urls.contact` (`TbdPage` removed; hub stubs updated).
+- **Inquiry:** All primary “Request information” paths target **`/request-information`** via `site.urls.contact` (`TbdPage` removed; admissions/events/academics hubs use office CTAs, not placeholder copy).
 - **Metadata:** **One** default description lives in **`lib/site.ts`** as `defaultSiteDescription`; `app/layout.tsx` and `app/page.tsx` both use it for `description`, Open Graph, and Twitter.
 - **Performance:** **`public/hero-1.jpeg`** and **`public/community-1.jpeg`** were resized in place with **`sips -Z`** (max dimension 2048 / 1800). **`community-3.jpg`** and **`community-4.jpg`** were regenerated from **`community-3heic.heic`** and **`Community-4.heic`** at max dimension 1800 (replacing ~6 KB thumbnails that were not suitable for the grid).
 - **Technical:** **`EducationalOrganization`** JSON-LD added (`SchoolJsonLd.tsx`). **`POST /api/contact`** documents the JotForm contract in **`docs/api-contact-jotform.md`** and applies **in-memory rate limiting** (`lib/contact-rate-limit.ts`). **`docs/site-audit-crosswalk.md`** and **`docs/site-cleanup-plan.md`** were rewritten to match the repo.
@@ -69,8 +69,8 @@ Execution of `docs/remediation-plan-prioritized.md`: trust fixes, inquiry normal
 | Testimonials → `/#testimonials` | Real quotes already on home (`TestimonialsSection.tsx`). |
 | Student stories → `/about` | Insufficient dedicated content; redirect better than stub. |
 | Rate limit in-memory | No new dependencies; documented limitation for multi-instance. |
-| Keep `app/dashboard/*` | No proof it is unused operationally. |
-| Keep HEIC files in `public/` | Act as masters for 3/4 regeneration; not deleted. |
+| ~~Keep dashboard~~ | **`app/dashboard` removed** in a follow-up pass (April 2026); `robots.txt` no longer lists `/dashboard`. |
+| ~~Keep HEIC in `public/`~~ | **Removed** `Community-4.heic` and `community-3heic.heic` from `public/`; JPEGs remain canonical; `*.heic` gitignored. |
 
 ---
 
@@ -92,8 +92,7 @@ Execution of `docs/remediation-plan-prioritized.md`: trust fixes, inquiry normal
 - **RenWeb apply URL** default in `lib/site.ts` — still needs periodic **admissions verification** (query params / district IDs).
 - **JotForm** — any form editor change requires **smoke test** per `docs/api-contact-jotform.md`.
 - **Rate limit** — per-instance memory; heavy abuse or many regions → consider **shared** limiter (owner/infrastructure).
-- **Hub pages** (`AdmissionsHubContent`, etc.) still contain some “being added” stub paragraphs in sections — **out of scope** for this pass; content owners should replace when ready.
-- **`docs/content-audit-renton-prep.md`** — still describes pre-remediation route map; update when that audit is next revised.
+- **`docs/content-audit-renton-prep.md`** — refreshed (routes, hubs, R8/R9, phases) alongside hub copy and asset cleanup.
 - **Hash redirect** — `/about/testimonials` → `/#testimonials` relies on Next **`permanentRedirect`** with fragment; **build succeeded**; verify in a real browser that the hash is applied (some proxies strip fragments).
 
 ---
@@ -107,6 +106,8 @@ Execution of `docs/remediation-plan-prioritized.md`: trust fixes, inquiry normal
 **Updated:** `lib/site.ts`, `app/layout.tsx`, `app/page.tsx`, `app/awards/page.tsx`, `app/blog/page.tsx`, `app/careers/page.tsx`, `app/donate/page.tsx`, `app/legal/page.tsx`, `app/about/testimonials/page.tsx`, `app/about/student-stories/page.tsx`, `app/api/contact/route.ts`, `app/sitemap.ts`, `components/marketing/SiteFooter.tsx`, `NewsSection.tsx`, `AdmissionsHubContent.tsx`, `EventsHubContent.tsx`, `AcademicsHubContent.tsx`, `docs/site-audit-crosswalk.md`, `docs/site-cleanup-plan.md`
 
 **Binary (images):** `public/hero-1.jpeg`, `public/community-1.jpeg`, `public/community-3.jpg`, `public/community-4.jpg`
+
+**Follow-up pass (same doc cycle):** **Removed** `app/dashboard/*`, **`public/*.heic`**, replaced hub “being updated” copy in `AdmissionsHubContent.tsx`, `EventsHubContent.tsx`, `AcademicsHubContent.tsx`; **`app/robots.ts`** (no `/dashboard`); **`docs/content-audit-renton-prep.md`**, **`docs/site-audit-frontend.md`**, **`app/globals.css`**.
 
 ---
 

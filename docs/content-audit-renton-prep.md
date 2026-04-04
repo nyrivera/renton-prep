@@ -1,6 +1,6 @@
 # Renton Prep — Content & Component Audit
 **Date:** April 2026  
-**Status:** Living document. A **production cleanup** (April 2026) removed unused APIs/components, fixed community photos, sitemap, CSP, and restored `HeartAndMindSection` on the homepage — see git history. Some tables below may still need line-number spot-checks.
+**Status:** Living document. **Revised April 2026** after remediation: real **awards**, **careers**, **donate**, and **legal** pages; **`/blog`** redirects to Instagram; **`/about/testimonials`** → `/#testimonials`; **`/about/student-stories`** → `/about`; admissions/events/academics hubs no longer use “being updated” copy; **`/dashboard`** removed; **`public/`** ships web JPEG/PNG only (HEIC camera files are gitignored—keep masters outside the repo or locally). Spot-check line numbers when you edit files.
 
 **Purpose:** Map every live claim, identify inconsistencies, and define a prioritized implementation plan before content updates.
 
@@ -23,40 +23,26 @@
 ```
 app/
 ├── page.tsx                        Homepage → <MarketingHome />
-├── layout.tsx                      Root layout, global metadata, GA, CSP headers
-├── robots.ts                       Robots.txt generation
-├── sitemap.ts                      XML sitemap generation
-├── error.tsx                       Global error boundary
+├── layout.tsx                      Root layout, metadata, GA, JSON-LD, CSP via next.config
+├── robots.ts                       Robots.txt (disallows /api/)
+├── sitemap.ts                      XML sitemap
+├── loading.tsx                     Root loading skeleton
 ├── about/
 │   ├── page.tsx                    /about → <AboutSchoolContent />
-│   ├── genesis/
-│   │   └── page.tsx               /about/genesis → <GenesisProjectContent />
-│   ├── student-stories/
-│   │   └── page.tsx               /about/student-stories → <TbdPage /> (noindex)
-│   └── testimonials/
-│       └── page.tsx               /about/testimonials → <TbdPage /> (noindex)
-├── academics/
-│   └── page.tsx                    /academics → <AcademicsHubContent />
-├── admissions/
-│   └── page.tsx                    /admissions → <AdmissionsHubContent />
-├── awards/
-│   └── page.tsx                    /awards → <TbdPage /> (noindex)
-├── blog/
-│   └── page.tsx                    /blog → <TbdPage /> (noindex)
-├── careers/
-│   └── page.tsx                    /careers → <TbdPage /> (noindex)
-├── contact/
-│   └── page.tsx                    /contact → permanentRedirect → /request-information
-├── request-information/
-│   └── page.tsx                    /request-information → <ContactPageContent /> + ContactForm
-├── donate/
-│   └── page.tsx                    /donate → <TbdPage /> (noindex)
-├── events/
-│   └── page.tsx                    /events → <EventsHubContent />
-├── legal/
-│   └── page.tsx                    /legal → <TbdPage /> (noindex)
-└── api/
-    └── contact/route.ts            POST → JotForm submit (server-side proxy)
+│   ├── genesis/page.tsx            /about/genesis → <GenesisProjectContent />
+│   ├── student-stories/page.tsx    redirect → /about
+│   └── testimonials/page.tsx       redirect → /#testimonials
+├── academics/page.tsx              /academics → <AcademicsHubContent />
+├── admissions/page.tsx             /admissions → <AdmissionsHubContent />
+├── awards/page.tsx                 /awards → <AwardsPageContent />
+├── blog/page.tsx                   permanentRedirect → Instagram (site.urls.blog)
+├── careers/page.tsx                /careers → <CareersPageContent />
+├── contact/page.tsx                permanentRedirect → /request-information
+├── donate/page.tsx                 /donate → <DonatePageContent />
+├── events/page.tsx                 /events → <EventsHubContent />
+├── legal/page.tsx                  /legal → <LegalPageContent />
+├── request-information/page.tsx    <ContactPageContent /> + ContactForm → POST /api/contact
+└── api/contact/route.ts            JotForm proxy + rate limit (see docs/api-contact-jotform.md)
 ```
 
 ### Marketing Components (`components/marketing/`)
@@ -83,12 +69,16 @@ components/marketing/
 ├── FaqSection.tsx                  Accordion FAQ (data from faq-content.tsx)
 ├── faq-content.tsx                 All 21 FAQ questions & answers (data file)
 ├── AboutSchoolContent.tsx          /about page — 5 history sections
-├── AcademicsHubContent.tsx         /academics — hub with 3 stub sections
-├── AdmissionsHubContent.tsx        /admissions — full content (tuition, how-to-apply, etc.)
+├── AcademicsHubContent.tsx         /academics — technology, elementary, supply lists (office CTAs)
+├── AdmissionsHubContent.tsx        /admissions — tuition, apply, uniforms, handbook (office CTA)
+├── AwardsPageContent.tsx           /awards — recognitions from lib/site.ts
+├── CareersPageContent.tsx          /careers — inquiry CTAs (no job board)
+├── DonatePageContent.tsx           /donate — contact path only
+├── LegalPageContent.tsx            /legal — contact / privacy routing only
 ├── ContactPageContent.tsx          /request-information — ContactForm + office details
-├── EventsHubContent.tsx            /events — schedule/calendar hub
-├── GenesisProjectContent.tsx       /about/genesis — 9-section deep-dive page
-└── TbdPage.tsx                     Stub for pages not yet built (noindex)
+├── EventsHubContent.tsx            /events — school hours & calendar (office CTAs)
+├── GenesisProjectContent.tsx       /about/genesis — deep-dive page
+└── SchoolJsonLd.tsx                EducationalOrganization script (layout)
 ```
 
 ### Data & Config (`lib/`)
@@ -103,35 +93,35 @@ lib/
 
 ### Other
 ```
-public/logo.png         Official school logo (PNG, used in header + footer)
-next.config.ts          Security headers, CSP policy, image domains
-.env.example            All env var documentation with defaults
-docs/                   This audit document
+public/                 Web assets only: logo, hero/community JPEGs, badge images (*.heic gitignored)
+next.config.ts          Security headers, CSP policy, image config
+.env.example            Env var documentation
+docs/                   Audits, api-contact-jotform.md, implementation reports
 ```
 
 ---
 
 ## 2. Page & Route Inventory
 
-| Route | Status | Real Content | noindex | Component |
-|-------|--------|-------------|---------|-----------|
-| `/` | ✅ Live | Yes — 13 sections | No | `MarketingHome` |
-| `/about` | ✅ Live | Yes — school history, 5 sections | No | `AboutSchoolContent` |
-| `/about/genesis` | ✅ Live | Yes — 9 sections, deep-dive | No | `GenesisProjectContent` |
-| `/about/student-stories` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/about/testimonials` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/academics` | ⚠️ Partial | Hub shell + 3 stub sections | No | `AcademicsHubContent` |
-| `/admissions` | ✅ Live | Yes — tuition, how-to-apply, uniforms | No | `AdmissionsHubContent` |
-| `/awards` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/blog` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/careers` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/request-information` | ✅ Live | Yes — native `ContactForm` → `/api/contact` → JotForm | No | `ContactPageContent` |
-| `/contact` | ✅ Redirect | → `/request-information` | No | `app/contact/page.tsx` |
-| `/donate` | 🚧 Stub | No | Yes | `TbdPage` |
-| `/events` | ⚠️ Partial | Hub shell, calendar stub | No | `EventsHubContent` |
-| `/legal` | 🚧 Stub | No | Yes | `TbdPage` |
+| Route | Status | Real Content | noindex | Notes |
+|-------|--------|-------------|---------|-------|
+| `/` | ✅ Live | Yes — homepage sections | No | `MarketingHome` |
+| `/about` | ✅ Live | School history | No | `AboutSchoolContent` |
+| `/about/genesis` | ✅ Live | Genesis deep-dive | No | `GenesisProjectContent` |
+| `/about/student-stories` | ↪ Redirect | → `/about` | No | Bookmark preservation |
+| `/about/testimonials` | ↪ Redirect | → `/#testimonials` | No | Family quotes on home |
+| `/academics` | ✅ Live | Technology + elementary + supply list guidance | No | Office/admissions CTAs |
+| `/admissions` | ✅ Live | Tuition, apply, uniforms, extended care, handbook CTA | No | `AdmissionsHubContent` |
+| `/awards` | ✅ Live | Recognitions aligned with site copy | No | `AwardsPageContent` |
+| `/blog` | ↪ Redirect | → Instagram | No | `site.urls.blog` |
+| `/careers` | ✅ Live | Careers inquiry copy | No | `CareersPageContent` |
+| `/request-information` | ✅ Live | `ContactForm` → `POST /api/contact` | No | JotForm proxy |
+| `/contact` | ✅ Redirect | → `/request-information` | No | Legacy URL |
+| `/donate` | ✅ Live | Support inquiry (contact path) | No | `DonatePageContent` |
+| `/events` | ✅ Live | Hours & calendar (office CTAs) | No | `EventsHubContent` |
+| `/legal` | ✅ Live | Legal/privacy contact routing | No | `LegalPageContent` |
 
-**7 stub pages are linked from the footer and navigation** but resolve to "details coming soon" placeholders. The footer currently exposes `/awards`, `/blog`, `/careers`, `/donate`, and `/legal` — all dead ends. These create friction and undermine credibility.
+**Footer and CTAs** now land on real pages, Instagram, or office/admissions contact paths—not generic “under construction” screens.
 
 ---
 
@@ -191,7 +181,7 @@ Sections render in this order inside `MarketingHome.tsx`:
 | Hiring intro copy | `HiringSection.tsx` | |
 | Heart & Mind prose | `HeartAndMindSection.tsx` | |
 | School history prose | `AboutSchoolContent.tsx` | Paragraphs between milestones |
-| Academics stub copy | `AcademicsHubContent.tsx` | |
+| Academics hub copy | `AcademicsHubContent.tsx` | Links to Genesis + admissions; office CTAs for lists |
 | 7 nav link labels | `SiteHeader.tsx` → `NAV_LINKS` | |
 | 4 footer column labels/links | `SiteFooter.tsx` | |
 
@@ -221,13 +211,13 @@ Sections render in this order inside `MarketingHome.tsx`:
 
 | Location | Term Used |
 |----------|-----------|
-| `SiteHeader.tsx` NAV_LINKS | `"Genesis AI"` |
-| `app/page.tsx` metadata title | `"Genesis AI Project"` |
-| `app/layout.tsx` description | `"Genesis Project for AI literacy"` |
+| `SiteHeader.tsx` `NAV_LINKS` | `"The Genesis Project"` |
+| `app/page.tsx` metadata | Uses shared `defaultSiteDescription` from `lib/site.ts` |
+| `app/layout.tsx` description | Same `defaultSiteDescription` |
 | `MetricsSection.tsx` aria-label | `"Genesis AI literacy program"` |
 | All other components + `/about/genesis` page | `"The Genesis Project"` |
 
-**Recommendation:** Standardize on **"The Genesis Project"** as the proper name throughout. "Genesis AI" is acceptable as a very short label where space is constrained (e.g., nav), but metadata titles and descriptions should use the full name. Update `SiteHeader.tsx` nav label and `app/page.tsx` title string.
+**Status:** Nav uses **"The Genesis Project."** Keep metadata and body copy aligned; avoid reintroducing "Genesis AI" as the canonical name unless space is extremely constrained.
 
 ---
 
@@ -265,7 +255,7 @@ Sections render in this order inside `MarketingHome.tsx`:
 
 **Current state:** Consistent across footer and `WhyChooseSection.tsx`.
 
-**Recommendation:** This is a purposeful brand phrase — no change needed. However, the `/awards` page is still a stub. The footer and `WhyChooseSection` CTA button both link to it. Until the page has real content, this is a dead end for users.
+**Status:** `/awards` is a real page (`AwardsPageContent`) aligned with `recognitions` in `lib/site.ts`. Footer and "Awards and Recognition" CTA are no longer dead ends.
 
 ---
 
@@ -273,7 +263,7 @@ Sections render in this order inside `MarketingHome.tsx`:
 
 **Current state:** Contextually appropriate — "We're Hiring!" is the section heading; "Careers" is the nav/footer label. No conflict.
 
-**Issue:** `/careers` page is a stub. The `HiringSection` on the homepage links to it. Users clicking "View Careers" hit a placeholder.
+**Status:** `/careers` is a real inquiry page (`CareersPageContent`). `HiringSection` → "View Careers" is consistent with that experience.
 
 ---
 
@@ -337,21 +327,19 @@ Current state: Rates shown as $16,750/year for "Kindergarten Prep – 5th Grade.
 Risk: The site presents as a K–12 school but only shows elementary tuition. Families of middle/high school students have no published rates.
 **Action required:** Add tuition rows for middle school and high school, or add a note directing families to call for grades 6–12 rates.
 
-**R8 — `/academics` page is almost entirely stubs**
+**R8 — `/academics` depth** *(reduced — April 2026)*
 File: `AcademicsHubContent.tsx`
-Current state: Academics is indexed and appears in footer/nav, but all three sub-sections (Technology, Elementary, Supply Lists) show "being updated, please call."
-Risk: Academically-focused families landing on this page see near-zero content. It is indexed by search engines but provides no value.
-**Action required:** Either add real content to at least the Technology section (linking to Genesis Project page is a quick win), or add a noindex until content is ready.
+Current state: Technology points to the Genesis Project and home anchors; elementary links to admissions; supply lists direct families to the office. No invented curriculum detail.
+Residual risk: Power users may still want downloadable PDFs or grade-specific copy on-site. **Action:** Add PDFs or expanded copy when admissions provides them.
 
 ---
 
 ### 🟢 LOW RISK / INFORMATIONAL
 
-**R9 — Community section is entirely placeholder tiles**
+**R9 — Community photography**
 File: `CommunitySection.tsx`
-Current state: 5 tiles ("Classroom learning", "Outdoor learning", etc.) are CSS illustration placeholders — no real photos.
-Risk: Low risk since they are styled, but lower credibility than real photos.
-**Action required:** Replace with actual school photography when available.
+Current state: Four real photos from `public/community-*` when files exist (JPEG/JPG).
+Residual risk: Refresh imagery over time for freshness. **Action:** Replace assets in `public/` when marketing supplies new exports (keep HEIC masters outside the repo).
 
 **R10 — "Genesis Project" badge says "New Program"**
 File: `GenesisSection.tsx`
@@ -392,15 +380,13 @@ These are live claims or dead links that could hurt credibility right now.
 
 ### Phase 2 — Content Completeness (Next Sprint)
 
-Meaningful content gaps that affect user trust and SEO.
-
 | # | Task | File(s) | Notes |
 |---|------|---------|-------|
 | 6 | Add 2021–2026 milestones to school history timeline | `lib/school-history.ts` | Genesis Project launch, Cognia renewal |
-| 7 | Add real content to `/academics` Technology section or add noindex | `AcademicsHubContent.tsx`, `app/academics/page.tsx` | Link to `/about/genesis` as quick win |
-| 8 | Build `/awards` page or remove all footer/CTA links to it | `app/awards/page.tsx`, `SiteFooter.tsx`, `WhyChooseSection.tsx` | Dead-end CTAs hurt conversion |
-| 9 | Build `/careers` page or add a contact form and remove "We're Hiring!" CTA | `app/careers/page.tsx`, `HiringSection.tsx` | |
-| 10 | Build `/blog` or remove news section links from homepage | `app/blog/page.tsx`, `NewsSection.tsx` | All 3 news links hit wrong page |
+| 7 | ~~Academics stubs~~ | `AcademicsHubContent.tsx` | **Done:** Genesis + admissions + office CTAs |
+| 8 | ~~Awards page~~ | `app/awards/page.tsx` | **Done:** `AwardsPageContent` |
+| 9 | ~~Careers page~~ | `app/careers/page.tsx` | **Done:** `CareersPageContent` |
+| 10 | ~~Blog / news~~ | `NewsSection.tsx`, `app/blog/page.tsx` | **Done:** News CTA → Instagram; `/blog` redirects |
 
 ---
 
@@ -418,17 +404,13 @@ Low-risk, high-polish. Can be done in one pass.
 
 ---
 
-### Phase 4 — Stub Pages (When Content Is Ready)
+### Phase 4 — Deeper pages (when content is ready)
 
 | # | Page | Priority | Notes |
 |---|------|----------|-------|
-| 16 | `/about/testimonials` | High | Linked from footer; good for trust |
-| 17 | `/about/student-stories` | High | Linked from footer |
-| 18 | `/awards` | High | Multiple CTAs point here |
-| 19 | `/blog` | Medium | News section currently dead-ends here |
-| 20 | `/careers` | Medium | Hiring section links here |
-| 21 | `/legal` | Medium | Required before site is fully public |
-| 22 | `/donate` | Low | Donor cultivation later |
+| 16 | `/about/testimonials` | Medium | **Redirect** to `/#testimonials`; optional standalone page later |
+| 17 | `/about/student-stories` | Medium | **Redirect** to `/about`; build when stories exist |
+| 18–22 | Awards, blog, careers, legal, donate | — | **Shipped** as real pages or Instagram redirect (see §2) |
 
 ---
 
@@ -461,4 +443,4 @@ Low-risk, high-polish. Can be done in one pass.
 
 ---
 
-*Audit performed April 2026. No user-facing files were modified. All findings are based on static code analysis of the repository at the time of audit.*
+*Audit maintained as the site evolves. Risk tables (R1–R12) still need owner verification where marked. Implementation status in §2 and Phase tables updated April 2026.*

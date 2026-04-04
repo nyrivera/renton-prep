@@ -27,7 +27,7 @@
 # Local agent / IDE (do not commit)
 .claude/
 
-# Camera originals — repo uses JPEG exports for the web
+# Camera originals — do not commit or serve from public/; web uses JPEG/PNG only
 *.heic
 
 # local sqlite
