@@ -9,7 +9,7 @@ const stub = (
   <p style={{ color: "var(--color-text-muted)" }}>
     Details for this topic are being added to the new site. Please call{" "}
     <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or{" "}
-    <Link href="/contact">contact us</Link>.
+    <Link href={site.urls.contact}>contact us</Link>.
   </p>
 );
 
@@ -40,7 +40,7 @@ export function AdmissionsHubContent() {
             </div>
 
             <div className="btn-group" id="start-application">
-              <Link href="/contact" className="btn btn-primary">
+              <Link href={site.urls.contact} className="btn btn-primary">
                 Request Information
               </Link>
               <MarketingLink href={site.urls.apply} className="btn btn-secondary">

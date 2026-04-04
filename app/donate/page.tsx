@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
 
-import { TbdPage } from "@/components/marketing/TbdPage";
-
-const PLACEHOLDER =
-  "This page is being updated. Please contact us directly for help.";
+import { DonatePageContent } from "@/components/marketing/DonatePageContent";
 
 export const metadata: Metadata = {
   title: "Donate",
-  description: PLACEHOLDER,
-  robots: { index: false, follow: false },
+  description:
+    "Contact Renton Prep Christian School to learn about supporting the school.",
   openGraph: {
     title: "Donate | Renton Prep",
-    description: PLACEHOLDER,
+    description:
+      "Contact the school to learn about supporting Renton Prep Christian School.",
   },
 };
 
 export default function DonatePage() {
   return (
     <div className="marketing-root">
-      <TbdPage title="Donate" description={PLACEHOLDER} />
+      <DonatePageContent />
     </div>
   );
 }

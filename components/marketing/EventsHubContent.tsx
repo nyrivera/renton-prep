@@ -7,7 +7,7 @@ const stub = (
   <p style={{ color: "var(--color-text-muted)" }}>
     Calendars and hours are being finalized for this site. Call{" "}
     <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or{" "}
-    <Link href="/contact">contact us</Link>.
+    <Link href={site.urls.contact}>contact us</Link>.
   </p>
 );
 

@@ -2,19 +2,25 @@ import type { Metadata } from "next";
 
 import { MarketingHome } from "@/components/marketing/MarketingHome";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
+import { defaultSiteDescription } from "@/lib/site";
+
+const ogTitle = "Renton Prep | A Premier Microsoft Showcase School";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Renton Prep | A Premier Microsoft Showcase School",
+    absolute: ogTitle,
   },
-  description:
-    "A Christ-centered, accredited K–12 school in Renton, WA. Washington's first Cognia STEM-certified K–12, a Microsoft Showcase School, and home of the Genesis Project.",
+  description: defaultSiteDescription,
   openGraph: {
-    title: "Renton Prep | A Premier Microsoft Showcase School",
-    description:
-      "A Christ-centered, accredited K–12 school in Renton, WA. Washington's first Cognia STEM-certified K–12, a Microsoft Showcase School, and home of the Genesis Project.",
+    title: ogTitle,
+    description: defaultSiteDescription,
     url: "/",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: ogTitle,
+    description: defaultSiteDescription,
   },
 };
 

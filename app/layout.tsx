@@ -3,6 +3,9 @@ import { DM_Sans, Libre_Baskerville } from "next/font/google";
 import Script from "next/script";
 import type { ReactNode } from "react";
 
+import { SchoolJsonLd } from "@/components/marketing/SchoolJsonLd";
+import { defaultSiteDescription } from "@/lib/site";
+
 import "./globals.css";
 
 function resolveSiteUrl(): string {
@@ -53,11 +56,15 @@ export const metadata: Metadata = {
     default: "Renton Prep | A Premier Microsoft Showcase School",
     template: "%s | Renton Prep",
   },
-  description:
-    "A Christ-centered, accredited K–12 school in Renton, WA. Cognia STEM-certified, Microsoft Showcase recognized, and committed to preparing thoughtful, capable graduates.",
+  description: defaultSiteDescription,
   openGraph: {
     siteName: "Renton Prep Christian School",
     type: "website",
+    description: defaultSiteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    description: defaultSiteDescription,
   },
 };
 
@@ -77,6 +84,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to main content
         </a>
+        <SchoolJsonLd siteUrl={siteUrl} />
         {children}
 
         {gaId ? (

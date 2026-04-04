@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { MarketingLink } from "@/components/marketing/MarketingLink";
 import { featuredNews, site } from "@/lib/site";
 
 export function NewsSection() {
@@ -9,7 +10,7 @@ export function NewsSection() {
         <div className="section-intro">
           <span className="eyebrow eyebrow--muted">From the School</span>
           <h2 id="news-heading">Featured News</h2>
-          <p>Highlights from the Renton Prep blog and announcements.</p>
+          <p>Highlights and where to follow day-to-day updates from the school.</p>
         </div>
         <div className="news-grid">
           {featuredNews.map((item, i) => (
@@ -23,9 +24,9 @@ export function NewsSection() {
           ))}
         </div>
         <div style={{ textAlign: "center", marginTop: "var(--space-5)" }}>
-          <Link href={site.urls.blog} className="btn btn-secondary">
-            View Blog
-          </Link>
+          <MarketingLink href={site.urls.blog} className="btn btn-secondary">
+            Follow on Instagram
+          </MarketingLink>
         </div>
       </div>
     </section>

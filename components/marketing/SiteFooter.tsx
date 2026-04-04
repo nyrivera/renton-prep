@@ -57,7 +57,9 @@ export function SiteFooter() {
                 </MarketingLink>
               </li>
               <li>
-                <MarketingLink href={site.urls.blog}>Blog</MarketingLink>
+                <MarketingLink href={site.urls.blog}>
+                  News &amp; updates
+                </MarketingLink>
               </li>
               <li>
                 <MarketingLink href={site.urls.careers}>Careers</MarketingLink>

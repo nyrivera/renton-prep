@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
 
-import { TbdPage } from "@/components/marketing/TbdPage";
+import { AwardsPageContent } from "@/components/marketing/AwardsPageContent";
 
 export const metadata: Metadata = {
   title: "Awards & Recognition",
-  description: "Awards and recognitions for Renton Prep Christian School.",
-  robots: { index: false, follow: false },
+  description:
+    "How Renton Prep describes its accreditations, STEM certification, and Microsoft Showcase recognition.",
+  openGraph: {
+    title: "Awards & Recognition | Renton Prep",
+    description:
+      "Accreditations, Cognia STEM certification, and Microsoft Showcase School recognition.",
+  },
 };
 
 export default function AwardsPage() {
   return (
     <div className="marketing-root">
-      <TbdPage title="Awards & recognition" />
+      <AwardsPageContent />
     </div>
   );
 }

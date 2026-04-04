@@ -14,6 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/academics`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/admissions`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/request-information`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE_URL}/awards`, lastModified: now, changeFrequency: "monthly", priority: 0.65 },
+    { url: `${BASE_URL}/careers`, lastModified: now, changeFrequency: "monthly", priority: 0.55 },
+    { url: `${BASE_URL}/donate`, lastModified: now, changeFrequency: "yearly", priority: 0.45 },
+    { url: `${BASE_URL}/legal`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     { url: `${BASE_URL}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
   ];
 }

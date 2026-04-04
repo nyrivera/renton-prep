@@ -1,17 +1,6 @@
-import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 
-import { TbdPage } from "@/components/marketing/TbdPage";
-
-export const metadata: Metadata = {
-  title: "Student Stories",
-  description: "Student stories from Renton Prep Christian School.",
-  robots: { index: false, follow: false },
-};
-
-export default function StudentStoriesPage() {
-  return (
-    <div className="marketing-root">
-      <TbdPage title="Student stories" />
-    </div>
-  );
+/** No dedicated student-stories page yet — send visitors to our story. */
+export default function StudentStoriesRedirect() {
+  permanentRedirect("/about");
 }

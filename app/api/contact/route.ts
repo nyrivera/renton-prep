@@ -1,7 +1,16 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-const SUBMIT_URL =
-  "https://submit.jotform.com/submit/260918035603050";
+import {
+  allowContactSubmission,
+  contactRateLimitClientKey,
+} from "@/lib/contact-rate-limit";
+
+/**
+ * JotForm “Request information” form — field contract documented in
+ * `docs/api-contact-jotform.md`. If JotForm renames fields or changes form ID,
+ * update this mapping and redeploy; then submit a test row from the live site.
+ */
+const SUBMIT_URL = "https://submit.jotform.com/submit/260918035603050";
 const FORM_ID = "260918035603050";
 const BUILD_DATE = "1775255391453";
 
@@ -14,6 +23,17 @@ interface ContactPayload {
 }
 
 export async function POST(req: NextRequest) {
+  const clientKey = contactRateLimitClientKey(req);
+  if (!allowContactSubmission(clientKey)) {
+    return NextResponse.json(
+      { error: "Too many submissions. Please try again later or call us." },
+      {
+        status: 429,
+        headers: { "Retry-After": "900" },
+      },
+    );
+  }
+
   let payload: ContactPayload;
   try {
     payload = (await req.json()) as ContactPayload;
@@ -41,7 +61,7 @@ export async function POST(req: NextRequest) {
     buildDate: BUILD_DATE,
     uploadServerUrl: "https://upload.jotform.com/upload",
     eventObserver: "1",
-    website: "", // honeypot — must be empty
+    website: "",
   });
 
   try {

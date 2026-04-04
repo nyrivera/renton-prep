@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
 
-import { TbdPage } from "@/components/marketing/TbdPage";
+import { CareersPageContent } from "@/components/marketing/CareersPageContent";
 
 export const metadata: Metadata = {
   title: "Careers",
-  description: "Career opportunities at Renton Prep Christian School.",
-  robots: { index: false, follow: false },
+  description:
+    "Career inquiries at Renton Prep Christian School — master–apprentice learning alongside students.",
+  openGraph: {
+    title: "Careers | Renton Prep",
+    description:
+      "We welcome inquiries from educators and contributors who share our mission.",
+  },
 };
 
 export default function CareersPage() {
   return (
     <div className="marketing-root">
-      <TbdPage title="Careers" />
+      <CareersPageContent />
     </div>
   );
 }

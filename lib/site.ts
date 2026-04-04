@@ -3,6 +3,10 @@
  * Optional: set NEXT_PUBLIC_APPLY_URL to an external application portal (e.g. FACTS).
  */
 
+/** Default meta/OG description — keep in sync across `app/layout.tsx` and `app/page.tsx`. */
+export const defaultSiteDescription =
+  "A Christ-centered, accredited K–12 school in Renton, WA. Washington's first Cognia STEM-certified K–12, a Microsoft Showcase School, and home of the Genesis Project.";
+
 const applyHref =
   typeof process.env.NEXT_PUBLIC_APPLY_URL === "string" &&
   process.env.NEXT_PUBLIC_APPLY_URL.trim().length > 0
@@ -17,6 +21,14 @@ export const site = {
     lines: ["200 Mill Ave S Ste 110", "Renton, WA 98057"] as const,
     mapQuery: "200 Mill Ave S Ste 110, Renton, WA 98057",
   },
+  /** Postal fields for structured data (same facts as address.lines). */
+  addressStructured: {
+    streetAddress: "200 Mill Ave S Ste 110",
+    addressLocality: "Renton",
+    addressRegion: "WA",
+    postalCode: "98057",
+    addressCountry: "US",
+  },
   phone: {
     display: "(206) 723-5526",
     tel: "+12067235526",
@@ -25,7 +37,8 @@ export const site = {
     contact: "/request-information",
     apply: applyHref,
     donate: "/donate",
-    blog: "/blog",
+    /** Public updates; /blog redirects here for old links. */
+    blog: "https://www.instagram.com/rentonprep/",
     careers: "/careers",
     awards: "/awards",
     mission: "/#mission",
@@ -44,7 +57,7 @@ export const site = {
     events: "/events",
     schoolHours: "/events#school-hours",
     calendar: "/events#calendar",
-    testimonials: "/about/testimonials",
+    testimonials: "/#testimonials",
     studentStories: "/about/student-stories",
     schwabe: "/about#moments",
     privacy: "/legal",

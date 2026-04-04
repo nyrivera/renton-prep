@@ -1,17 +1,6 @@
-import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 
-import { TbdPage } from "@/components/marketing/TbdPage";
-
-export const metadata: Metadata = {
-  title: "Testimonials",
-  description: "What families say about Renton Prep Christian School.",
-  robots: { index: false, follow: false },
-};
-
-export default function TestimonialsPage() {
-  return (
-    <div className="marketing-root">
-      <TbdPage title="Testimonials" />
-    </div>
-  );
+/** Family voices live on the home page — keep /about/testimonials for bookmarks. */
+export default function TestimonialsRedirect() {
+  permanentRedirect("/#testimonials");
 }

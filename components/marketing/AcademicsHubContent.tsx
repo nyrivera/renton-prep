@@ -7,7 +7,7 @@ const stub = (
   <p style={{ color: "var(--color-text-muted)" }}>
     This section is being updated on the new site. Call{" "}
     <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or{" "}
-    <Link href="/contact">contact us</Link> for details.
+    <Link href={site.urls.contact}>contact us</Link> for details.
   </p>
 );
 
