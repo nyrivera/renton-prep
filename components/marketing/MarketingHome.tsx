@@ -8,7 +8,6 @@ import { HeroSection } from "@/components/marketing/HeroSection";
 import { HiringSection } from "@/components/marketing/HiringSection";
 import { MetricsSection } from "@/components/marketing/MetricsSection";
 import { MissionSection } from "@/components/marketing/MissionSection";
-import { NewsSection } from "@/components/marketing/NewsSection";
 import { ResearchSection } from "@/components/marketing/ResearchSection";
 import { TestimonialsSection } from "@/components/marketing/TestimonialsSection";
 import { WhyChooseSection } from "@/components/marketing/WhyChooseSection";
@@ -30,7 +29,6 @@ export function MarketingHome() {
       <FaqSection />
       <HeartAndMindSection />
       <HiringSection />
-      <NewsSection />
     </>
   );
 }

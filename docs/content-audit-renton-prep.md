@@ -1,6 +1,6 @@
 # Renton Prep — Content & Component Audit
 **Date:** April 2026  
-**Status:** Living document. **Revised April 2026** after remediation: real **awards**, **careers**, **donate**, and **legal** pages; **`/blog`** redirects to Instagram; **`/about/testimonials`** → `/#testimonials`; **`/about/student-stories`** → `/about`; admissions/events/academics hubs no longer use “being updated” copy; **`/dashboard`** removed; **`public/`** ships web JPEG/PNG only (HEIC camera files are gitignored—keep masters outside the repo or locally). Spot-check line numbers when you edit files.
+**Status:** Living document. **Revised April 2026** after remediation: real **awards**, **careers**, **donate**, and **legal** pages; **`/blog`** redirects to Instagram; **`/about/testimonials`** → `/#testimonials`; **`/about/student-stories`** → `/about`; admissions/academics hubs no longer use “being updated” copy; **handbook, supply lists, and events hub copy** removed ( **`/events`** → **`/request-information`** redirect); **`NewsSection` / `featuredNews`** removed; **`/dashboard`** removed; **`public/`** ships web JPEG/PNG only (HEIC camera files are gitignored—keep masters outside the repo or locally). Spot-check line numbers when you edit files.
 
 **Purpose:** Map every live claim, identify inconsistencies, and define a prioritized implementation plan before content updates.
 
@@ -39,7 +39,7 @@ app/
 ├── careers/page.tsx                /careers → <CareersPageContent />
 ├── contact/page.tsx                permanentRedirect → /request-information
 ├── donate/page.tsx                 /donate → <DonatePageContent />
-├── events/page.tsx                 /events → <EventsHubContent />
+├── events/page.tsx                 permanentRedirect → /request-information (legacy URL)
 ├── legal/page.tsx                  /legal → <LegalPageContent />
 ├── request-information/page.tsx    <ContactPageContent /> + ContactForm → POST /api/contact
 └── api/contact/route.ts            JotForm proxy + rate limit (see docs/api-contact-jotform.md)
@@ -65,18 +65,16 @@ components/marketing/
 ├── HiringSection.tsx               "We're Hiring!" section
 ├── CommunitySection.tsx            4-photo grid when /public assets exist
 ├── HeartAndMindSection.tsx         "Relational teaching, anchored in truth"
-├── NewsSection.tsx                 3 featured news cards (from lib/site.ts)
 ├── FaqSection.tsx                  Accordion FAQ (data from faq-content.tsx)
 ├── faq-content.tsx                 All 21 FAQ questions & answers (data file)
 ├── AboutSchoolContent.tsx          /about page — 5 history sections
-├── AcademicsHubContent.tsx         /academics — technology, elementary, supply lists (office CTAs)
-├── AdmissionsHubContent.tsx        /admissions — tuition, apply, uniforms, handbook (office CTA)
+├── AcademicsHubContent.tsx         /academics — technology + elementary (Genesis + admissions links)
+├── AdmissionsHubContent.tsx        /admissions — tuition, apply, uniforms, extended care (office CTAs)
 ├── AwardsPageContent.tsx           /awards — recognitions from lib/site.ts
 ├── CareersPageContent.tsx          /careers — inquiry CTAs (no job board)
 ├── DonatePageContent.tsx           /donate — contact path only
 ├── LegalPageContent.tsx            /legal — contact / privacy routing only
 ├── ContactPageContent.tsx          /request-information — ContactForm + office details
-├── EventsHubContent.tsx            /events — school hours & calendar (office CTAs)
 ├── GenesisProjectContent.tsx       /about/genesis — deep-dive page
 └── SchoolJsonLd.tsx                EducationalOrganization script (layout)
 ```
@@ -85,7 +83,7 @@ components/marketing/
 ```
 lib/
 ├── site.ts             School identity, all URLs, recognitions, mission/vision/action,
-│                       microcopy, featured news — PRIMARY CONTENT SOURCE
+│                       microcopy — PRIMARY CONTENT SOURCE
 ├── tuition.ts          Tuition rates, school year, extended care rate
 ├── school-history.ts   Timeline milestones array (1953–2020)
 └── (API responses inline in route handlers)
@@ -110,15 +108,15 @@ docs/                   Audits, api-contact-jotform.md, implementation reports
 | `/about/genesis` | ✅ Live | Genesis deep-dive | No | `GenesisProjectContent` |
 | `/about/student-stories` | ↪ Redirect | → `/about` | No | Bookmark preservation |
 | `/about/testimonials` | ↪ Redirect | → `/#testimonials` | No | Family quotes on home |
-| `/academics` | ✅ Live | Technology + elementary + supply list guidance | No | Office/admissions CTAs |
-| `/admissions` | ✅ Live | Tuition, apply, uniforms, extended care, handbook CTA | No | `AdmissionsHubContent` |
+| `/academics` | ✅ Live | Technology + elementary overview | No | `AcademicsHubContent` |
+| `/admissions` | ✅ Live | Tuition, apply, uniforms, extended care | No | `AdmissionsHubContent` |
 | `/awards` | ✅ Live | Recognitions aligned with site copy | No | `AwardsPageContent` |
 | `/blog` | ↪ Redirect | → Instagram | No | `site.urls.blog` |
 | `/careers` | ✅ Live | Careers inquiry copy | No | `CareersPageContent` |
 | `/request-information` | ✅ Live | `ContactForm` → `POST /api/contact` | No | JotForm proxy |
 | `/contact` | ✅ Redirect | → `/request-information` | No | Legacy URL |
 | `/donate` | ✅ Live | Support inquiry (contact path) | No | `DonatePageContent` |
-| `/events` | ✅ Live | Hours & calendar (office CTAs) | No | `EventsHubContent` |
+| `/events` | ↪ Redirect | → `/request-information` | No | Legacy URL; calendar via school |
 | `/legal` | ✅ Live | Legal/privacy contact routing | No | `LegalPageContent` |
 
 **Footer and CTAs** now land on real pages, Instagram, or office/admissions contact paths—not generic “under construction” screens.
@@ -144,9 +142,8 @@ Sections render in this order inside `MarketingHome.tsx`:
 | 11 | FAQ | `FaqSection` | `faq-content.tsx` |
 | 12 | Heart & Mind | `HeartAndMindSection` | |
 | 13 | Hiring | `HiringSection` | |
-| 14 | News | `NewsSection` | `featuredNews` |
 
-**Key insight:** Most homepage content is hardcoded directly in components. The only centralized data files are `lib/site.ts` (identity, URLs, mission, recognitions, news) and `faq-content.tsx` (FAQ). To update most homepage copy, you must edit the individual component file.
+**Key insight:** Most homepage content is hardcoded directly in components. The only centralized data files are `lib/site.ts` (identity, URLs, mission, recognitions) and `faq-content.tsx` (FAQ). To update most homepage copy, you must edit the individual component file.
 
 ---
 
@@ -161,7 +158,6 @@ Sections render in this order inside `MarketingHome.tsx`:
 | Mission, Vision, Action | `lib/site.ts` | `missionVisionAction.mission/vision/action` |
 | Recognition bullets | `lib/site.ts` | `recognitions[]` (4 items) |
 | Microcopy strings | `lib/site.ts` | `microcopy.noCommitment`, `microcopy.noCommitmentFull` |
-| Featured news (3 items) | `lib/site.ts` | `featuredNews[]` |
 | Apply portal URL | `.env.example` + Vercel env | `NEXT_PUBLIC_APPLY_URL` |
 | Tuition rates + year | `lib/tuition.ts` | `tuition.programs[]`, `tuition.schoolYear`, `tuition.extendedCareRate` |
 | School history milestones | `lib/school-history.ts` | `SCHOOL_HISTORY_MILESTONES[]` |
@@ -181,7 +177,7 @@ Sections render in this order inside `MarketingHome.tsx`:
 | Hiring intro copy | `HiringSection.tsx` | |
 | Heart & Mind prose | `HeartAndMindSection.tsx` | |
 | School history prose | `AboutSchoolContent.tsx` | Paragraphs between milestones |
-| Academics hub copy | `AcademicsHubContent.tsx` | Links to Genesis + admissions; office CTAs for lists |
+| Academics hub copy | `AcademicsHubContent.tsx` | Links to Genesis + admissions |
 | 7 nav link labels | `SiteHeader.tsx` → `NAV_LINKS` | |
 | 4 footer column labels/links | `SiteFooter.tsx` | |
 
@@ -329,8 +325,8 @@ Risk: The site presents as a K–12 school but only shows elementary tuition. Fa
 
 **R8 — `/academics` depth** *(reduced — April 2026)*
 File: `AcademicsHubContent.tsx`
-Current state: Technology points to the Genesis Project and home anchors; elementary links to admissions; supply lists direct families to the office. No invented curriculum detail.
-Residual risk: Power users may still want downloadable PDFs or grade-specific copy on-site. **Action:** Add PDFs or expanded copy when admissions provides them.
+Current state: Technology points to the Genesis Project and home anchors; elementary links to admissions. No invented curriculum detail.
+Residual risk: Power users may still want downloadable PDFs, supply lists, or grade-specific copy on-site. **Action:** Add PDFs or expanded copy when admissions provides them.
 
 ---
 

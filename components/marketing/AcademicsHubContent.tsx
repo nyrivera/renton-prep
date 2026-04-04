@@ -14,7 +14,7 @@ export function AcademicsHubContent() {
             <p className="hub-intro">
               Christ-centered, research-informed learning across K–12 on one
               campus. Use the links below to go deeper on technology and
-              enrollment; supply lists come from the office each year.
+              enrollment.
             </p>
             <div className="btn-group">
               <MarketingLink
@@ -67,27 +67,6 @@ export function AcademicsHubContent() {
                 <Link href={site.urls.admissions} className="btn btn-secondary">
                   Admissions
                 </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--alt" id="supply-lists">
-        <div className="container">
-          <div className="hub-section">
-            <h2>Supply lists</h2>
-            <div className="hub-prose">
-              <p>
-                Supply lists are shared with enrolled families before the start
-                of each school year. If you are comparing schools or planning
-                ahead, contact the office and we will point you to the right list
-                for your child&apos;s grade.
-              </p>
-              <p>
-                <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
-                {" · "}
-                <Link href={site.urls.contact}>Request information</Link>
               </p>
             </div>
           </div>

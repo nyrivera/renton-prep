@@ -44,26 +44,15 @@ export const site = {
     mission: "/#mission",
     about: "/about",
     admissions: "/admissions",
-    howToApply: "/admissions#how-to-apply",
     tuition: "/admissions#tuition-fees",
     financialAid: "/admissions#financial-assistance",
     uniforms: "/admissions#uniforms",
-    handbook: "/admissions#student-handbook",
     extendedCare: "/admissions#extended-school-care",
     academics: "/academics",
-    technology: "/academics#technology",
-    elementary: "/academics#elementary",
-    supplyLists: "/academics#supply-lists",
-    events: "/events",
-    schoolHours: "/events#school-hours",
-    calendar: "/events#calendar",
     testimonials: "/#testimonials",
-    studentStories: "/about/student-stories",
     schwabe: "/about#moments",
     privacy: "/legal",
     instagram: "https://www.instagram.com/rentonprep/",
-    newsletter: "/request-information",
-    genesisTechnology: "/#genesis",
     genesisProject: "/about/genesis",
   },
 };
@@ -97,21 +86,3 @@ export const microcopy = {
   noCommitmentFull:
     "No commitment. Takes about 2 minutes. We will guide you through each step.",
 } as const;
-
-export const featuredNews = [
-  {
-    date: "March 2026",
-    title: "Renton Prep: Pioneering AI Integration in Education",
-    href: "/about/genesis",
-  },
-  {
-    date: "March 2026",
-    title: "Celebrating our 6 Year Cognia STEM Certification Renewal",
-    href: "/awards",
-  },
-  {
-    date: "March 2026",
-    title: "Renton Prep’s Accreditation Renewal",
-    href: "/about",
-  },
-] as const;

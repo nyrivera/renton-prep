@@ -25,7 +25,7 @@ Evidence gathered from the `renton-prep` Next.js App Router tree, `components/`,
 | `/blog` | `app/blog/page.tsx` | `TbdPage` (noindex). |
 | `/careers` | `app/careers/page.tsx` | `TbdPage` (noindex). |
 | `/donate` | `app/donate/page.tsx` | `TbdPage` (noindex). |
-| `/events` | `app/events/page.tsx` | `EventsHubContent`. |
+| `/events` | `app/events/page.tsx` | **`permanentRedirect` → `/request-information`** (April 2026). |
 | `/legal` | `app/legal/page.tsx` | `TbdPage` (noindex). |
 | ~~`/dashboard`~~ | *(removed)* | Segment deleted April 2026. |
 

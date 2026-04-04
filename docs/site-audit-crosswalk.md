@@ -8,7 +8,7 @@ Matrix: what the UI shows or expects vs what the server provides. **Source of tr
 | Request information form | `ContactForm.tsx`, `ContactPageContent.tsx`, `app/request-information/page.tsx` | **`POST /api/contact`** → JotForm submit | None on client | Yes | Contract: `docs/api-contact-jotform.md`. Rate limit per IP (in-memory). |
 | Legacy `/contact` URL | `app/contact/page.tsx` | `permanentRedirect` → `/request-information` | — | Yes | |
 | Awards page | `app/awards/page.tsx`, `AwardsPageContent.tsx` | None | — | Yes | Lists `recognitions` from `lib/site.ts` only. |
-| Blog URL | Footer / `NewsSection` → `site.urls.blog` | — | — | Yes | Instagram; **`/blog`** `permanentRedirect` to Instagram. |
+| Blog URL | Footer → `site.urls.blog` | — | — | Yes | Instagram; **`/blog`** `permanentRedirect` to Instagram. (Home **Featured News** section removed.) |
 | Careers, Donate, Legal | `*PageContent.tsx` routes | None | — | Yes | Factual contact CTAs; no invented policies or jobs. |
 | Testimonials footer link | `site.urls.testimonials` = `/#testimonials` | — | — | Yes | **`/about/testimonials`** redirects to `/#testimonials`. |
 | Student stories | `app/about/student-stories/page.tsx` | — | — | Yes | Redirects to `/about`. |

@@ -83,11 +83,6 @@ export function SiteFooter() {
                 <MarketingLink href={site.urls.uniforms}>Uniforms</MarketingLink>
               </li>
               <li>
-                <MarketingLink href={site.urls.handbook}>
-                  Student Handbook
-                </MarketingLink>
-              </li>
-              <li>
                 <MarketingLink href={site.urls.extendedCare}>
                   Extended School Care
                 </MarketingLink>
@@ -106,21 +101,6 @@ export function SiteFooter() {
               <li>
                 <MarketingLink href={site.urls.genesisProject}>
                   The Genesis Project
-                </MarketingLink>
-              </li>
-              <li>
-                <MarketingLink href={site.urls.supplyLists}>
-                  Supply Lists
-                </MarketingLink>
-              </li>
-              <li>
-                <MarketingLink href={site.urls.calendar}>
-                  Academic Calendar
-                </MarketingLink>
-              </li>
-              <li>
-                <MarketingLink href={site.urls.events}>
-                  Events &amp; calendar
                 </MarketingLink>
               </li>
               <li>
