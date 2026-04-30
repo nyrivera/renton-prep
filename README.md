@@ -1,36 +1,208 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Renton Prep Christian School — Website
+
+The official marketing website for Renton Prep Christian School. Built with Next.js App Router, React 19, TypeScript, and Tailwind CSS.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js (App Router) |
+| UI | React 19 |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS v4 + custom CSS |
+| Database | SQLite via Prisma ORM |
+| Linting | ESLint 9 |
+
+---
+
+## Project Structure
+
+```
+renton-prep/
+├── app/                        # Next.js App Router
+│   ├── layout.tsx              # Root layout + metadata
+│   ├── page.tsx                # Homepage
+│   ├── api/contact/route.ts    # Contact form API endpoint
+│   ├── academics/
+│   ├── about/
+│   ├── admissions/
+│   ├── awards/
+│   ├── blog/
+│   ├── careers/
+│   ├── contact/
+│   ├── donate/
+│   ├── legal/
+│   ├── request-information/
+│   ├── robots.ts               # Robots.txt generation
+│   └── sitemap.ts              # Sitemap generation
+├── components/
+│   ├── layout/                 # Header, footer, navigation
+│   ├── marketing/              # Hero, CTAs, home sections
+│   ├── sections/               # Shared page sections
+│   └── ui/                     # Base UI primitives
+├── lib/
+│   ├── contact-payload.ts      # Form parsing and validation
+│   ├── contact-rate-limit.ts   # Rate limiting logic
+│   ├── facts/                  # FACTS admissions portal integration
+│   ├── oneroster/              # OneRoster data integration
+│   ├── school-history.ts       # Historical school data
+│   ├── site.ts                 # Global site config
+│   └── tuition.ts              # Tuition schedule data
+├── prisma/
+│   ├── schema.prisma
+│   └── dev.db                  # SQLite dev database
+├── public/                     # Static assets, images, badges
+├── docs/                       # Internal documentation
+├── types/                      # Shared TypeScript types
+├── next.config.ts
+├── postcss.config.mjs
+└── tsconfig.json
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20 or later
+- npm
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Set up environment variables
+
+Copy the example file and fill in the values:
+
+```bash
+cp .env.example .env.local
+```
+
+| Variable | Required | Description |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Production | Canonical site URL — must start with `https://` |
+| `NEXT_PUBLIC_GA_ID` | Optional | Google Analytics 4 measurement ID (format: `G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_APPLY_URL` | Optional | External admissions portal URL (FACTS / RenWeb) |
+| `DATABASE_URL` | Dev | Prisma database connection string |
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+```bash
+npm run dev       # Start development server
+npm run build     # Production build
+npm run start     # Start production server
+npm run lint      # Run ESLint
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Integrations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Contact Form
+- Endpoint: `POST /api/contact`
+- Forwards submissions to JotForm (form ID: `260918035603050`)
+- Includes rate limiting, honeypot spam protection, and input size limits (max 65 KB)
 
-## Deploy on Vercel
+### Google Analytics 4
+- Loaded via `next/script` in the root layout
+- Only activates when `NEXT_PUBLIC_GA_ID` is set
+- Uses `afterInteractive` strategy to avoid blocking page load
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### FACTS / RenWeb
+- External admissions portal linked via `NEXT_PUBLIC_APPLY_URL`
+- Fallback URL is defined in `lib/site.ts`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prisma / SQLite
+- Used for server-side data persistence
+- Dev database: `prisma/dev.db`
+- Run migrations: `npx prisma migrate dev`
+
+---
+
+## Security
+
+Security headers are configured in `next.config.ts` and apply to all routes:
+
+- **Content Security Policy (CSP)** — allowlists Google Analytics, Tag Manager, and Fonts; blocks all else
+- **HSTS** — enforced for one year in production
+- **X-Frame-Options: DENY** — prevents clickjacking
+- **X-Content-Type-Options: nosniff**
+- **Permissions-Policy** — disables camera, microphone, and geolocation
+- **COOP / CORP** — same-origin isolation
+
+---
+
+## Key Pages
+
+| Route | Description |
+|---|---|
+| `/` | Homepage with hero, recognition, features, and CTA |
+| `/about` | School mission, history, and leadership |
+| `/academics` | Academics overview |
+| `/admissions` | Admissions process and apply link |
+| `/request-information` | Info request and contact form |
+| `/the-genesis-project` | K-5 program overview |
+| `/careers` | Employment opportunities |
+| `/donate` | Giving page |
+| `/legal` | Privacy policy and terms |
+
+---
+
+## Accreditation
+
+Renton Prep is:
+
+- **Cognia-accredited** K-12 school
+- **First Cognia STEM-accredited** K-12 school in Washington state
+- A **Microsoft Showcase School**
+
+---
+
+## Deployment
+
+The project deploys to any Node.js-compatible host. Recommended platform: **Vercel**.
+
+```bash
+npm run build
+npm run start
+```
+
+Make sure all production environment variables are set before running the build.
+
+---
+
+## Internal Docs
+
+Documentation for developers and maintainers lives in `/docs`:
+
+| File | Contents |
+|---|---|
+| `site-audit-frontend.md` | Frontend audit findings |
+| `site-audit-backend.md` | Backend audit findings |
+| `security-assessment.md` | Security review |
+| `content-audit-renton-prep.md` | Content inventory |
+| `implementation-report-remediation.md` | Resolved issues log |
+| `remediation-plan-prioritized.md` | Open priorities |
+| `api-contact-jotform.md` | JotForm API field mapping |
+
+---
+
+## License
+
+Private. All rights reserved. Renton Prep Christian School.
